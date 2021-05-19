@@ -360,8 +360,8 @@ input:focus, textarea:focus, *:required:focus{border-color:#FBAB45 !important;}
 .btn, .btn.inverse:hover{color:#FFFFFF; background-color:#FBAB45; border-color:#FBAB45;}
 .btn:hover, .btn.inverse{color:inherit; background-color:transparent; border-color:inherit;}
 
-.imgover:hover::before{background-color:rgba(251,171,69,.5);/* #FBAB45 */}
-.imgover, .imgover:hover::after{color:#FFFFFF;}
+.imgover:hover::before{background-color:rgba(251,171,69,.5);}
+.imgover, .imgover:hover::after{color:#00ff0000;}
 
 .heading.underline::after{background-color:#FA8D0A;}
 

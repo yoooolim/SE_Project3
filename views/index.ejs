@@ -20,7 +20,7 @@ Licence URI: https://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- Top Background Image Wrapper -->
-<div class="bgded overlay" style="background-image:url('images/demo/backgrounds/skateboarder-898336_1920.jpg');"> 
+
   <!-- ################################################################################################ -->
   <div style="background-image:url('images/demo/backgrounds/title_background.png');">
     <div class="wrapper row0">
@@ -28,8 +28,8 @@ Licence URI: https://www.os-templates.com/template-terms
         <div class="fl_left"> 
           <!-- ################################################################################################ -->
           <ul class="nospace">
-            <li><i class="fas fa-phone rgtspace-5"></i> +00 (123) 456 7890</li>
-            <li><i class="far fa-envelope rgtspace-5"></i> info@domain.com</li>
+            <li><i class="fas fa-phone rgtspace-5"></i> (02) 987-6543</li>
+            <li><i class="far fa-envelope rgtspace-5"></i> 123yunhye@kw.ac.kr</li>
           </ul>
           <!-- ################################################################################################ -->
         </div>
@@ -37,7 +37,7 @@ Licence URI: https://www.os-templates.com/template-terms
           <!-- ################################################################################################ -->
           <ul class="nospace">
             <li><a href="/"><i class="fas fa-home"></i></a></li>
-            <li><a href="#" title="Help Centre"><i class="far fa-life-ring"></i></a></li>
+            <li><a href="#" title="Help Center"><i class="far fa-life-ring"></i></a></li>
             <li><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
             <li><a href="#" title="Sign Up"><i class="fas fa-edit"></i></a></li>
             <li id="searchform">
@@ -63,7 +63,7 @@ Licence URI: https://www.os-templates.com/template-terms
       <header id="header" class="hoc clear">
         <div id="logo" class="fl_left"> 
           <!-- ################################################################################################ -->
-          <h1><a href="index.html">On The Board</a></h1>
+          <h1><a href="/">On The Board</a></h1>
           <!-- ################################################################################################ -->
         </div>
         <nav id="mainav" class="fl_right"> 
@@ -123,6 +123,7 @@ Licence URI: https://www.os-templates.com/template-terms
   <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
+<div class="bgded overlay" style="background-image:url('images/demo/backgrounds/skateboarder-898336_1920.jpg');"> 
   <div id="pageintro" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <article>
@@ -213,23 +214,23 @@ var idx = 2;
     <li>
       <ul class="nospace group team">
       <li class="one_quarter first">
-        <figure><a class="imgover" href="#"><img src="images/demo/300x300.png" alt=""></a>
-          <figcaption><strong>DUMMY 1</strong> <em>Job Title Here</em></figcaption>
+        <figure><a class="imgover" href="#"><img src=<%=rows[0].img_url%> alt=""></a>
+          <figcaption><strong><%=rows[0].name%></strong> <em><%=rows[0].price%>원</em></figcaption>
         </figure>
       </li>
       <li class="one_quarter">
-        <figure><a class="imgover" href="#"><img src="images/demo/300x300.png" alt=""></a>
-          <figcaption><strong>DUMMY 2</strong> <em>Job Title Here</em></figcaption>
+        <figure><a class="imgover" href="#"><img src=<%=rows[1].img_url%> alt=""></a>
+          <figcaption><strong><%=rows[1].name%></strong> <em><%=rows[1].price%>원</em></figcaption>
         </figure>
       </li>
       <li class="one_quarter">
-        <figure><a class="imgover" href="#"><img src="images/demo/300x300.png" alt=""></a>
-          <figcaption><strong>DUMMY 3</strong> <em>Job Title Here</em></figcaption>
+        <figure><a class="imgover" href="#"><img src=<%=rows[2].img_url%> alt=""></a>
+          <figcaption><strong><%=rows[2].name%></strong> <em><%=rows[2].price%>원</em></figcaption>
         </figure>
       </li>
       <li class="one_quarter">
-        <figure><a class="imgover" href="#"><img src="images/demo/300x300.png" alt=""></a>
-          <figcaption><strong>DUMMY 4</strong> <em>Job Title Here</em></figcaption>
+        <figure><a class="imgover" href="#"><img src=<%=rows[3].img_url%> alt=""></a>
+          <figcaption><strong><%=rows[3].name%></strong> <em><%=rows[3].price%>원</em></figcaption>
         </figure>
       </li>
     </ul>
@@ -237,23 +238,23 @@ var idx = 2;
     <li>
       <ul class="nospace group team">
       <li class="one_quarter first">
-        <figure><a class="imgover" href="#"><img src="images/demo/300x300.png" alt=""></a>
-          <figcaption><strong>DUMMY 1</strong> <em>Job Title Here</em></figcaption>
+        <figure><a class="imgover" href="#"><img src=<%=rows[4].img_url%> alt=""></a>
+          <figcaption><strong><%=rows[4].name%></strong> <em><%=rows[4].price%>원</em></figcaption>
         </figure>
       </li>
       <li class="one_quarter">
-        <figure><a class="imgover" href="#"><img src="images/demo/300x300.png" alt=""></a>
-          <figcaption><strong>DUMMY 2</strong> <em>Job Title Here</em></figcaption>
+        <figure><a class="imgover" href="#"><img src=<%=rows[5].img_url%> alt=""></a>
+          <figcaption><strong><%=rows[5].name%></strong> <em><%=rows[5].price%>원</em></figcaption>
         </figure>
       </li>
       <li class="one_quarter">
-        <figure><a class="imgover" href="#"><img src="images/demo/300x300.png" alt=""></a>
-          <figcaption><strong>DUMMY 3</strong> <em>Job Title Here</em></figcaption>
+        <figure><a class="imgover" href="#"><img src=<%=rows[6].img_url%> alt=""></a>
+          <figcaption><strong><%=rows[6].name%></strong> <em><%=rows[6].price%>원</em></figcaption>
         </figure>
       </li>
       <li class="one_quarter">
-        <figure><a class="imgover" href="#"><img src="images/demo/300x300.png" alt=""></a>
-          <figcaption><strong>DUMMY 4</strong> <em>Job Title Here</em></figcaption>
+        <figure><a class="imgover" href="#"><img src=<%=rows[7].img_url%> alt=""></a>
+          <figcaption><strong><%=rows[7].name%></strong> <em><%=rows[7].price%>원</em></figcaption>
         </figure>
       </li>
     </ul>
@@ -261,23 +262,23 @@ var idx = 2;
     <li>
       <ul class="nospace group team">
       <li class="one_quarter first">
-        <figure><a class="imgover" href="#"><img src="images/demo/300x300.png" alt=""></a>
-          <figcaption><strong>DUMMY 1</strong> <em>Job Title Here</em></figcaption>
+        <figure><a class="imgover" href="#"><img src=<%=rows[8].img_url%> alt=""></a>
+          <figcaption><strong><%=rows[8].name%></strong> <em><%=rows[8].price%>원</em></figcaption>
         </figure>
       </li>
       <li class="one_quarter">
-        <figure><a class="imgover" href="#"><img src="images/demo/300x300.png" alt=""></a>
-          <figcaption><strong>DUMMY 2</strong> <em>Job Title Here</em></figcaption>
+        <figure><a class="imgover" href="#"><img src=<%=rows[9].img_url%> alt=""></a>
+          <figcaption><strong><%=rows[9].name%></strong> <em><%=rows[9].price%>원</em></figcaption>
         </figure>
       </li>
       <li class="one_quarter">
-        <figure><a class="imgover" href="#"><img src="images/demo/300x300.png" alt=""></a>
-          <figcaption><strong>DUMMY 3</strong> <em>Job Title Here</em></figcaption>
+        <figure><a class="imgover" href="#"><img src=<%=rows[10].img_url%> alt=""></a>
+          <figcaption><strong><%=rows[10].name%></strong> <em><%=rows[10].price%>원</em></figcaption>
         </figure>
       </li>
       <li class="one_quarter">
-        <figure><a class="imgover" href="#"><img src="images/demo/300x300.png" alt=""></a>
-          <figcaption><strong>DUMMY 4</strong> <em>Job Title Here</em></figcaption>
+        <figure><a class="imgover" href="#"><img src=<%=rows[11].img_url%> alt=""></a>
+          <figcaption><strong><%=rows[11].name%></strong> <em><%=rows[11].price%></em></figcaption>
         </figure>
       </li>
     </ul>
@@ -599,7 +600,7 @@ function slide() {
     <div id="ctdetails" class="clear">
       <ul class="nospace clear">
         <li class="one_quarter first">
-          <div class="block clear"><a href="#"><i class="fas fa-phone"></i></a> <span><strong>전화번호:</strong> (02) 987 6543</span></div>
+          <div class="block clear"><a href="#"><i class="fas fa-phone"></i></a> <span><strong>전화번호:</strong> (02) 987-6543</span></div>
         </li>
         <li class="one_quarter">
           <div class="block clear"><a href="#"><i class="fas fa-envelope"></i></a> <span><strong>이메일:</strong>123yunhye@kw.ac.kr</span></div>
@@ -608,7 +609,7 @@ function slide() {
           <div class="block clear"><a href="#"><i class="fas fa-clock"></i></a> <span><strong> 월요일 - 금요일:</strong> 09.00am - 17.00pm</span></div>
         </li>
         <li class="one_quarter">
-          <div class="block clear"><a href="#"><i class="fas fa-map-marker-alt"></i></a> <span><strong>위치:</strong> 오시는 길 안내 <a href="#">링크</a></span></div>
+          <div class="block clear"><a href="#"><i class="fas fa-map-marker-alt"></i></a> <span><strong>위치:</strong> 오시는 길 안내 <a href="https://map.naver.com/v5/directions/-/14144080.429905552,4525854.546850104,%EA%B4%91%EC%9A%B4%EB%8C%80%ED%95%99%EA%B5%90,11591508,PLACE_POI/-/transit?c=14143130.2059919,4525937.9626935,15,0,0,0,dh" target="_blank">링크</a></span></div>
         </li>
       </ul>
     </div>
@@ -621,7 +622,7 @@ function slide() {
 <div class="wrapper row5">
   <div id="copyright" class="hoc clear"> 
     <!-- ################################################################################################ -->
-    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">On The Board</a></p>
+    <p class="fl_left">Copyright &copy; 2021 - All Rights Reserved - <a href="#">On The Board</a></p>
     <p class="fl_right"><a target="_blank" ></a></p>
     <!-- ################################################################################################ -->
   </div>
