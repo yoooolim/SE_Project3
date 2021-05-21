@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<!--
+Template Name: Sislaf
+Author: <a href="https://www.os-templates.com/">OS Templates</a>
+Author URI: https://www.os-templates.com/
+Copyright: OS-Templates.com
+Licence: Free to use under our free template licence terms
+Licence URI: https://www.os-templates.com/template-terms
+-->
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>On The Board</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- Top Background Image Wrapper -->
+
+  <!-- ################################################################################################ -->
+  <div style="background-image:url('images/demo/backgrounds/title_background.png');">
+    <div class="wrapper row0">
+      <div id="topbar" class="hoc clear">
+        <div class="fl_left"> 
+          <!-- ################################################################################################ -->
+          <ul class="nospace">
+            <li><i class="fas fa-phone rgtspace-5"></i> (02) 987-6543</li>
+            <li><i class="far fa-envelope rgtspace-5"></i> 123yunhye@kw.ac.kr</li>
+          </ul>
+          <!-- ################################################################################################ -->
+        </div>
+        <div class="fl_right"> 
+          <!-- ################################################################################################ -->
+          <ul class="nospace">
+            <li><a href="/"><i class="fas fa-home"></i></a></li>
+            <li><a href="#" title="Help Center"><i class="far fa-life-ring"></i></a></li>
+            <li><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
+            <li><a href="#" title="Sign Up"><i class="fas fa-edit"></i></a></li>
+            <li id="searchform">
+              <div>
+                <form action="#" method="post">
+                  <fieldset>
+                    <legend>Quick Search:</legend>
+                    <input type="text" placeholder="Enter search term&hellip;">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                  </fieldset>
+                </form>
+              </div>
+            </li>
+          </ul>
+          <!-- ################################################################################################ -->
+        </div>
+      </div>
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="wrapper row1">
+      <header id="header" class="hoc clear">
+        <div id="logo" class="fl_left"> 
+          <!-- ################################################################################################ -->
+          <h1><a href="/">On The Board</a></h1>
+          <!-- ################################################################################################ -->
+        </div>
+        <nav id="mainav" class="fl_right"> 
+          <!-- ################################################################################################ -->
+          <ul class="clear">
+            <!--<li class="active"><a href="index.html">Home</a></li>-->
+            <li><a class="drop" href="#">Long Board</a>
+              <ul>
+                <li><a href="pages/gallery.html">COMPLETE</a></li>
+                <li><a href="pages/sidebar-left.html">DECK</a></li>
+                <li><a href="pages/full-width.html">TRUCK</a></li>
+                <li><a href="pages/sidebar-right.html">WHEEL</a></li>
+                <li><a href="pages/font-icons.html">ETC.</a></li>
+              </ul>
+            </li>
+            <li><a class="drop" href="#">Skate Board</a>
+              <ul>
+                <li><a href="pages/gallery.html">COMPLETE</a></li>
+                <li><a href="pages/sidebar-left.html">DECK</a></li>
+                <li><a href="pages/full-width.html">TRUCK</a></li>
+                <li><a href="pages/sidebar-right.html">WHEEL</a></li>
+                <li><a href="pages/font-icons.html">ETC.</a></li>
+              </ul>
+            </li>
+            <li><a class="drop" href="#">Cruiser Board</a>
+              <ul>
+                <li><a href="pages/gallery.html">COMPLETE</a></li>
+                <li><a href="pages/sidebar-left.html">DECK</a></li>
+                <li><a href="pages/full-width.html">TRUCK</a></li>
+                <li><a href="pages/sidebar-right.html">WHEEL</a></li>
+                <li><a href="pages/font-icons.html">ETC.</a></li>
+              </ul>
+            </li>
+            <li><a class="drop" href="#">SNOW&ETC.</a>
+              <ul>
+                <li><a href="pages/gallery.html">전동보드</a></li>
+                <li><a href="pages/full-width.html">스노우스케이트</a></li>
+                <li><a href="pages/sidebar-left.html">스노우보드</a></li>
+                <li><a href="pages/sidebar-right.html">ETC.</a></li>
+              </ul>
+            </li>
+            <li><a class="drop" href="#">보호장구</a>
+              <ul>
+                <li><a href="pages/gallery.html">헬멧</a></li>
+                <li><a href="pages/full-width.html">보호장구</a></li>
+                <li><a href="pages/sidebar-right.html">슬라이드퍽&글러브</a></li>
+                <li><a href="pages/sidebar-left.html">ETC.</a></li>
+              </ul>
+            </li>
+            <!--<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>-->
+          </ul>
+          <!-- ################################################################################################ -->
+        </nav>
+      </header>
+    </div>
+  </div>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+
+<div class="wrapper row2">
+  <div class="hoc container clear"> 
+    <!-- ################################################################################################ -->
+    <div class="sectiontitle">
+      <p class="nospace font-xs"></p>
+      <p class="heading underline font-x2">ORDER</p>
+      <p>주문하기</p>
+    </div>
+    <!-- 주문 상품 -->
+    <table style="margin-bottom: 0px;">
+        <th style="width: 150px;"> 이미지</th>
+        <th>상품정보</th>
+        <th>판매가</th>
+        <th>수량</th>
+        <th>적립금</th>
+        <th>배송구분</th>
+        <th>배송비</th>
+        <th>합계</th>
+<%
+        function addComma(num) {
+            var regexp = /\B(?=(\d{3})+(?!\d))/g;
+            return num.toString().replace(regexp, ',');
+        }
+        var sum = 0;
+        for (var i = 0; i < 3; i++) { 
+            var row = rows[i];
+            
+%>
+        
+        <tr>
+            <td><a class="imgover" href="#"><img src=<%=row.img_url%> alt=""></a></td>
+            
+            <td><a href="#" ><strong><%=row.name%></strong></a></td>
+            <td><%=addComma(row.price)%>원</td>
+            <td>1</td>
+            <td>미정</td>
+            <td>기본배송</td>
+            <td>[무료]</td>
+            <td><%=addComma(row.price)%>원</td>
+        </tr>
+<%
+            sum = sum + row.price;
+        }
+%>
+        
+    </table>
+    <table style="font-size:large;  margin-bottom: 50px;">
+        <tr>
+            <td style="height: 80px; background-color: white; font-weight: bold;">총액</td>
+            <td style="background-color: white;  text-align :right; border-left: hidden; color: #FBAB45; font-weight: bold;"><%=addComma(sum)%>원</td>
+        </tr>
+    </table>
+        
+    <!-- 주문 상품 -->
+
+    
+
+    <h2 style="font-weight: bold;">주문자 정보</h2>
+    <table style=" margin-bottom: 50px; padding:20px">
+        <tr >
+            <td style="width:200px;">주문하시는 분</td>
+            <td style="text-align: left;border-left: hidden; "><input ></td>
+        </tr>
+        <tr>
+            <td >주소</td>
+            <td style="text-align: left;border-left: hidden; "><input ></td>
+        </tr>
+        <tr>
+            <td >일반전화</td>
+            <td style="text-align: left;border-left: hidden; "><input ></td>
+        </tr>
+        <tr>
+            <td >휴대전화</td>
+            <td style="text-align: left;border-left: hidden; "><input ></td>
+        </tr>
+        <tr>
+            <td >이메일</td>
+            <td style="text-align: left;border-left: hidden; "><input ></td>
+        </tr>
+    </table>
+
+    <h2 style="font-weight: bold;">배송지 정보</h2>
+    <table style=" margin-bottom: 50px; padding:20px">
+        <tr >
+            <td style="width:200px;">배송지 선택</td>
+            <td style="text-align: left;border-left: hidden; "><input ></td>
+        </tr>
+        <tr>
+            <td >받으시는 분</td>
+            <td style="text-align: left;border-left: hidden; "><input ></td>
+        </tr>
+        <tr>
+            <td >주소</td>
+            <td style="text-align: left;border-left: hidden; "><input ></td>
+        </tr>
+        <tr>
+            <td >휴대전화</td>
+            <td style="text-align: left;border-left: hidden; "><input ></td>
+        </tr>
+        <tr>
+            <td >배송메시지</td>
+            <td style="text-align: left;border-left: hidden; "><input ></td>
+        </tr>
+    </table>
+    
+
+    <h2 style="font-weight: bold;">결제 정보</h2>
+    <table style=" margin-bottom: 50px; padding:20px">
+        <tr >
+            <td style="width:200px;">총 결제 예정 금액</td>
+            <td><%=addComma(row.price)%>원</td>
+        </tr>
+        <tr>
+            <td >결제수단</td>
+            <td style="text-align: left;border-left: hidden; ">
+                무통장입금 (입금계좌: 국민은행 012345678910 또는 농협은행 123456788910)<input type="radio" name="chk_info" value="HTML">
+                카카오페이<input type="radio" name="chk_info" value="HTML">
+            </td>
+        </tr>
+    </table>
+
+    <p margin = "100px" align="center"><a class="btn inverse" href="#">결제하기</a></p>
+    
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+
+<div class="bgded overlay row4" style="background-image:url('images/demo/backgrounds/starry-night-1149644_1920.jpg');">
+  <footer id="footer" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="center btmspace-50">
+      <h6 class="heading">On The Board</h6>
+      <ul class="faico clear">
+        <li><a class="faicon-dribble" href="#"><i class="fab fa-dribbble"></i></a></li>
+        <li><a class="faicon-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+        <li><a class="faicon-google-plus" href="#"><i class="fab fa-google-plus-g"></i></a></li>
+        <li><a class="faicon-linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
+        <li><a class="faicon-twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+        <li><a class="faicon-vk" href="#"><i class="fab fa-vk"></i></a></li>
+      </ul>
+      <p class="nospace">SNS에서 업데이트 되는 신제품들을 더 빠르게 접해보세요!</p>
+    </div>
+    <!-- ################################################################################################ -->
+    <hr class="btmspace-50">
+    <!-- ################################################################################################ -->
+    <div class="group btmspace-50">
+      <div class="one_quarter first">
+         <h6 class="heading">About us</h6>
+        <ul class="nospace linklist">
+          <li><a href="#">About On The Board</a></li>
+        </ul>
+        
+      </div>
+      <div class="one_quarter">
+        <h6 class="heading">고객관련</h6>
+        <ul class="nospace linklist">
+          <li><a href="#">개인정보취급방침</a></li>
+          <li><a href="#">이용약관</a></li>
+        </ul>
+       
+      </div>
+      <div class="one_quarter">
+        <h6 class="heading">배송 시기 안내</h6>
+        <ul class="nospace linklist">
+          <li>입금 후 1 ~ 3일이 소요됩니다.</li>
+        </ul>
+      </div>
+      <div class="one_quarter">
+        <h6 class="heading">입금 계좌 안내</h6>
+        <ul class="nospace linklist">
+          <li>국민은행 012345678910</li>
+          <li>농협은행 123456788910</li>
+        </ul>
+      </div>
+      <!-- ################################################################################################ -->
+    </div>
+    <div id="ctdetails" class="clear">
+      <ul class="nospace clear">
+        <li class="one_quarter first">
+          <div class="block clear"><a href="#"><i class="fas fa-phone"></i></a> <span><strong>전화번호:</strong> (02) 987-6543</span></div>
+        </li>
+        <li class="one_quarter">
+          <div class="block clear"><a href="#"><i class="fas fa-envelope"></i></a> <span><strong>이메일:</strong>123yunhye@kw.ac.kr</span></div>
+        </li>
+        <li class="one_quarter">
+          <div class="block clear"><a href="#"><i class="fas fa-clock"></i></a> <span><strong> 월요일 - 금요일:</strong> 09.00am - 17.00pm</span></div>
+        </li>
+        <li class="one_quarter">
+          <div class="block clear"><a href="#"><i class="fas fa-map-marker-alt"></i></a> <span><strong>위치:</strong> 오시는 길 안내 <a href="https://map.naver.com/v5/directions/-/14144080.429905552,4525854.546850104,%EA%B4%91%EC%9A%B4%EB%8C%80%ED%95%99%EA%B5%90,11591508,PLACE_POI/-/transit?c=14143130.2059919,4525937.9626935,15,0,0,0,dh" target="_blank">링크</a></span></div>
+        </li>
+      </ul>
+    </div>
+    <!-- ################################################################################################ -->
+  </footer>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <p class="fl_left">Copyright &copy; 2021 - All Rights Reserved - <a href="#">On The Board</a></p>
+    <p class="fl_right"><a target="_blank" ></a></p>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="layout/scripts/jquery.min.js"></script>
+<script src="layout/scripts/jquery.backtotop.js"></script>
+<script src="layout/scripts/jquery.mobilemenu.js"></script>
+</body>
+</html>
