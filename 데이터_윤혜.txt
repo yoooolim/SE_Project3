@@ -1,5 +1,1198 @@
 
 alter (테이블 수정 사항)=================================
 
+<notice_tbl>
+alter table notice_tbl drop column notice_tblcol;
+
+<user_tbl> // who: 0 - 관리자, 1 - 판매자, 2 - 구매자
+alter table user_tbl add who int default 2 not null;
+
 insert (더미데이터)======================================
+
+<notice_tbl>---------------------------------------
+INSERT INTO `on_the_board`.`notice_tbl`
+(
+`user_id`,
+`title`,
+`context`,
+`create_date`)
+VALUES
+(
+'dkssud',
+'[배송] 어린이날(2021/5/5) 배송 관련 공지',
+'안녕하세요 온더보드입니다.
+이번주 수요일인 어린이날(5/5)은 배송 업무가 모두 중단됩니다.
+고객님들의 너그러운 이해 부탁드립니다.
+5/4 이후 주문건은 5/6부터 순차적으로 발송됩니다.
+이전 주문건은 모두 금일 내로 발송될 예정입니다.
+문의사항이 있으면 페이지 하단 고객센터로 전화주십시오.
+
+감사합니다. :)',
+'2021-05-03 16:31:58');
+
+INSERT INTO `on_the_board`.`notice_tbl`
+(
+`user_id`,
+`title`,
+`context`,
+`create_date`)
+VALUES
+(
+'dkssud',
+'[행사] 2021 ON THE BOARD FESTIVAL',
+'안녕하세요 온더보드입니다.
+올해에도 어김없이 온더보드 페스티벌이 찾아왔습니다!
+선선한 가을에 한강에서 진행될 페스티벌! 생각만 해도 신나지 않나요?
+국내 최대 규모의 보드 축제이자, 스케이트보드 트릭 대회인 2021 ON THE BOARD FESTIVAL 개최 소식을 기쁘게 알립니다.
+
+일시: 2021년 10월 24일 ~ 25일
+장소: 여의도한강공원
+
+현장 발권만 가능하며, 온더보드 회원이라면 누구나 참가료는 무료입니다!
+회원님들의 많은 참가 부탁드립니다. :)
+감사합니다.',
+'2021-05-10 14:22:50');
+
+INSERT INTO `on_the_board`.`notice_tbl`
+(
+`user_id`,
+`title`,
+`context`,
+`create_date`)
+VALUES
+(
+'dkssud',
+'[배송] 부처님 오신 날(2021/5/19) 배송 관련 공지',
+'안녕하세요 온더보드입니다.
+이번주 수요일인 부처님 오신 날(5/19)은 배송 업무가 모두 중단됩니다.
+고객님들의 너그러운 이해 부탁드립니다.
+5/18 이후 주문건은 5/20부터 순차적으로 발송됩니다.
+이전 주문건은 모두 금일 내로 발송될 예정입니다.
+문의사항이 있으면 페이지 하단 고객센터로 전화주십시오.
+
+감사합니다. :)',
+'2021-05-17 13:11:40');
+
+<user_tbl>--------------------------------------------------------
+
+INSERT INTO `on_the_board`.`user_tbl`
+(`id`,
+`email`,
+`password`,
+`name`,
+`address`,
+`phone_number`,
+`birthday`,
+`who`)
+VALUES
+('dkssud',
+'dkssud@gmail.com',
+'1234',
+'김안녕',
+'서울특별시 강남구 광운로 20',
+'010-0000-0002',
+'1999-03-03 00:00:00',
+'0');
+
+INSERT INTO `on_the_board`.`user_tbl`
+(`id`,
+`email`,
+`password`,
+`name`,
+`address`,
+`phone_number`,
+`birthday`,
+`who`)
+VALUES
+('hiyj',
+'hiyj@hi.com',
+'1234',
+'안양주',
+'경기도 양주시 중앙로 12',
+'010-0000-0004',
+'2000-05-05 00:00:00',
+'1');
+
+INSERT INTO `on_the_board`.`user_tbl`
+(`id`,
+`email`,
+`password`,
+`name`,
+`address`,
+`phone_number`,
+`birthday`,
+`who`)
+VALUES
+('sj123',
+'sj123@gmail.com',
+'1234',
+'홍세정',
+'서울특별시 동대문구 행복로 20',
+'010-0000-0001',
+'1998-02-02 00:00:00',
+'2');
+
+INSERT INTO `on_the_board`.`user_tbl`
+(`id`,
+`email`,
+`password`,
+`name`,
+`address`,
+`phone_number`,
+`birthday`,
+`who`)
+VALUES
+('user1',
+'user1@naver.com',
+'1234',
+'유저일',
+'경기도 의정부시 중앙로 20',
+'010-0000-0003',
+'1999-04-04 00:00:00',
+'2');
+
+INSERT INTO `on_the_board`.`user_tbl`
+(`id`,
+`email`,
+`password`,
+`name`,
+`address`,
+`phone_number`,
+`birthday`,
+`who`)
+VALUES
+('yh123',
+'yh123@naver.com',
+'1234',
+'최윤혜',
+'서울특별시 노원구 광운로 20',
+'010-0000-0000',
+'1998-01-01 00:00:00',
+'2');
+
+INSERT INTO `on_the_board`.`user_tbl`
+(`id`,
+`email`,
+`password`,
+`name`,
+`address`,
+`phone_number`,
+`birthday`,
+`who`)
+VALUES
+('yryr',
+'yryr@naver.com',
+'1234',
+'박유림',
+'서울특별시 중구 리치로 11',
+'010-0000-0005',
+'2000-06-06 00:00:00',
+'2');
+
+<product_tbl> ------------------------------------------------------------
+
+// 데이터를 잘못넣어서 update문까지 다 넣었습니ㅏ! 싹복붙 ㄱㄱ
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+1,
+'스케이트 컴플릿 1',
+'images/products/img/1/1/1.jpg',
+123000,
+12,
+'images/products/detail_img/1/1/1.jpg',
+1,
+1);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+2,
+'스케이트 컴플릿 2',
+'images/products/img/1/1/2.jpg',
+89000,
+2,
+'images/products/detail_img/1/1/2.jpg',
+1,
+1);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+3,
+'스케이트 컴플릿 3',
+'images/products/img/1/1/3.jpg',
+91000,
+5,
+'images/products/detail_img/1/1/3.jpg',
+1,
+1);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+4,
+'스케이트 컴플릿 4',
+'images/products/img/1/1/4.jpg',
+134000,
+1,
+'images/products/detail_img/1/1/4.jpg',
+1,
+1);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+5,
+'스케이트 컴플릿 5',
+'images/products/img/1/1/5.jpg',
+103000,
+10,
+'images/products/detail_img/1/1/5.jpg',
+1,
+1);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+6,
+'스케이트 데크 1',
+'images/products/img/1/2/6.jpg',
+237000,
+7,
+'images/products/detail_img/1/2/6.jpg',
+1,
+2);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+7,
+'스케이트 데크 2',
+'images/products/img/1/2/7.jpg',
+407000,
+4,
+'images/products/detail_img/1/2/7.jpg',
+1,
+2);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+8,
+'스케이트 데크 3',
+'images/products/img/1/2/8.jpg',
+123000,
+11,
+'images/products/detail_img/1/2/8.jpg',
+1,
+2);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+9,
+'스케이트 데크 4',
+'images/products/img/1/2/9.jpg',
+293000,
+10,
+'images/products/detail_img/1/2/9.jpg',
+1,
+2);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+10,
+'스케이트 데크 5',
+'images/products/img/1/2/10.jpg',
+93000,
+9,
+'images/products/detail_img/1/2/10.jpg',
+1,
+2);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+11,
+'스케이트 트럭 1',
+'images/products/img/1/3/11.jpg',
+23000,
+3,
+'images/products/detail_img/1/3/11.jpg',
+1,
+3);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+12,
+'스케이트 트럭 2',
+'images/products/img/1/3/12.jpg',
+34000,
+6,
+'images/products/detail_img/1/3/12.jpg',
+1,
+3);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+13,
+'스케이트 트럭 3',
+'images/products/img/1/3/13.jpg',
+19000,
+2,
+'images/products/detail_img/1/3/13.jpg',
+1,
+3);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+14,
+'스케이트 트럭 4',
+'images/products/img/1/3/14.jpg',
+9900,
+19,
+'images/products/detail_img/1/3/14.jpg',
+1,
+3);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+15,
+'스케이트 트럭 5',
+'images/products/img/1/3/15.jpg',
+21000,
+1,
+'images/products/detail_img/1/3/15.jpg',
+1,
+3);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+16,
+'스케이트 휠 1',
+'images/products/img/1/4/16.jpg',
+25000,
+1,
+'images/products/detail_img/1/4/16.jpg',
+1,
+4);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+17,
+'스케이트 휠 2',
+'images/products/img/1/4/17.jpg',
+54000,
+3,
+'images/products/detail_img/1/4/17.jpg',
+1,
+4);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+18,
+'스케이트 휠 3',
+'images/products/img/1/4/18.jpg',
+36000,
+4,
+'images/products/detail_img/1/4/18.jpg',
+1,
+4);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+19,
+'스케이트 휠 4',
+'images/products/img/1/4/19.jpg',
+20000,
+15,
+'images/products/detail_img/1/4/19.jpg',
+1,
+4);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+20,
+'스케이트 휠 5',
+'images/products/img/1/4/20.jpg',
+19000,
+6,
+'images/products/detail_img/1/4/20.jpg',
+1,
+4);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+21,
+'T툴 1',
+'images/products/img/1/5/21.jpg',
+20000,
+16,
+'images/products/detail_img/1/5/21.jpg',
+1,
+5);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+22,
+'T툴 2',
+'images/products/img/1/5/22.jpg',
+31000,
+11,
+'images/products/detail_img/1/5/22.jpg',
+1,
+5);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+23,
+'스케이트 베어링 1',
+'images/products/img/1/5/23.jpg',
+51000,
+10,
+'images/products/detail_img/1/5/23.jpg',
+1,
+5);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+24,
+'스케이트 베어링 2',
+'images/products/img/1/5/24.jpg',
+54000,
+0,
+'images/products/detail_img/1/5/24.jpg',
+1,
+5);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+25,
+'스케이트 베어링 3',
+'images/products/img/1/5/25.jpg',
+43000,
+3,
+'images/products/detail_img/1/5/25.jpg',
+1,
+5);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+26,
+'롱보드 컴플릿 1',
+'images/products/img/2/6/26.jpg',
+420000,
+12,
+'images/products/detail_img/2/6/26.jpg',
+2,
+6);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+27,
+'롱보드 컴플릿 2',
+'images/products/img/2/6/27.jpg',
+390000,
+11,
+'images/products/detail_img/2/6/27.jpg',
+2,
+6);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+28,
+'롱보드 컴플릿 3',
+'images/products/img/2/6/28.jpg',
+389980,
+6,
+'images/products/detail_img/2/6/28.jpg',
+2,
+6);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+29,
+'롱보드 컴플릿 4',
+'images/products/img/2/6/29.jpg',
+370000,
+10,
+'images/products/detail_img/2/6/29.jpg',
+2,
+6);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+30,
+'롱보드 컴플릿 5',
+'images/products/img/2/6/30.jpg',
+370000,
+10,
+'images/products/detail_img/2/6/30.jpg',
+2,
+6);
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 컴플릿 1'
+WHERE id=1;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 컴플릿 2'
+WHERE id=2;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 컴플릿 3'
+WHERE id=3;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 컴플릿 4'
+WHERE id=4;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 컴플릿 5'
+WHERE id=5;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 데크 1'
+WHERE id=6;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 데크 2'
+WHERE id=7;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 데크 3'
+WHERE id=8;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 데크 4'
+WHERE id=9;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 데크 5'
+WHERE id=10;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 트럭 1'
+WHERE id=11;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 트럭 2'
+WHERE id=12;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 트럭 3'
+WHERE id=13;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 트럭 4'
+WHERE id=14;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 트럭 5'
+WHERE id=15;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 휠 1'
+WHERE id=16;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 휠 2'
+WHERE id=17;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 휠 3'
+WHERE id=18;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 휠 4'
+WHERE id=19;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 휠 5'
+WHERE id=20;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = 'T툴 1'
+WHERE id=21;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = 'T툴 2'
+WHERE id=22;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 베어링 세트 1'
+WHERE id=23;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 베어링 세트 2'
+WHERE id=24;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '롱보드 베어링 세트 3'
+WHERE id=25;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '스케이트 컴플릿 1'
+WHERE id=26;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '스케이트 컴플릿 2'
+WHERE id=27;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '스케이트 컴플릿 3'
+WHERE id=28;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '스케이트 컴플릿 4'
+WHERE id=29;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`name` = '스케이트 컴플릿 5'
+WHERE id=30;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`price` = '123000'
+WHERE id=26;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`price` = '283000'
+WHERE id=27;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`price` = '317000'
+WHERE id=28;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`price` = '211000'
+WHERE id=29;
+
+UPDATE `on_the_board`.`product_tbl`
+SET
+`price` = '220000'
+WHERE id=30;
+
+<category1_tbl>--------------------------------------------------------
+INSERT INTO `on_the_board`.`category1_tbl`
+(`id`,
+`name`)
+VALUES
+('1',
+'Long board');
+
+INSERT INTO `on_the_board`.`category1_tbl`
+(`id`,
+`name`)
+VALUES
+('2',
+'Skate board');
+
+INSERT INTO `on_the_board`.`category1_tbl`
+(`id`,
+`name`)
+VALUES
+('3',
+'Cruiser board');
+
+INSERT INTO `on_the_board`.`category1_tbl`
+(`id`,
+`name`)
+VALUES
+('4',
+'SNOW&ETC.');
+
+INSERT INTO `on_the_board`.`category1_tbl`
+(`id`,
+`name`)
+VALUES
+('5',
+'보호장구');
+
+<category2_tbl> -------------------------------------------------------
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('1',
+'Complete');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('2',
+'Deck');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('3',
+'Truck');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('4',
+'Wheel');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('5',
+'ETC.');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('6',
+'Complete');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('7',
+'Deck');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('8',
+'Truck');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('9',
+'Wheel');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('10',
+'ETC.');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('11',
+'Complete');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('12',
+'Deck');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('13',
+'Truck');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('14',
+'Wheel');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('15',
+'ETC.');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('16',
+'전동보드');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('17',
+'스노우스케이트');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('18',
+'스노우보드');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('19',
+'ETC.');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('20',
+'헬멧');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('21',
+'보호장구');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('22',
+'슬라이드퍽&글러브');
+
+INSERT INTO `on_the_board`.`category2_tbl`
+(`id`,
+`name`)
+VALUES
+('23',
+'ETC.');
 
