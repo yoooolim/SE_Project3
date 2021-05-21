@@ -154,18 +154,18 @@ Licence URI: https://www.os-templates.com/template-terms
 %>
         
         <tr>
-            <td><a class="imgover" href="#"><img src=<%=row.img_url%> alt=""></a></td>
+            <td><a class="imgover" href="#"><img src=<%=row.product_tbl.img_url%> alt=""></a></td>
             
-            <td><a href="#" ><strong><%=row.name%></strong></a></td>
-            <td><%=addComma(row.price)%>원</td>
+            <td><a href="#" ><strong><%=row.product_tbl.name%></strong></a></td>
+            <td><%=addComma(row.product_tbl.price)%>원</td>
             <td>1</td>
             <td>미정</td>
             <td>기본배송</td>
             <td>[무료]</td>
-            <td><%=addComma(row.price)%>원</td>
+            <td><%=addComma(row.product_tbl.price)%>원</td>
         </tr>
 <%
-            sum = sum + row.price;
+            sum = sum + row.product_tbl.price;
         }
 %>
         
@@ -185,7 +185,7 @@ Licence URI: https://www.os-templates.com/template-terms
     <table style=" margin-bottom: 50px; padding:20px">
         <tr >
             <td style="width:200px;">주문하시는 분</td>
-            <td style="text-align: left;border-left: hidden; "><input ></td>
+            <td style="text-align: left;border-left: hidden;"><input type="text" value=<%=rows[0].user_tbl.name%> ></td>
         </tr>
         <tr>
             <td >주소</td>
@@ -239,8 +239,11 @@ Licence URI: https://www.os-templates.com/template-terms
         <tr>
             <td >결제수단</td>
             <td style="text-align: left;border-left: hidden; ">
-                무통장입금 (입금계좌: 국민은행 012345678910 또는 농협은행 123456788910)<input type="radio" name="chk_info" value="HTML">
-                카카오페이<input type="radio" name="chk_info" value="HTML">
+                <form >
+                    <input style="display:inline-block;"align="center" type="radio" name="payment" value="mootong"  checked="checked">무통장입금
+                    <br>
+                    <input style="display:inline-block;" type="radio" name="payment" value="kakaopay">카카오페이
+                </form>
             </td>
         </tr>
     </table>
