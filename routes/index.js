@@ -8,7 +8,7 @@ var pool = mysql.createPool({
   user:'root',
   password: 'anffl!!8623',
   database:'on_the_board'
-})
+});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -66,7 +66,9 @@ router.get('/gallery/:category1_id/:category2_id/:id',function(req,res,next){
         res.render('read', {reviewrows: reviewrows, rows: rows});
         connection.release();
       });
-      
+    });
+  });
+});      
 /* 주문 화면 표시 */
 router.get('/order', function(req, res, next) {
   pool.getConnection(function(err, connection) {
@@ -121,7 +123,7 @@ router.get('/basic-grid',function(req,res,next){
 
 router.get('/font-icons',function(req,res,next){
   res.render('font-icons',{title: "font-icons 실험"});
-  
+});
 router.get('/order-complete', function(req, res, next) {
   pool.getConnection(function(err, connection) {
     connection.query('select * from order_tbl;', function(err, rows) {
@@ -198,7 +200,7 @@ router.post('/join', function(req, res, next){
 
       //don't use the connection here. 
     });
-  })
+  });
 });
 
 //mypage 화면 표시 GET
@@ -216,4 +218,3 @@ router.get('/mypage', function(req, res, next){
 });
 
 module.exports = router;
-
