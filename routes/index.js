@@ -44,6 +44,7 @@ router.post('/order', function(req, res, next) {
   var total_money = req.body.total_money;
   var create_date =req.body.date;
   var datas =[user_id, product_id, product_cnt, is_payed, total_money, create_date];
+  
   pool.getConnection(function(err, connection) {
     var sqlForInsertOrder = "insert into order_tbl(user_id, product_id, product_cnt, is_payed, total_money, create_date) values (?,?,?,?,?,?)"
     connection.query(sqlForInsertOrder, datas, function(err, rows) {
