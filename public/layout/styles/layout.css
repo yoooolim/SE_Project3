@@ -562,3 +562,354 @@ table a, #comments a{background-color:inherit;}
 	.font-x2{font-size:1.6rem;}
 	.font-x3{font-size:1.8rem;}
 }
+
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    font-family:sans-serif;
+  
+  }
+  
+  body {
+	
+    background-image: #34495e;
+  }
+  
+  .sign{
+    text-align: center;
+    margin: 0px;
+    font-size: xx-large;
+    margin-bottom: 5px;
+  }
+
+  .login_Form {
+    position:absolute;
+    width:400px;
+    height:500px;
+    padding: 30px, 20px;
+    background-color:#f0ececbb;
+    text-align:center;
+    top:200%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    border-radius: 15px;
+  }
+  
+  .loginForm h2{
+    text-align: center;
+    margin: 100px;
+  }
+
+  .join_Form {
+    margin: auto;
+    width: 40%;
+  }
+
+
+  .joinForm h2{
+    text-align: center;
+    margin: 30px;
+  }
+  
+  .idForm{
+    margin: auto;
+    margin-top: 30px;
+    width: 30%;
+    border-bottom: 2px solid #adadad;
+    padding: 10px 10px;
+  }
+  
+  .passForm{
+    margin: auto;
+    margin-top: 20px;
+    width: 30%;
+    border-bottom: 2px solid #adadad;
+    padding: 10px 10px;
+  }
+  
+  .id {
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #636e72;
+    font-size:16px;
+    height:25px;
+    background: none;
+  }
+  
+  .passwd {
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #636e72;
+    font-size:16px;
+    height:25px;
+    background: none;
+  }
+  
+  .btn_login {
+    position:relative;
+    left:50%;
+    transform: translateX(-50%);
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width:20%;
+    height:35px;
+    background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+    background-position: left;
+    background-size: 200%;
+    color:white;
+    font-weight: bold;
+    border:none;
+    cursor:pointer;
+    transition: 0.2s;
+    display:inline;
+  }
+  
+  .bottomText {
+    position:relative;
+    left: 35%;
+    width:200px;
+    height:25px;
+    font-size: 13px;
+  }
+
+  .bottomNaver{
+    position:relative;
+    left:50%;
+    transform: translateX(-50%);
+    width:30%;
+    height:35px;
+    background: linear-gradient(125deg,#23e012,#23e012);
+    background-position: left;
+    background-size: 200%;
+    color:white;
+    font-weight: bold;
+    border:none;
+    cursor:pointer;
+    display:inline;
+  }
+  
+  .bottomKakao{
+    position:relative;
+    left:50%;
+    transform: translateX(-50%);
+    width:30%;
+    height:35px;
+    background: linear-gradient(125deg,rgb(255, 230, 0),rgb(255, 230, 0));
+    background-position: left;
+    background-size: 200%;
+    color:white;
+    font-weight: bold;
+    border:none;
+    cursor:pointer;
+    display:inline;
+  }
+  
+  .bottomFacebook{
+    position:relative;
+    left:50%;
+    transform: translateX(-50%);
+    width:30%;
+    height:35px;
+    background: linear-gradient(125deg,#1560ec,#1560ec);
+    background-position: left;
+    background-size: 200%;
+    color:white;
+    font-weight: bold;
+    border:none;
+    cursor:pointer;
+    display:inline;
+  }
+
+  .NKF{
+    width: 90%;
+    margin: 10px auto;
+  }
+  
+/* 레이아웃 틀 */
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  background: #f5f6f7;
+  font-family: Dotum,'돋움',Helvetica,sans-serif;
+}
+#logo {
+  width: 240px;
+  height: 44px;
+  cursor: pointer;
+}
+
+#header {
+  padding-top: 62px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+#wrapper {
+  position: relative;
+  height: 100%;
+}
+
+#content {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  width: 460px;
+}
+
+
+
+
+/* 입력폼 */
+
+input:focus {
+  outline: none;
+}
+
+
+h3 {
+  margin: 19px 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+.box {
+  display: block;
+  width: 100%;
+  height: 33px;
+  border: solid 1px #dadada;
+  padding: 0px 0px 0px 0px;
+  box-sizing: border-box;
+  background: #fff;
+  position: relative;
+}
+
+.int {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 33px;
+  border: none;
+  background: #fff;
+  font-size: 15px;
+}
+
+input {
+  font-family: Dotum,'돋움',Helvetica,sans-serif;    
+}
+
+.box.int_id {
+  padding-right: 110px;
+}
+
+.box.int_pass {
+  padding-right: 40px;
+}
+
+.box.int_pass_check {
+  padding-right: 40px;
+}
+
+.step_url {
+  /*@naver.com*/
+  position: absolute;
+  top: 16px;
+  right: 13px;
+  font-size: 15px;
+  color: #8e8e8e;
+}
+
+.pswdImg {
+  width: 18px;
+  height: 20px;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  margin-top: -10px;
+  cursor: pointer;
+}
+
+#bir_wrap {
+  display: table;
+  width: 100%;
+}
+
+#bir_yy {
+  display: table-cell;
+  width: 147px;
+  
+}
+
+#bir_mm {
+  display: table-cell;
+  width: 147px;
+  vertical-align: middle;
+}
+
+#bir_dd {
+  display: table-cell;
+  width: 147px;
+}
+
+#bir_mm, #bir_dd {
+  padding-left: 10px;
+}
+
+select {
+  width: 100%;
+  height: 29px;
+  font-size: 15px;
+  background: #fff url(https://static.nid.naver.com/images/join/pc/sel_arr_2x.gif) 100% 50% no-repeat;
+  background-size: 20px 8px;
+  -webkit-appearance: none;
+  display: inline-block;
+  text-align: start;
+  border: none;
+  cursor: default;
+  font-family: Dotum,'돋움',Helvetica,sans-serif;
+}
+
+/* 에러메세지 */
+
+.error_next_box {
+  margin-top: 9px;
+  font-size: 12px;
+  color: red;    
+  display: none;
+}
+
+#alertTxt {
+  position: absolute;
+  top: 19px;
+  right: 38px;
+  font-size: 12px;
+  color: red;
+  display: none;
+}
+
+/* 버튼 */
+
+.btn_area {
+  margin: 30px 0 91px;
+}
+
+#btnJoin {
+  width: 100%;
+  padding: 21px 0 17px;
+  border: 0;
+  cursor: pointer;
+  color: #fff;
+  background-color: #1560ec;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: Dotum,'돋움',Helvetica,sans-serif;
+}
