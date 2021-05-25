@@ -304,10 +304,10 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 
 /* Tables
 --------------------------------------------------------------------------------------------------------------- */
-table, th, td{border:1px solid; border-collapse:collapse; vertical-align:top;}
+table, th, td{border:1px solid; border-collapse:collapse; vertical-align:center;text-align: center;}
 table, th{table-layout:auto;}
-table{width:100%; margin-bottom:15px;}
-th, td{padding:5px 8px;}
+table{width:100%; margin-bottom:15px; }
+th, td{padding:15px;}
 td{border-width:0 1px;}
 
 
@@ -352,16 +352,19 @@ hr, .borderedbox{border-color:#D7D7D7;}
 label span{color:#FF0000; background-color:inherit;}
 input:focus, textarea:focus, *:required:focus{border-color:#FBAB45 !important;}
 
+button{color:#FFFFFF; background-color:#FBAB45; border-color:#FBAB45;}
+button:hover{color:inherit; background-color:transparent; border-color:inherit;}
+
 .overlay{color:#FFFFFF; background-color:inherit;}
-.overlay::after{color:inherit; background-color:rgba(0,0,0,.55);}
+/*.overlay::after{color:inherit; background-color:rgba(0,0,0,.55);}// 배경 어둡게 하는 효과 제거*/
 .overlay.light{color:#474747;}
 .overlay.light::after{background-color:rgba(255,255,255,.7);}
 
 .btn, .btn.inverse:hover{color:#FFFFFF; background-color:#FBAB45; border-color:#FBAB45;}
 .btn:hover, .btn.inverse{color:inherit; background-color:transparent; border-color:inherit;}
 
-.imgover:hover::before{background-color:rgba(251,171,69,.5);/* #FBAB45 */}
-.imgover, .imgover:hover::after{color:#FFFFFF;}
+.imgover:hover::before{background-color:rgba(251,171,69,.5);}
+.imgover, .imgover:hover::after{color:#00ff0000;}
 
 .heading.underline::after{background-color:#FA8D0A;}
 
@@ -562,3 +565,96 @@ table a, #comments a{background-color:inherit;}
 	.font-x2{font-size:1.6rem;}
 	.font-x3{font-size:1.8rem;}
 }
+
+
+/*for slide bar*/
+
+  ul,
+  ol,
+  li {
+	list-style: none;
+  }
+  
+  a {
+	text-decoration: none;
+  }
+  
+  img {
+	vertical-align: top;
+	border: none;
+  }
+  
+  .slide {
+	/* position: relative; */
+	/* padding-top: 50px; */
+	overflow: hidden;
+	display: inline-block;
+  }
+  
+  .panel {
+	width: 387%;
+  }
+  
+  .panel:after {
+	content: "";
+	display: block;
+	clear: both;
+  }
+  
+  .panel>li {
+	width: 25%;
+	/*height: 200px;*/
+	float: left;
+	background-repeat: no-repeat;
+	margin-right : 40px;
+	background-size: 100% 100%;
+	position: relative;
+  }
+  
+  .dot:after {
+	content: "";
+	display: block;
+	clear: both;
+  }
+  
+  .dot {
+	position: absolute;
+	left: 50%;
+	bottom: 5%;
+	transform: translateX(-50%);
+  }
+  
+  .dot>li {
+	float: left;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	background-color: #dfdfdf;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-indent: -9999px;
+	cursor: pointer;
+  }
+  
+  .dot>li.on {
+	background-color: #FBAB45;
+  }
+  
+  .slide_btn_box > button { 
+	  position: absolute; 
+	  top: 95%; margin-top: 
+	  -45px; width: 60px; 
+	  height: 40px; 
+	  font-size: 40px; 
+	  color: #d3d3d3; 
+	  background: none; 
+	  border: none; 
+	  cursor: pointer; 
+	}
+    .slide_btn_box > .prev { 
+		left: 20%; 
+	}
+    .slide_btn_box > .next {
+		right: 20%; 
+	}
+	
