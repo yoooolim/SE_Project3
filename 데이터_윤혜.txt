@@ -7,6 +7,11 @@ alter table notice_tbl drop column notice_tblcol;
 <user_tbl> // who: 0 - 관리자, 1 - 판매자, 2 - 구매자
 alter table user_tbl add who int default 2 not null;
 
+<order_tbl>
+ALTER TABLE `on_the_board`.`order_tbl` 
+CHANGE COLUMN `id` `id` INT NOT NULL AUTO_INCREMENT ;
+
+
 insert (더미데이터)======================================
 
 <notice_tbl>---------------------------------------
