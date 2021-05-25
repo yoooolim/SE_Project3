@@ -304,10 +304,10 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 
 /* Tables
 --------------------------------------------------------------------------------------------------------------- */
-table, th, td{border:1px solid; border-collapse:collapse; vertical-align:top;}
+table, th, td{border:1px solid; border-collapse:collapse; vertical-align:center;text-align: center;}
 table, th{table-layout:auto;}
-table{width:100%; margin-bottom:15px;}
-th, td{padding:5px 8px;}
+table{width:100%; margin-bottom:15px; }
+th, td{padding:15px;}
 td{border-width:0 1px;}
 
 
@@ -351,6 +351,9 @@ a:active, a:focus{background:transparent !important;}/* IE10 + 11 Bugfix - preve
 hr, .borderedbox{border-color:#D7D7D7;}
 label span{color:#FF0000; background-color:inherit;}
 input:focus, textarea:focus, *:required:focus{border-color:#FBAB45 !important;}
+
+button{color:#FFFFFF; background-color:#FBAB45; border-color:#FBAB45;}
+button:hover{color:inherit; background-color:transparent; border-color:inherit;}
 
 .overlay{color:#FFFFFF; background-color:inherit;}
 /*.overlay::after{color:inherit; background-color:rgba(0,0,0,.55);}// 배경 어둡게 하는 효과 제거*/
