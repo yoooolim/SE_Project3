@@ -2,4 +2,740 @@
 alter (테이블 수정 사항)=================================
 
 insert (더미데이터)======================================
+product_tbl
+(id 31~65)
 
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+31,
+'스케이트보드 데크1',
+'images/products/img/2/7/31.jpg',
+33000,
+10,
+'images/products/detail_img/2/7/31.jpg',
+2,
+7);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+32,
+'스케이트보드 데크2',
+'images/products/img/2/7/32.jpg',
+59000,
+10,
+'images/products/detail_img/2/7/32.jpg',
+2,
+7);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+33,
+'스케이트보드 데크3',
+'images/products/img/2/7/33.jpg',
+79000,
+10,
+'images/products/detail_img/2/7/33.jpg',
+2,
+7);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+34,
+'스케이트보드 데크4',
+'images/products/img/2/7/34.jpg',
+69000,
+10,
+'images/products/detail_img/2/7/34.jpg',
+2,
+7);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+35,
+'스케이트보드 데크5',
+'images/products/img/2/7/35.jpg',
+49000,
+10,
+'images/products/detail_img/2/7/35.jpg',
+2,
+7);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+36,
+'스케이트보드 트럭1',
+'images/products/img/2/8/36.jpg',
+33000,
+10,
+'images/products/detail_img/2/8/36.jpg',
+2,
+8);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+37,
+'스케이트보드 트럭2',
+'images/products/img/2/8/37.jpg',
+59000,
+10,
+'images/products/detail_img/2/8/37.jpg',
+2,
+8);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+38,
+'스케이트보드 트럭3',
+'images/products/img/2/8/38.jpg',
+79000,
+10,
+'images/products/detail_img/2/8/38.jpg',
+2,
+8);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+39,
+'스케이트보드 트럭4',
+'images/products/img/2/8/39.jpg',
+69000,
+10,
+'images/products/detail_img/2/8/39.jpg',
+2,
+8);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+40,
+'스케이트보드 트럭5',
+'images/products/img/2/8/40.jpg',
+49000,
+10,
+'images/products/detail_img/2/8/40.jpg',
+2,
+8);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+41,
+'스케이트보드 휠1',
+'images/products/img/2/9/41.jpg',
+49000,
+10,
+'images/products/detail_img/2/9/41.jpg',
+2,
+9);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+42,
+'스케이트보드 휠2',
+'images/products/img/2/9/42.jpg',
+49000,
+10,
+'images/products/detail_img/2/9/42.jpg',
+2,
+9);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+43,
+'스케이트보드 휠3',
+'images/products/img/2/9/43.jpg',
+49000,
+10,
+'images/products/detail_img/2/9/43.jpg',
+2,
+9);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+44,
+'스케이트보드 휠4',
+'images/products/img/2/9/44.jpg',
+49000,
+10,
+'images/products/detail_img/2/9/44.jpg',
+2,
+9);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+45,
+'스케이트보드 휠5',
+'images/products/img/2/9/45.jpg',
+49000,
+10,
+'images/products/detail_img/2/9/45.jpg',
+2,
+9);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+46,
+'스케이트보드 가방1',
+'images/products/img/2/10/46.jpg',
+69000,
+10,
+'images/products/detail_img/2/10/46.jpg',
+2,
+10);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+47,
+'스케이트보드 가방2',
+'images/products/img/2/10/47.jpg',
+59000,
+10,
+'images/products/detail_img/2/10/47.jpg',
+2,
+10);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+48,
+'스케이트보드 가방3',
+'images/products/img/2/10/48.jpg',
+49000,
+10,
+'images/products/detail_img/2/10/48.jpg',
+2,
+10);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+49,
+'펄 스케이트보드 티툴 공구',
+'images/products/img/2/10/49.jpg',
+9000,
+0,
+'images/products/detail_img/2/10/49.jpg',
+2,
+10);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+50,
+'펄 스케이트보드 IRON하드웨어',
+'images/products/img/2/10/50.jpg',
+5000,
+0,
+'images/products/detail_img/2/10/50.jpg',
+2,
+10);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+51,
+'크루져보드 컴플릿1',
+'images/products/img/3/11/51.jpg',
+109000,
+10,
+'images/products/detail_img/3/11/51.jpg',
+3,
+11);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+52,
+'크루져보드 컴플릿2',
+'images/products/img/3/11/52.jpg',
+129000,
+10,
+'images/products/detail_img/3/11/52.jpg',
+3,
+11);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+53,
+'크루져보드 컴플릿3',
+'images/products/img/3/11/53.jpg',
+99000,
+10,
+'images/products/detail_img/3/11/53.jpg',
+3,
+11);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+54,
+'크루져보드 컴플릿4',
+'images/products/img/3/11/54.jpg',
+89000,
+10,
+'images/products/detail_img/3/11/54.jpg',
+3,
+11);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+55,
+'크루져보드 컴플릿5',
+'images/products/img/3/11/55.jpg',
+99000,
+10,
+'images/products/detail_img/3/11/55.jpg',
+3,
+11);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+56,
+'크루져보드 데크1',
+'images/products/img/3/12/56.jpg',
+59000,
+10,
+'images/products/detail_img/3/12/56.jpg',
+3,
+12);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+57,
+'크루져보드 데크2',
+'images/products/img/3/12/57.jpg',
+59000,
+10,
+'images/products/detail_img/3/12/57.jpg',
+3,
+12);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+58,
+'크루져보드 데크3',
+'images/products/img/3/12/58.jpg',
+59000,
+10,
+'images/products/detail_img/3/12/58.jpg',
+3,
+12);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+59,
+'크루져보드 데크4',
+'images/products/img/3/12/59.jpg',
+69000,
+10,
+'images/products/detail_img/3/12/59.jpg',
+3,
+12);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+60,
+'크루져보드 데크5',
+'images/products/img/3/12/60.jpg',
+69000,
+10,
+'images/products/detail_img/3/12/60.jpg',
+3,
+12);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+61,
+'크루져보드 트럭1',
+'images/products/img/3/13/61.jpg',
+49000,
+10,
+'images/products/detail_img/3/13/61.jpg',
+3,
+13);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+62,
+'크루져보드 트럭2',
+'images/products/img/3/13/62.jpg',
+59000,
+10,
+'images/products/detail_img/3/13/62.jpg',
+3,
+13);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+63,
+'크루져보드 트럭3',
+'images/products/img/3/13/63.jpg',
+39000,
+10,
+'images/products/detail_img/3/13/63.jpg',
+3,
+13);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+64,
+'크루져보드 트럭4',
+'images/products/img/3/13/64.jpg',
+39000,
+10,
+'images/products/detail_img/3/13/64.jpg',
+3,
+13);
+
+INSERT INTO `on_the_board`.`product_tbl`
+(
+`id`,
+`name`,
+`img_url`,
+`price`,
+`sales_amount`,
+`detail_img_url`,
+`category1_id`,
+`category2_id`)
+VALUES
+(
+65,
+'크루져보드 트럭5',
+'images/products/img/3/13/65.jpg',
+49000,
+10,
+'images/products/detail_img/3/13/65.jpg',
+3,
+13);
