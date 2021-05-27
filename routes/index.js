@@ -73,15 +73,23 @@ router.get('/gallery/:category1_id/:category2_id/:id',function(req,res,next){
 });
 
 /* 주문 화면 표시 */
-router.get('/order', function(req, res, next) {
+router.get('/order/:product_id/:product_cnt', function(req, res, next) {
+  var product_id = req.params.product_id;
+  var product_cnt = req.params.product_cnt;
   pool.getConnection(function(err, connection) {
-    connection.query('select product_tbl.name as product_name, product_tbl.img_url, product_tbl.price, user_tbl.name, user_tbl.address, user_tbl.phone_number, user_tbl.email, product_tbl.id as product_id, user_tbl.id as user_id from product_tbl, user_tbl;', function(err, rows) {
-      if(err) console.error("err: "+err);
-      console.log("rows : "+JSON.stringify(rows));
-      res.render('order', {title: '주문하기', rows : rows});
-      connection.release();
+    var sql = 'select * from product_tbl where product_tbl.id = ?';
+    var sql2 = 'select * from user_tbl';
+      connection.query(sql, [product_id], function(err, rows){
+        if(err) console.error("err: "+err);
+        console.log("rows: "+JSON.stringify(rows));
+
+        connection.query(sql2, function(err, rows2){
+          if(err) console.error("err : "+err);
+          console.log("rows2: "+JSON.stringify(rows2));
+          res.render('order', {rows : rows, rows2 : rows2});
+          connection.release();
+        });
     });
-    
   });
 });
 
@@ -119,6 +127,21 @@ router.post('/order', function(req, res, next) {
   });
 });
 
+/* 주문 내역 표시 */
+router.get('/order-list-buyer/:user_id', function(req, res, next) {
+  var user_id = req.params.user_id;
+  pool.getConnection(function(err, connection) {
+    var sql = 'select order_tbl.id as id, create_date, img_url, name, product_cnt, price, category1_id, category2_id, product_tbl.id as product_id from order_tbl inner join product_tbl on order_tbl.product_id = product_tbl.id where user_id = ?';
+    
+      connection.query(sql, [user_id], function(err, rows){
+        if(err) console.error("err: "+err);
+        console.log("rows: "+JSON.stringify(rows));
+        
+        res.render('order-list-buyer', {rows : rows});
+        connection.release();
+    });
+  });
+});
       
 router.get('/full-width',function(req,res,next){
   res.render('full-width',{title: "full width 실험"});
