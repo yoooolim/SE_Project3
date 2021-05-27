@@ -125,24 +125,104 @@ Licence URI: https://www.os-templates.com/template-terms
   <!-- ################################################################################################ -->
 
 <div class="wrapper row2">
-    
+
   <div class="hoc container clear"> 
+    
+   
     <!-- ################################################################################################ -->
     <div class="sectiontitle">
       <p class="nospace font-xs"></p>
-      <p class="heading underline font-x2">판매 내역</p>
-      <p>판매 내역 확인하기</p>
+      <p class="heading underline font-x2">상품 주문 현황</p>
+      <p>카테고리 별 상품 주문 현황 조회하기</p>
     </div>
-    <!-- 판매 내역 --> 
-    <table style="margin-bottom: 0px;">
-        <th>주문번호</th>
-        <th>주문일자</th>
-        <th>카테고리</th>
+    
+    <h3 style="font-weight: bold;">클릭하여 해당 카테고리로 스크롤</h3>
+    <div style="margin_bottom:30px">
+        <button id="c1" type="button" style="display:inline-block; margin:20px; border: none;background-color:transparent; cursor: pointer; text-decoration: underline;"><h2><strong>Long board</strong></h2></button>
+        <button id="c2" type="button"style="display:inline-block; margin:20px;border: none;background-color:transparent; cursor: pointer;text-decoration: underline;"><h2><strong>Skate board</strong></h2></button>
+        <button id="c3" type="button"style="display:inline-block; margin:20px;border: none;background-color:transparent; cursor: pointer;text-decoration: underline;"><h2><strong>Cruiser board</strong></h2></button>
+        <button id="c4" type="button"style="display:inline-block; margin:20px;border: none;background-color:transparent; cursor: pointer;text-decoration: underline;"><h2><strong>SNOW&ETC.</strong></h2></button>
+        <button id="c5" type="button"style="display:inline-block; margin:20px;border: none;background-color:transparent; cursor: pointer;text-decoration: underline;"><h2><strong>보호장구</strong></h2></button> 
+    </div>
+    <script>
+        const buttonArr = document.getElementsByTagName('button');
+        
+        for(let i = 0; i < buttonArr.length; i++){
+          buttonArr[i].addEventListener('click',function(e){
+            e.preventDefault();
+            document.querySelector('.c' + (i)).scrollIntoView(true);
+          });
+        }
+        </script>
+    
+    <!-- 롱보드 카테고리 상품 주문 현황 --> 
+    <div class="c1"></div>
+    <h2 style="font-weight: bold;"><strong>Long board</strong> 상품 주문 현황</h2>
+    <table style="margin-bottom: 50px; padding:20px">
+        <th>제품번호</th>
         <th>제품명</th>
-        <th>구매자</th>
-        <th>수량</th>
-        <th>상품 구매 금액</th>
-        <th>주문 처리 상태</th>
+        <th>하위 카테고리</th>
+        <th>가격</th>
+        <th>판매량</th>
+        
+        <%
+        function addComma(num) {
+            var regexp = /\B(?=(\d{3})+(?!\d))/g;
+            return num.toString().replace(regexp, ',');
+        }
+
+        for (var i = 0; i < rows1.length; i++) { 
+            var row = rows1[i];
+        %>
+        <tr>
+            <td><%=row.id%></td>
+            <td><%=row.name%></td>
+            <td><%=row.category2_name%></td>
+            <td><%=addComma(row.price)%>원</td>
+            <td><strong><%=row.sales_amount%></strong></td>
+        </tr>
+        <%
+        }
+        %>
+        
+    </table>
+
+    <!-- 스케이트보드 카테고리 상품 주문 현황 --> 
+    <div class="c2"></div>
+    <h2 style="font-weight: bold;"><strong>Skate board</strong> 상품 주문 현황</h2>
+    <table style="margin-bottom: 50px; padding:20px">
+        <th>제품번호</th>
+        <th>제품명</th>
+        <th>하위 카테고리</th>
+        <th>가격</th>
+        <th>판매량</th>
+        
+        <%
+        for (var i = 0; i < rows2.length; i++) { 
+            var row = rows2[i];
+        %>
+        <tr>
+            <td><%=row.id%></td>
+            <td><%=row.name%></td>
+            <td><%=row.category2_name%></td>
+            <td><%=addComma(row.price)%>원</td>
+            <td><strong><%=row.sales_amount%></strong></td>
+        </tr>
+        <%
+        }
+        %>
+        
+    </table>
+
+    <!-- 크루저보드 카테고리 상품 주문 현황 --> 
+    <div class="c3"></div>
+    <h2 style="font-weight: bold;"><strong>Cruiser board</strong> 상품 주문 현황</h2>
+    <table style= "margin-bottom: 50px; padding:20px">
+        <th>제품번호</th>
+        <th>제품명</th>
+        <th>하위 카테고리</th>
+        <th>가격</th>
+        <th>판매량</th>
         
         <%
          function addComma(num) {
@@ -150,35 +230,87 @@ Licence URI: https://www.os-templates.com/template-terms
             return num.toString().replace(regexp, ',');
         }
 
-        for (var i = 0; i < rows.length; i++) { 
-            var row = rows[i];
-            var dateString = String(row.create_date);
-            var dateArr = dateString.split(' ');
-           
+        for (var i = 0; i < rows3.length; i++) { 
+            var row = rows3[i];
         %>
         <tr>
             <td><%=row.id%></td>
-            <td><%=dateArr[2]%> <%=dateArr[1]%>, <%=dateArr[3]%> <%=dateArr[4]%></td>
-            <td><%=row.category1_name%> / <%=row.category2_name%></td>
             <td><%=row.name%></td>
-            <td><%=row.user_id%></td>
-            <td><%=row.product_cnt%></td>
-            <td><%=addComma(row.total_money)%>원</td>
-            <td>
-                <p>배송완료</p>
-            </td>
+            <td><%=row.category2_name%></td>
+            <td><%=addComma(row.price)%>원</td>
+            <td><strong><%=row.sales_amount%></strong></td>
         </tr>
         <%
         }
         %>
         
     </table>
-          
-    
+
+    <!-- SNOW&ETC. 카테고리 상품 주문 현황 --> 
+    <div class="c4"></div>
+    <h2 style="font-weight: bold;"><strong>SNOW&ETC.</strong> 상품 주문 현황</h2>
+    <table style="margin-bottom: 50px; padding:20px">
+        <th>제품번호</th>
+        <th>제품명</th>
+        <th>하위 카테고리</th>
+        <th>가격</th>
+        <th>판매량</th>
+        
+        <%
+         function addComma(num) {
+            var regexp = /\B(?=(\d{3})+(?!\d))/g;
+            return num.toString().replace(regexp, ',');
+        }
+
+        for (var i = 0; i < rows4.length; i++) { 
+            var row = rows4[i];
+        %>
+        <tr>
+            <td><%=row.id%></td>
+            <td><%=row.name%></td>
+            <td><%=row.category2_name%></td>
+            <td><%=addComma(row.price)%>원</td>
+            <td><strong><%=row.sales_amount%></strong></td>
+        </tr>
+        <%
+        }
+        %>
+        
+    </table>
+
+    <!-- 보호장구 카테고리 상품 주문 현황 --> 
+    <div class="c5"></div>
+    <h2 style="font-weight: bold;"><strong>보호장구</strong> 상품 주문 현황</h2>
+    <table style="margin-bottom: 50px; padding:20px">
+        <th>제품번호</th>
+        <th>제품명</th>
+        <th>하위 카테고리</th>
+        <th>가격</th>
+        <th>판매량</th>
+        
+        <%
+         function addComma(num) {
+            var regexp = /\B(?=(\d{3})+(?!\d))/g;
+            return num.toString().replace(regexp, ',');
+        }
+
+        for (var i = 0; i < rows5.length; i++) { 
+            var row = rows5[i];
+        %>
+        <tr>
+            <td><%=row.id%></td>
+            <td><%=row.name%></td>
+            <td><%=row.category2_name%></td>
+            <td><%=addComma(row.price)%>원</td>
+            <td><strong><%=row.sales_amount%></strong></td>
+        </tr>
+        <%
+        }
+        %>
+        
+    </table>
     <!-- ################################################################################################ -->
   </div>
-
-  
 </div>
 
 <script>

@@ -142,7 +142,62 @@ router.get('/order-list-buyer/:user_id', function(req, res, next) {
     });
   });
 });
+
+/* 판매 내역 표시 */
+router.get('/sales-history-seller', function(req, res, next) {
+  var user_id = req.params.user_id;
+  pool.getConnection(function(err, connection) {
+    var sql = 'SELECT order_tbl.id as id, create_date, category1_tbl.name as category1_name, category2_tbl.name as category2_name, product_tbl.name as name, user_id, product_cnt, total_money FROM order_tbl, product_tbl, category1_tbl, category2_tbl WHERE order_tbl.product_id = product_tbl.id and product_tbl.category1_id = category1_tbl.id and product_tbl.category2_id = category2_tbl.id;';
+    
+      connection.query(sql, function(err, rows){
+        if(err) console.error("err: "+err);
+        console.log("rows: "+JSON.stringify(rows));
+        
+        res.render('sales-history-seller', {rows : rows});
+        connection.release();
+    });
+  });
+});
+
+/* 상품 주문 현황 */
+router.get('/sales-status-seller', function(req, res, next) {
+  var user_id = req.params.user_id;
+  pool.getConnection(function(err, connection) {
+    var sql1 = 'select product_tbl.id as id, product_tbl.name as name, product_tbl.price, product_tbl.sales_amount, category2_tbl.name as category2_name from product_tbl, category2_tbl where product_tbl.category2_id = category2_tbl.id and product_tbl.category1_id = 1';
+    var sql2 = 'select product_tbl.id as id, product_tbl.name as name, product_tbl.price, product_tbl.sales_amount, category2_tbl.name as category2_name from product_tbl, category2_tbl where product_tbl.category2_id = category2_tbl.id and product_tbl.category1_id = 2';
+    var sql3 = 'select product_tbl.id as id, product_tbl.name as name, product_tbl.price, product_tbl.sales_amount, category2_tbl.name as category2_name from product_tbl, category2_tbl where product_tbl.category2_id = category2_tbl.id and product_tbl.category1_id = 3';
+    var sql4 = 'select product_tbl.id as id, product_tbl.name as name, product_tbl.price, product_tbl.sales_amount, category2_tbl.name as category2_name from product_tbl, category2_tbl where product_tbl.category2_id = category2_tbl.id and product_tbl.category1_id = 4';
+    var sql5 = 'select product_tbl.id as id, product_tbl.name as name, product_tbl.price, product_tbl.sales_amount, category2_tbl.name as category2_name from product_tbl, category2_tbl where product_tbl.category2_id = category2_tbl.id and product_tbl.category1_id = 5';
+      connection.query(sql1, function(err, rows1){
+        if(err) console.error("err: "+err);
+        console.log("rows1: "+JSON.stringify(rows1));
+
+        connection.query(sql2, function(err, rows2){
+          if(err) console.error("err: "+err);
+          console.log("rows2: "+JSON.stringify(rows2));
+
+          connection.query(sql3, function(err, rows3){
+            if(err) console.error("err: "+err);
+            console.log("rows3: "+JSON.stringify(rows3));
+  
+            connection.query(sql4, function(err, rows4){
+              if(err) console.error("err: "+err);
+              console.log("rows4: "+JSON.stringify(rows4));
+    
+              connection.query(sql5, function(err, rows5){
+                if(err) console.error("err: "+err);
+                console.log("rows5: "+JSON.stringify(rows5));
       
+                res.render('sales-status-seller', {rows1 : rows1, rows2 : rows2, rows3 : rows3, rows4 : rows4, rows5 : rows5});
+                connection.release();
+              });
+            });
+          });
+        });
+    });
+  });
+});
+
 router.get('/full-width',function(req,res,next){
   res.render('full-width',{title: "full width 실험"});
 });
