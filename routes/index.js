@@ -109,20 +109,20 @@ router.post('/order', function(req, res, next) {
                     now_date.getSeconds();
   
   var datas =[user_id, product_id, product_cnt, is_payed, total_money, create_date];
-  console.log("datas: " + datas);/* 
-  console.log("product_id: " + datas);
-  console.log("product_cnt: " + datas);
-  console.log("is_payed: " + datas);
-  console.log("datas: " + datas);
-  console.log("datas: " + datas); */
+  //console.log("datas: " + datas);
   pool.getConnection(function(err, connection) {
-    var sqlForInsertOrder = "insert into order_tbl(user_id, product_id, product_cnt, is_payed, total_money, create_date) values (?,?,?,?,?,?)"
-    connection.query(sqlForInsertOrder, datas, function(err, rows) {
+    var sql1 = "insert into order_tbl(user_id, product_id, product_cnt, is_payed, total_money, create_date) values (?,?,?,?,?,?)"
+    var sql2 = "update product_tbl set sales_amount = sales_amount + 1 where id = ?"
+    connection.query(sql1, datas, function(err, rows) {
       if (err) console.error("err: " + err);
       console.log("rows : " + JSON.stringify(rows));
 
-      res.redirect('/order-complete');
-      connection.release();
+      connection.query(sql2, [product_id], function(err, rows2) {
+        if (err) console.error("err: " + err);
+        console.log("rows2 : " + JSON.stringify(rows2));
+        res.redirect('/order-complete');
+        connection.release();
+      });
     });
   });
 });
