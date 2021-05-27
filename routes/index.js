@@ -26,10 +26,12 @@ router.get('/list',function(req,res,next){
   res.render('productList',{title: "제품 목록"});
 });
 
+/*제품 목록 카테고리1*/
 router.get('/gallery/read/:idx',function(req,res,next){
   res.render('read',{title: "제품 목록"});
 });
 
+/*제품 목록 카테고리1*/
 router.get('/gallery/:category1_id/:category2_id',function(req,res,next){
   var category1_id = req.params.category1_id;
   var category2_id = req.params.category2_id;
@@ -46,7 +48,7 @@ router.get('/gallery/:category1_id/:category2_id',function(req,res,next){
   });
 });
 
-
+/*제품 상세 페이지*/
 router.get('/gallery/:category1_id/:category2_id/:id',function(req,res,next){
   var category1_id = req.params.category1_id;
   var category2_id = req.params.category2_id;
@@ -68,7 +70,8 @@ router.get('/gallery/:category1_id/:category2_id/:id',function(req,res,next){
       });
     });
   });
-});      
+});
+
 /* 주문 화면 표시 */
 router.get('/order', function(req, res, next) {
   pool.getConnection(function(err, connection) {
@@ -89,9 +92,21 @@ router.post('/order', function(req, res, next) {
   var product_cnt = req.body.product_cnt;
   var is_payed = 1;
   var total_money = req.body.total_money;
-  var create_date =req.body.date;
-  var datas =[user_id, product_id, product_cnt, is_payed, total_money, create_date];
+  var now_date = new Date();
+  var create_date = now_date.getFullYear() + '-' + 
+                    (now_date.getMonth()+1) + '-' +
+                    now_date.getDate() + ' ' +
+                    now_date.getHours() + ':' +
+                    now_date.getMinutes() + ':' + 
+                    now_date.getSeconds();
   
+  var datas =[user_id, product_id, product_cnt, is_payed, total_money, create_date];
+  console.log("datas: " + datas);/* 
+  console.log("product_id: " + datas);
+  console.log("product_cnt: " + datas);
+  console.log("is_payed: " + datas);
+  console.log("datas: " + datas);
+  console.log("datas: " + datas); */
   pool.getConnection(function(err, connection) {
     var sqlForInsertOrder = "insert into order_tbl(user_id, product_id, product_cnt, is_payed, total_money, create_date) values (?,?,?,?,?,?)"
     connection.query(sqlForInsertOrder, datas, function(err, rows) {

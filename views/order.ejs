@@ -245,7 +245,7 @@ Licence URI: https://www.os-templates.com/template-terms
             <td>무통장 입금 (국민은행 012345678910, 농협은행 123456788910)</td>
         </tr>
     </table>
-    <p margin = "100px" align="center"><input class="btn reverse"type="submit" value="결제하기"></a></p>
+    
 
     <!--넘겨줄 데이터 일괄 처리-->
     <div style="display: none;">
@@ -253,15 +253,9 @@ Licence URI: https://www.os-templates.com/template-terms
       <input type="text" value="<%=rows[0].product_id%>" name="product_id" readonly>
       <input type="text" value="1" name="product_cnt" readonly>
       <input type="text" value="<%=rows[0].price%>" name="total_money" readonly>
-      <input type="text" value="<%=rows[0].user_id%>" name="user_id" readonly>
-      <script>
-        var now_date = new Date();
-        var dateToString = now_date.format('yyyy-MM-dd HH:mm:ss');
-        document.getElementsByName("create_date").values=dateToString;
-        </script>
-      <input type="text" name="create_date" readonly>
+      <!-- <input type="text" name="create_date"> -->
     </div>
-
+    <p margin = "100px" align="center"><input class="btn reverse"type="submit" value="결제하기" onclick=""></a></p>
     </form>
     <!-- ################################################################################################ -->
   </div>
@@ -280,9 +274,11 @@ Licence URI: https://www.os-templates.com/template-terms
           document.getElementById("phone_number2").value ="";
         }
       }
-      var now_date = new Date();
-      var dateToString = now_date.format('yyyy-MM-dd HH:mm:ss');
       
+      /* // 날짜 넘겨주기
+      var now_date = new Date();
+      var dateToString = now_date.format("yyyy-MM-dd HH:mm:ss");
+      document.getElementsByName("create_date").value = dateToString; */
 </script>
       
 <!-- ################################################################################################ -->
