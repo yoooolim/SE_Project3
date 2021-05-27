@@ -31,14 +31,56 @@ router.get('/gallery/read/:idx',function(req,res,next){
   res.render('read',{title: "제품 목록"});
 });
 
+/* 유림 리뷰 */
+router.get('/reviewwrite/:category1_id/:category2_id/:id',function(req,res,next){
+  var category1_id = req.params.category1_id;
+  var category2_id = req.params.category2_id;
+  var id = req.params.id;
+
+  res.render('review_write',{title: "구매자 후기 작성",category1_id:category1_id, category2_id:category2_id,id:id});
+});
+
+router.post('/reviewwrite/:category1_id/:category2_id/:id',upload.single('img'),function(req,res,next){
+  var id = req.params.id;
+  var title = req.body.title;
+  var context = req.body.context;
+  var img = "/"+req.file.filename;
+  var moment = require('moment');
+
+  require('moment-timezone');
+  moment.tz.setDefault("Asia/Seoul");
+  
+  var time= moment().format('YYYY-MM-DD HH:mm:ss');
+
+  pool.getConnection(function(err,connection){
+    var sqlForSearchReviewNum = "Select * from review_tbl";
+    connection.query(sqlForSearchReviewNum,function(err,rows){
+      if(err) console.error("err: "+err);
+      var dbid = rows.length+1;
+      var datas = [dbid,"yryr",id,title,context,img,time];
+      console.log(datas);
+
+      var sqlForInsertReview = "INSERT INTO review_tbl(id, user_id, product_id, title, context, img_url, create_date) VALUES(?,?,?,?,?,?,?)";
+      connection.query(sqlForInsertReview,datas,function(err,rowss){
+        if(err) console.error("err: "+err);
+        console.log("rows : "+ JSON.stringify(rowss));
+        res.redirect('/');
+        connection.release();
+      });
+    });
+  });  
+});
+
 router.get('/gallery/:category1_id/:category2_id',function(req,res,next){
   var category1_id = req.params.category1_id;
   var category2_id = req.params.category2_id;
-  var sql = 'SELECT * FROM on_the_board.product_tbl WHERE category1_id=? and category2_id=?';
+  var sql = 'SELECT * FROM product_tbl WHERE category1_id=? and category2_id=?';
   pool.getConnection(function(err,connection){
+    //console.log(category1_id+" "+category2_id)
     //Use the connection
     connection.query(sql,[category1_id, category2_id], function(err,rows){
       if(err) console.error("err : "+err);
+      console.log("rows : "+JSON.stringify(rows));
       //console.log("rows : "+JSON.stringify(rows));
 
       res.render('gallery', {title: '게시판 전체 글 조회', rows: rows});
@@ -46,7 +88,6 @@ router.get('/gallery/:category1_id/:category2_id',function(req,res,next){
     });
   });
 });
-
 
 router.get('/gallery/:category1_id/:category2_id/:id',function(req,res,next){
   var category1_id = req.params.category1_id;
@@ -178,9 +219,44 @@ router.get('/join_success', function(req, res, next){
   res.render('join_success', {title: "회원가입"});
 });
 
+/*유림*/
 router.get('/upload',function(req,res,next){
   res.render('upload',{title: "판매자 물건 업로드"});
 });
+
+router.post('/upload',upload.array('img'),function(req,res,next){
+  var product_name = req.body.product_name;
+  var price = Number(req.body.product_price);
+  var img_url = req.files[0].filename;
+  var detail_url=req.files[1].filename;
+  var category = req.body.categoryNum;
+  var category1_id;
+  var category2_id = Number(category);
+  if(category<=5) category1_id=1;
+  else if(category<=10) category1_id=2;
+  else if(category<=15) category1_id=3;
+  else if(category<=19) category1_id=4;
+  else category1_id=5;
+  console.log(category+"\n"+category1_id+"\n"+category2_id);
+
+  pool.getConnection(function(err,connection){
+    var sqlForSearchCategoryNum = "Select * from product_tbl";
+    connection.query(sqlForSearchCategoryNum,function(err,rows){
+      if(err) console.error("err: "+err);
+      console.log("rows : "+ JSON.stringify(rows));
+      var dbid = rows.length+1;
+      var datas = [dbid ,product_name ,img_url ,price ,0 ,detail_url ,category1_id ,category2_id];
+      console.log(datas);
+      var sqlForInsertProduct = "INSERT INTO product_tbl(id, name, img_url, price, sales_amount, detail_img_url, category1_id, category2_id) VALUES(?,?,?,?,?,?,?,?)";
+      connection.query(sqlForInsertProduct,datas,function(err,rowss){
+        if(err) console.error("err: "+err);
+        console.log("rows : "+ JSON.stringify(rowss));
+        res.redirect('/');
+        connection.release();
+      });
+    });
+  });
+})
 
 //join 회원가입 로직 처리 POST
 router.post('/join', function(req, res, next){

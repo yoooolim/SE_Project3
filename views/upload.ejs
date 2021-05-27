@@ -102,28 +102,36 @@ Licence URI: https://www.os-templates.com/template-terms
           </li>
           <li><a class="drop" href="#">Skate Board</a>
             <ul>
-              <li><a href="/gallery/2/1">COMPLETE</a></li>
-              <li><a href="/gallery/2/2">DECK</a></li>
-              <li><a href="/gallery/2/3">TRUCK</a></li>
-              <li><a href="/gallery/2/4">WHEEL</a></li>
-              <li><a href="/gallery/2/5">ETC.</a></li>
+              <li><a href="/gallery/2/6">COMPLETE</a></li>
+              <li><a href="/gallery/2/7">DECK</a></li>
+              <li><a href="/gallery/2/8">TRUCK</a></li>
+              <li><a href="/gallery/2/9">WHEEL</a></li>
+              <li><a href="/gallery/2/10">ETC.</a></li>
             </ul>
           </li>
           <li><a class="drop" href="#">Cruiser Board</a>
             <ul>
-              <li><a href="/gallery/3/1">COMPLETE</a></li>
-              <li><a href="/gallery/3/2">DECK</a></li>
-              <li><a href="/gallery/3/3">TRUCK</a></li>
-              <li><a href="/gallery/3/4">WHEEL</a></li>
-              <li><a href="/gallery/3/5">ETC.</a></li>
+              <li><a href="/gallery/3/11">COMPLETE</a></li>
+              <li><a href="/gallery/3/12">DECK</a></li>
+              <li><a href="/gallery/3/13">TRUCK</a></li>
+              <li><a href="/gallery/3/14">WHEEL</a></li>
+              <li><a href="/gallery/3/15">ETC.</a></li>
             </ul>
           </li>
           <li><a class="drop" href="#">SNOW&ETC.</a>
             <ul>
-              <li><a href="/gallery/4/1">전동보드</a></li>
-              <li><a href="/gallery/4/2">스노우스케이트</a></li>
-              <li><a href="/gallery/4/3">스노우보드</a></li>
-              <li><a href="/gallery/4/4">>ETC.</a></li>
+              <li><a href="/gallery/4/16">전동보드</a></li>
+              <li><a href="/gallery/4/17">스노우스케이트</a></li>
+              <li><a href="/gallery/4/18">스노우보드</a></li>
+              <li><a href="/gallery/4/19">>ETC.</a></li>
+            </ul>
+          </li>
+          <li><a class="drop" href="#">보호장구</a>
+            <ul>
+              <li><a href="/gallery/5/20">헬멧</a></li>
+              <li><a href="/gallery/5/21">보호장구</a></li>
+              <li><a href="/gallery/5/22">슬라이드퍽&글러브</a></li>
+              <li><a href="/gallery/5/23">ETC.</a></li>
             </ul>
           </li>
           <li><a class="drop" href="#">보호장구</a>
@@ -147,50 +155,57 @@ Licence URI: https://www.os-templates.com/template-terms
         <div class="content">
           <div id="comments">
               <br>
-              <p class = "titleform">물품 업로드</p>
+              <p style="font-size: xx-large; margin-left: 30px; font-weight: bold;">물품 업로드</p>
               <br>
               <br>
               <br>
-              <p style="font-size: medium; font-weight: bold;">[1번 category]</p>
-              <input type="radio" name="category1" value="longboard" onclick="category1Radio(event)"/>LONG BOARD (롱보드)
-              <input type="radio" name="category1" value="skateboard" onclick="category1Radio(event)"/>SKATE BOARD (스케이트 보드)
-              <input type="radio" name="category1" value="cruiserboard" onclick="category1Radio(event)"/>CRUISER BOARD (크루져 보드)
-              <input type="radio" name="category1" value="snowetc" onclick="category1Radio(event)"/>SNOW & ETC (스노우 등등)
-              <input type="radio" name="category1" value="protect" onclick="category1Radio(event)"/>보호장구
-              <br><br>
-
-              <script>
-                  if(category1=="longboard"||"category1"=="skateboard"||"category1"=="cruiserboard"){
-                    document.getElementById('result').innerText = category1;}
-              </script>
-
-              <div id='result'></div>
-              <p style="font-size: medium; font-weight: bold;">[2번 category]</p>
-              <input type="radio" name="category2">LONG BOARD (롱보드)
-              <input type="radio" name="category2">SKATE BOARD (스케이트 보드)
-              <input type="radio" name="category2">CRUISER BOARD (크루져 보드)
-              <input type="radio" name="category2">SNOW & ETC (스노우 등등)
-              <input type="radio" name="category2">보호장구
-              <br><br>
-
-              <!--<script>}</script>-->
-
-              <p style="font-size: medium; font-weight: bold;">[물품 이름]</p><br>
-              <input class="uploadinputform" type="text" name="product_name" id="name">
-              <br>
-              <p style="font-size: medium; font-weight: bold;">[가격]</p><br>
-              <input class="uploadinputform" type="text" name="product_name" id="price">
-              <br>
-              <p style="font-size: medium; font-weight: bold;">[이미지]</p><br>
-              <form action="upload" method="post" enctype="multipart/form-data">
-                <input type = "file" name="img_url"/>
+              <form action="/upload" method="post" enctype="multipart/form-data" onsubmit="return onWriteSubmit()">
+                <input type="hidden" name='categoryNum' id='categoryNum' value=''/>
+                <p style="font-size: medium; font-weight: bold;">[category]</p>
+                <input type="radio" name="category1" id="category" value=1 onclick="category1Radio(event)"/>LONG BOARD (롱보드) > COMPLETE
+                <input type="radio" name="category1" id="category" value=2 onclick="category1Radio(event)"/>LONG BOARD (롱보드) > DECK
+                <input type="radio" name="category1" id="category" value=3 onclick="category1Radio(event)"/>LONG BOARD (롱보드) > TRUCK
+                <input type="radio" name="category1" id="category" value=4 onclick="category1Radio(event)"/>LONG BOARD (롱보드) > WHEEL
+                <input type="radio" name="category1" id="category" value=5 onclick="category1Radio(event)"/>LONG BOARD (롱보드) > ETC
+                <br><br>
+                <input type="radio" name="category1" id="category" value=6 onclick="category1Radio(event)"/>SKATE BOARD (스케이트보드) > COMPLETE
+                <input type="radio" name="category1" id="category" value=7 onclick="category1Radio(event)"/>SKATE BOARD (스케이트보드) > DECK
+                <input type="radio" name="category1" id="category" value=8 onclick="category1Radio(event)"/>SKATE BOARD (스케이트보드) > TRUCK
+                <input type="radio" name="category1" id="category" value="9" onclick="category1Radio(event)"/>SKATE BOARD (스케이트보드) > WHEEL
+                <input type="radio" name="category1" id="category" value="10" onclick="category1Radio(event)"/>SKATE BOARD (스케이트보드) > ETC
+                <br><br>
+                <input type="radio" name="category1" id="category" value="11" onclick="category1Radio(event)"/>CRUISER BOARD (크루져보드) > COMPLETE
+                <input type="radio" name="category1" id="category" value="12" onclick="category1Radio(event)"/>CRUISER BOARD (크루져보드) > DECK
+                <input type="radio" name="category1" id="category" value="13" onclick="category1Radio(event)"/>CRUISER BOARD (크루져보드) > TRUCK
+                <input type="radio" name="category1" id="category" value="14" onclick="category1Radio(event)"/>CRUISER BOARD (크루져보드) > WHEEL
+                <input type="radio" name="category1" id="category" value="15" onclick="category1Radio(event)"/>CRUISER BOARD (크루져보드) > ETC
+                <br><br>
+                <input type="radio" name="category1" id="category" value="16" onclick="category1Radio(event)"/>SNOW & ETC (스노우 등등) > 전동보드
+                <input type="radio" name="category1" id="category" value="17" onclick="category1Radio(event)"/>SNOW & ETC (스노우 등등) > 스노우스케이트
+                <input type="radio" name="category1" id="category" value="18" onclick="category1Radio(event)"/>SNOW & ETC (스노우 등등) > 스노우보드
+                <input type="radio" name="category1" id="category" value="19" onclick="category1Radio(event)"/>SNOW & ETC (스노우 등등) > ETC
+                <br><br>
+                <input type="radio" name="category1" id="category" value="20" onclick="category1Radio(event)"/>보호장구 > 헬멧
+                <input type="radio" name="category1" id="category" value="21" onclick="category1Radio(event)"/>보호장구 > 보호장구
+                <input type="radio" name="category1" id="category" value="22" onclick="category1Radio(event)"/>보호장구 > 슬라이드퍽&글러브
+                <input type="radio" name="category1" id="category" value="23" onclick="category1Radio(event)"/>보호장구 > ETC
+                <br><br>
+                <div id='result'></div>
+                <p style="font-size: medium; font-weight: bold;">[물품 이름]</p><br>
+                <input class="uploadinputform" type="text" name="product_name" id="name">
+                <br>
+                <p style="font-size: medium; font-weight: bold;">[가격]</p><br>
+                <input class="uploadinputform" type="number" name="product_price" id="price">
+                <br>
+                <p style="font-size: medium; font-weight: bold;">[이미지]</p><br>
+                <input type = "file" name="img"/>
+                <br>
+                <p style="font-size: medium; font-weight: bold;">[상세이미지]</p><br>
+                <input type = "file" name="img"/>
+                <br>
+                <button name="submit" type="submit">물품 등록하기</button>
+                <br><br>
               </form>
-              <br>
-              <p style="font-size: medium; font-weight: bold;">[상세이미지]</p><br>
-              <form action="upload" method="post" enctype="multipart/form-data">
-                <input type = "file" name="detail_img_url"/>
-              </form>
-              <br>
           </div>
         </div>
     </main>
@@ -284,6 +299,33 @@ Licence URI: https://www.os-templates.com/template-terms
   <!-- ################################################################################################ -->
   <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
   <!-- JAVASCRIPTS -->
+        <script>
+            function onWriteSubmit(){
+                if( $("#name").val().trim()==""){
+                    var message = "물품 이름을 입력해 주세요.";
+                    $("#name").val("");
+                    $("#name").focus();
+                    alert(message);
+                    return false;
+                }
+                if( $("#price").val().trim()==""){
+                    var message = "물품 가격을 입력해 주세요.";
+                    $("#price").val("");
+                    $("#price").focus();
+                    alert(message);
+                    return false;
+                }
+                getCategoryNum();
+            }
+            function getCategoryNum(){
+                const radioNodeList = document.getElementsByName('category1');
+                radioNodeList.forEach((node)=>{
+                    if(node.checked){
+                        $("#categoryNum").val(node.value);
+                    }
+                })
+            }
+        </script>
   <script src="layout/scripts/jquery.min.js"></script>
   <script src="layout/scripts/jquery.backtotop.js"></script>
   <script src="layout/scripts/jquery.mobilemenu.js"></script>
