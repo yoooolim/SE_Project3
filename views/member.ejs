@@ -50,7 +50,6 @@ Licence URI: https://www.os-templates.com/template-terms
                 </form>  
               </li> 
             <% } %>
-            
           </ul>
           <!-- ################################################################################################ -->
         </div>
@@ -124,28 +123,63 @@ Licence URI: https://www.os-templates.com/template-terms
   <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
 
-<div class="wrapper row2">
-  <div class="hoc container clear"> 
-    <h1> 회원가입이 완료되었습니다. </h1>
-    <br>
-    <table border="1">
-      <tr>
-        <td>아이디</td>
-        <td>비밀번호</td>
-        <td>목적</td>
-      </tr>
-      <% for(var i=0; i<rows.length; i++){
-        var oneItem = rows[i];
-        %>
-        <tr>
-          <td><%=oneItem.id%></td>
-          <td><%=oneItem.password%></td>
-          <td><%=oneItem.who%></td>
-        </tr>
-      <%
-      }
-      %>
-    </table>
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <div class="sectiontitle">
+        <p class="nospace font-xs"></p>
+        <p class="heading underline font-x2">Member</p>
+        <p>회원관리</p>
+    </div>
+
+    <div class="sidebar one_quarter first" style="width: 200px;"> 
+        <nav class="sdb_holder">
+          <ul>
+            <li><a href="/mypage">내정보</a></li>
+            <% if (user[0].who == 0) { %>
+                <li><a href="/member">회원관리</a></li>
+            <% } %>
+            <li><a href="/cart">장바구니</a></li>
+            <li><a href="#">주문내역</a></li>
+            <li><a href="#">쿠폰내역</a>
+            <li><a href="#">내 게시물보기</a></li>
+          </ul>
+        </nav>
+    </div>
+    
+    <div class="content three_quarter">
+        <div class="scrollable">
+            <h1> 회원관리 </h1>
+            <table border="1">
+                <tr>
+                  <td>아이디</td>
+                  <td>이름</td>
+                  <td>이메일</td>
+                  <td>휴대폰 번호</td>
+                  <td>구분</td>
+                </tr>
+                <% for(var i=0; i<rows.length; i++){ var oneItem = rows[i];%>
+                  <tr>
+                    <td><%=oneItem.id%></td>
+                    <td><%=oneItem.name%></td>
+                    <td><%=oneItem.email%></td>
+                    <td><%=oneItem.phone_number%></td>
+                    <td>
+                    <% if (oneItem.who == 0) { %>
+                        관리자
+
+                    <% }else if (oneItem.who == 1) { %>
+                        판매자
+                    <% } else { %>
+                        구매자
+                    <% } %>
+                    </td>
+
+                  </tr>
+                <% } %>
+              </table>
+
+        </div>
+    </div>
     <!-- ################################################################################################ -->
   </div>
 </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>마이페이지</title>
+<title>장바구니</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -114,8 +114,8 @@
   <main class="hoc container clear"> 
     <div class="sectiontitle">
       <p class="nospace font-xs"></p>
-      <p class="heading underline font-x2">my page</p>
-      <p>마이페이지</p>
+      <p class="heading underline font-x2">shopping basket</p>
+      <p>장바구니</p>
     </div>
 
     <div class="sidebar one_quarter first" style="width: 200px;"> 
@@ -123,7 +123,7 @@
         <ul>
           <li><a href="/mypage">내정보</a></li>
           <% if (user[0].who == 0) { %>
-            <li><a href="/member">회원관리</a></li>
+              <li><a href="/member">회원관리</a></li>
           <% } %>
           <li><a href="/cart">장바구니</a></li>
           <li><a href="#">주문내역</a></li>
@@ -132,22 +132,53 @@
         </ul>
       </nav>
     </div>
-    <div class="content three_quarter">
-      <div class="scrollable">
-        <h2 style="font-weight: bold;">내 정보</h2>
-        <table style=" margin-bottom: 50px; padding:100px;">
-          <tbody>
-            <tr><td style="text-align: left;">이름 : <%= user[0].name%></td></tr>
-            <tr><td style="text-align: left;">아이디 : <%= user[0].id%></td></tr>
-            <tr><td style="text-align: left;">비밀번호 : <%= user[0].password%></td></tr> 
-            <tr><td style="text-align: left;">이메일 : <%= user[0].email%></td></tr>
-            <tr><td style="text-align: left;">생년월일 : <%= user[0].birthday%></td></tr>
-            <tr><td style="text-align: left;">휴대폰 번호 : <%= user[0].phone_number%></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
 
+    <div class="content three_quarter">
+    <!-- 주문 상품 --> 
+    <table style="margin-bottom: 0px;">
+      <th style="width: 150px;"> 이미지</th>
+      <th>상품정보</th>
+      <th>판매가</th>
+      <th>수량</th>
+      <th>적립금</th>
+      <th>배송구분</th>
+      <th>배송비</th>
+      <th>합계</th>
+      
+      <%
+      function addComma(num) {
+          var regexp = /\B(?=(\d{3})+(?!\d))/g;
+          return num.toString().replace(regexp, ',');
+      }
+      var sum = 0;
+
+      for (var i = 0; i < 1; i++) { 
+          var row = rows[i];
+      %>
+      <tr>
+        <td><a class="imgover" href="#"><img src="<%=row.img_url%>" alt=""></a></td>
+        
+        <td><a href="#" ><strong><%=row.product_name%></strong></a></td>
+        <td><%=addComma(row.price)%>원</td>
+        <td>1</td>
+        <td>미정</td>
+        <td>기본배송</td>
+        <td>[무료]</td>
+        <td><%=addComma(row.price)%>원</td>
+      </tr>
+      <%
+        sum = sum + row.price;
+      }
+      %>
+        
+    </table>
+    <table style="font-size:large;  margin-bottom: 50px;">
+      <tr>
+        <td style="height: 80px; background-color: white; font-weight: bold;">총액</td>
+        <td style="background-color: white;  text-align :right; border-left: hidden; color: #FBAB45; font-weight: bold;"><%=addComma(sum)%>원</td>
+        </tr>
+      </table>
+      </div>
   </main>
 </div>
 <!-- main body end-->
