@@ -1,14 +1,15 @@
 var express = require('express');
 var router = express.Router();
+var multer = require('multer');
+var upload = multer({ dest: 'public/'});
 var mysql = require('mysql');
 var pool = mysql.createPool({
   connectionLimit: 5,
-
   host:'localhost',
   user:'root',
-  password: 'anffl!!8623',
+  password: '9376174a',
   database:'on_the_board'
-})
+});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -19,7 +20,7 @@ router.get('/', function(req, res, next) {
       res.render('index', {title: 'test', rows : rows});
       connection.release();
     });
-  })
+  });
 });
 
 router.get('/list',function(req,res,next){
@@ -66,6 +67,9 @@ router.get('/gallery/:category1_id/:category2_id/:id',function(req,res,next){
         res.render('read', {reviewrows: reviewrows, rows: rows});
         connection.release();
       });
+    });
+  });
+});
       
 /* 주문 화면 표시 */
 router.get('/order', function(req, res, next) {
@@ -76,7 +80,6 @@ router.get('/order', function(req, res, next) {
       res.render('order', {title: '주문하기', rows : rows});
       connection.release();
     });
-    
   });
 });
 
@@ -121,6 +124,7 @@ router.get('/basic-grid',function(req,res,next){
 
 router.get('/font-icons',function(req,res,next){
   res.render('font-icons',{title: "font-icons 실험"});
+});
   
 router.get('/order-complete', function(req, res, next) {
   pool.getConnection(function(err, connection) {
@@ -174,6 +178,10 @@ router.get('/join_success', function(req, res, next){
   res.render('join_success', {title: "회원가입"});
 });
 
+router.get('/upload',function(req,res,next){
+  res.render('upload',{title: "판매자 물건 업로드"});
+});
+
 //join 회원가입 로직 처리 POST
 router.post('/join', function(req, res, next){
   var id = req.body.id;
@@ -198,7 +206,7 @@ router.post('/join', function(req, res, next){
 
       //don't use the connection here. 
     });
-  })
+  });
 });
 
 //mypage 화면 표시 GET

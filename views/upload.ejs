@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<!--
+Template Name: Sislaf
+Author: <a href="https://www.os-templates.com/">OS Templates</a>
+Author URI: https://www.os-templates.com/
+Copyright: OS-Templates.com
+Licence: Free to use under our free template licence terms
+Licence URI: https://www.os-templates.com/template-terms
+-->
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>On the board | Pages | Gallery</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<!-- JAVASCRIPTS -->
+<script language = "javascript">
+    var category1="";
+    var category2="";
+
+    var category1_in;
+    var category2_in;
+
+    function category1Radio(event){
+        category1 = event.target.value;
+        if(category1=="longboard"||"category1"=="skateboard"||"category1"=="cruiserboard"){
+
+        }
+        else if(category1=="protect"){
+
+        }
+        else{
+
+        }
+        //document.getElementById('result').innerText = event.target.value;
+    }
+</script>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- Top Background Image Wrapper -->
+<div class="bgded overlay" style="background-image:url('/images/demo/backgrounds/01.png');"> 
+  <!-- ################################################################################################ -->
+  <div class="wrapper row0">
+    <div id="topbar" class="hoc clear">
+      <div class="fl_left"> 
+        <!-- ################################################################################################ -->
+        <ul class="nospace">
+          <li><i class="fas fa-phone rgtspace-5"></i> +00 (123) 456 7890</li>
+          <li><i class="far fa-envelope rgtspace-5"></i> info@domain.com</li>
+        </ul>
+        <!-- ################################################################################################ -->
+      </div>
+      <div class="fl_right"> 
+        <!-- ################################################################################################ -->
+        <ul class="nospace">
+          <li><a href="/"><i class="fas fa-home"></i></a></li>
+          <li><a href="#" title="Help Centre"><i class="far fa-life-ring"></i></a></li>
+          <li><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
+          <li><a href="#" title="Sign Up"><i class="fas fa-edit"></i></a></li>
+          <li id="searchform">
+            <div>
+              <form action="#" method="post">
+                <fieldset>
+                  <legend>Quick Search:</legend>
+                  <input type="text" placeholder="Enter search term&hellip;">
+                  <button type="submit"><i class="fas fa-search"></i></button>
+                </fieldset>
+              </form>
+            </div>
+          </li>
+        </ul>
+        <!-- ################################################################################################ -->
+      </div>
+    </div>
+  </div>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear">
+      <div id="logo" class="fl_left"> 
+        <!-- ################################################################################################ -->
+        <h1><a href="/">On the board</a></h1>
+        <!-- ################################################################################################ -->
+      </div>
+      <nav id="mainav" class="fl_right"> 
+        <!-- ################################################################################################ -->
+        <ul class="clear">
+          <!--<li class="active"><a href="index.html">Home</a></li>-->
+          <li><a class="drop" href="#">Long Board</a>
+            <ul>
+              <li><a href="/gallery/1/1">COMPLETE</a></li>
+              <li><a href="/gallery/1/2">DECK</a></li>
+              <li><a href="/gallery/1/3">TRUCK</a></li>
+              <li><a href="/gallery/1/4">WHEEL</a></li>
+              <li><a href="/gallery/1/5">ETC.</a></li>
+            </ul>
+          </li>
+          <li><a class="drop" href="#">Skate Board</a>
+            <ul>
+              <li><a href="/gallery/2/1">COMPLETE</a></li>
+              <li><a href="/gallery/2/2">DECK</a></li>
+              <li><a href="/gallery/2/3">TRUCK</a></li>
+              <li><a href="/gallery/2/4">WHEEL</a></li>
+              <li><a href="/gallery/2/5">ETC.</a></li>
+            </ul>
+          </li>
+          <li><a class="drop" href="#">Cruiser Board</a>
+            <ul>
+              <li><a href="/gallery/3/1">COMPLETE</a></li>
+              <li><a href="/gallery/3/2">DECK</a></li>
+              <li><a href="/gallery/3/3">TRUCK</a></li>
+              <li><a href="/gallery/3/4">WHEEL</a></li>
+              <li><a href="/gallery/3/5">ETC.</a></li>
+            </ul>
+          </li>
+          <li><a class="drop" href="#">SNOW&ETC.</a>
+            <ul>
+              <li><a href="/gallery/4/1">전동보드</a></li>
+              <li><a href="/gallery/4/2">스노우스케이트</a></li>
+              <li><a href="/gallery/4/3">스노우보드</a></li>
+              <li><a href="/gallery/4/4">>ETC.</a></li>
+            </ul>
+          </li>
+          <li><a class="drop" href="#">보호장구</a>
+            <ul>
+              <li><a href="/gallery/5/1">헬멧</a></li>
+              <li><a href="/gallery/5/2">보호장구</a></li>
+              <li><a href="/gallery/5/3">슬라이드퍽&글러브</a></li>
+              <li><a href="/gallery/5/4">ETC.</a></li>
+            </ul>
+          </li>
+        </ul>
+        <!-- ################################################################################################ -->
+      </nav>
+    </header>
+  </div>
+  <!-- ################################################################################################ -->
+</div>
+
+<div class = "wrapper row3">
+    <main class = hoc container clear>
+        <div class="content">
+          <div id="comments">
+              <br>
+              <p class = "titleform">물품 업로드</p>
+              <br>
+              <br>
+              <br>
+              <p style="font-size: medium; font-weight: bold;">[1번 category]</p>
+              <input type="radio" name="category1" value="longboard" onclick="category1Radio(event)"/>LONG BOARD (롱보드)
+              <input type="radio" name="category1" value="skateboard" onclick="category1Radio(event)"/>SKATE BOARD (스케이트 보드)
+              <input type="radio" name="category1" value="cruiserboard" onclick="category1Radio(event)"/>CRUISER BOARD (크루져 보드)
+              <input type="radio" name="category1" value="snowetc" onclick="category1Radio(event)"/>SNOW & ETC (스노우 등등)
+              <input type="radio" name="category1" value="protect" onclick="category1Radio(event)"/>보호장구
+              <br><br>
+
+              <script>
+                  if(category1=="longboard"||"category1"=="skateboard"||"category1"=="cruiserboard"){
+                    document.getElementById('result').innerText = category1;}
+              </script>
+
+              <div id='result'></div>
+              <p style="font-size: medium; font-weight: bold;">[2번 category]</p>
+              <input type="radio" name="category2">LONG BOARD (롱보드)
+              <input type="radio" name="category2">SKATE BOARD (스케이트 보드)
+              <input type="radio" name="category2">CRUISER BOARD (크루져 보드)
+              <input type="radio" name="category2">SNOW & ETC (스노우 등등)
+              <input type="radio" name="category2">보호장구
+              <br><br>
+
+              <!--<script>}</script>-->
+
+              <p style="font-size: medium; font-weight: bold;">[물품 이름]</p><br>
+              <input class="uploadinputform" type="text" name="product_name" id="name">
+              <br>
+              <p style="font-size: medium; font-weight: bold;">[가격]</p><br>
+              <input class="uploadinputform" type="text" name="product_name" id="price">
+              <br>
+              <p style="font-size: medium; font-weight: bold;">[이미지]</p><br>
+              <form action="upload" method="post" enctype="multipart/form-data">
+                <input type = "file" name="img_url"/>
+              </form>
+              <br>
+              <p style="font-size: medium; font-weight: bold;">[상세이미지]</p><br>
+              <form action="upload" method="post" enctype="multipart/form-data">
+                <input type = "file" name="detail_img_url"/>
+              </form>
+              <br>
+          </div>
+        </div>
+    </main>
+</div>
+
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="bgded overlay row4" style="background-image:url('images/demo/backgrounds/starry-night-1149644_1920.jpg');">
+    <footer id="footer" class="hoc clear"> 
+      <!-- ################################################################################################ -->
+      <div class="center btmspace-50">
+        <h6 class="heading">On The Board</h6>
+        <ul class="faico clear">
+          <li><a class="faicon-dribble" href="#"><i class="fab fa-dribbble"></i></a></li>
+          <li><a class="faicon-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+          <li><a class="faicon-google-plus" href="#"><i class="fab fa-google-plus-g"></i></a></li>
+          <li><a class="faicon-linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
+          <li><a class="faicon-twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+          <li><a class="faicon-vk" href="#"><i class="fab fa-vk"></i></a></li>
+        </ul>
+        <p class="nospace">SNS에서 업데이트 되는 신제품들을 더 빠르게 접해보세요!</p>
+      </div>
+      <!-- ################################################################################################ -->
+      <hr class="btmspace-50">
+      <!-- ################################################################################################ -->
+      <div class="group btmspace-50">
+        <div class="one_quarter first">
+           <h6 class="heading">About us</h6>
+          <ul class="nospace linklist">
+            <li><a href="#">About On The Board</a></li>
+          </ul>
+          
+        </div>
+        <div class="one_quarter">
+          <h6 class="heading">고객관련</h6>
+          <ul class="nospace linklist">
+            <li><a href="#">개인정보취급방침</a></li>
+            <li><a href="#">이용약관</a></li>
+          </ul>
+         
+        </div>
+        <div class="one_quarter">
+          <h6 class="heading">배송 시기 안내</h6>
+          <ul class="nospace linklist">
+            <li>입금 후 1 ~ 3일이 소요됩니다.</li>
+          </ul>
+        </div>
+        <div class="one_quarter">
+          <h6 class="heading">입금 계좌 안내</h6>
+          <ul class="nospace linklist">
+            <li>국민은행 012345678910</li>
+            <li>농협은행 123456788910</li>
+          </ul>
+        </div>
+        <!-- ################################################################################################ -->
+      </div>
+      <div id="ctdetails" class="clear">
+        <ul class="nospace clear">
+          <li class="one_quarter first">
+            <div class="block clear"><a href="#"><i class="fas fa-phone"></i></a> <span><strong>전화번호:</strong> (02) 987-6543</span></div>
+          </li>
+          <li class="one_quarter">
+            <div class="block clear"><a href="#"><i class="fas fa-envelope"></i></a> <span><strong>이메일:</strong>123yunhye@kw.ac.kr</span></div>
+          </li>
+          <li class="one_quarter">
+            <div class="block clear"><a href="#"><i class="fas fa-clock"></i></a> <span><strong> 월요일 - 금요일:</strong> 09.00am - 17.00pm</span></div>
+          </li>
+          <li class="one_quarter">
+            <div class="block clear"><a href="#"><i class="fas fa-map-marker-alt"></i></a> <span><strong>위치:</strong> 오시는 길 안내 <a href="https://map.naver.com/v5/directions/-/14144080.429905552,4525854.546850104,%EA%B4%91%EC%9A%B4%EB%8C%80%ED%95%99%EA%B5%90,11591508,PLACE_POI/-/transit?c=14143130.2059919,4525937.9626935,15,0,0,0,dh" target="_blank">링크</a></span></div>
+          </li>
+        </ul>
+      </div>
+      <!-- ################################################################################################ -->
+    </footer>
+  </div>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <div class="wrapper row5">
+    <div id="copyright" class="hoc clear"> 
+      <!-- ################################################################################################ -->
+      <p class="fl_left">Copyright &copy; 2021 - All Rights Reserved - <a href="#">On The Board</a></p>
+      <p class="fl_right"><a target="_blank" ></a></p>
+      <!-- ################################################################################################ -->
+    </div>
+  </div>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+  <!-- JAVASCRIPTS -->
+  <script src="layout/scripts/jquery.min.js"></script>
+  <script src="layout/scripts/jquery.backtotop.js"></script>
+  <script src="layout/scripts/jquery.mobilemenu.js"></script>
+  </body>
+  </html>
