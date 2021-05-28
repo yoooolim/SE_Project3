@@ -110,23 +110,23 @@
       <p>회원가입</p>
     </div>
 
-    <form action="/join" method="post" onsubmit="return onWriteSubmit()">    
+    <form action="/join" method="post" onsubmit="return onWriteSubmit()">
       <h2 style="font-weight: bold;">정보 입력</h2>
       <table style=" margin-bottom: 50px; padding:100px;">
         <tr>
-          <td style="width:200px;">아이디</td>
+          <td style="width:200px;">아이디 <span>*</span> </td>
           <td style="text-align: left;"><input type="text" style="width: 200px; " name ="id" id="id" required></td>
         </tr>
         <tr>
-          <td >비밀번호</td>
+          <td >비밀번호 <span>*</span> </td>
           <td style="text-align: left; "><input type="password" style="width: 200px;" name ="password" id="password" required></td>
         </tr>
         <tr>
-          <td >비밀번호 확인</td>
+          <td >비밀번호 확인 <span>*</span> </td>
           <td style="text-align: left; "><input type="password" style="width: 200px;" name ="passwdcheck" id="passwdcheck" required></td>
         </tr>
         <tr>
-        <td >이름</td>
+        <td >이름 <span>*</span> </td>
           <td style="text-align: left;"><input type="text" style="width: 200px;" name ="name" id="name" required></td>
         </tr>
         <tr>
@@ -139,10 +139,10 @@
         </tr>
         <tr>
           <td >생년월일</td>
-          <td style="text-align: left;"><input type="text" style="width: 200px;" name ="birtyday" id="birtyday" required></td>
+          <td style="text-align: left;"><input type="text" style="width: 200px;" name ="birthday" id="birthday" required></td>
         </tr>
         <tr>
-          <td >주소</td>
+          <td >주소 <span>*</span></td>
           <td style="text-align: left;"><input type="text" style="width: 200px;" name ="address" id="address" required></td>
         </tr>
         <tr>
