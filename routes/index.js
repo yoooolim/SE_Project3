@@ -76,6 +76,7 @@ router.get('/gallery/:category1_id/:category2_id/:id',function(req,res,next){
   });
 });
 
+
 /* 주문 화면 표시 */
 router.get('/order', function(req, res, next) {
   pool.getConnection(function(err, connection) {
