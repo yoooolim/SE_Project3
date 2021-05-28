@@ -257,7 +257,7 @@ function change () {
         <input type="button" value=" + " onclick="add();"><input type="button" value=" - " onclick="del();"><br>
         금액 : <input type="text" name="sum" size="11" readonly>원
       </form>
-      <a class="btn">구매</a>
+      <a class="btn" href="/order/<%=rows[0].id%>/1">구매</a>
       <a class="btn">장바구니</a>
       <br><br><br><br><br><br><br><br>
       <img class="" src = "/<%=rows[0].detail_img_url%>" alt=""/>
