@@ -13,7 +13,7 @@ Licence URI: https://www.os-templates.com/template-terms
 <title>On The Board</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<link href="../../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body id="top">
 <!-- ################################################################################################ -->
@@ -125,12 +125,82 @@ Licence URI: https://www.os-templates.com/template-terms
   <!-- ################################################################################################ -->
 
 <div class="wrapper row2">
+    
   <div class="hoc container clear"> 
-    <h1> 결제가 완료되었습니다. </h1>
-    <h1> <a href="/order-list-buyer/dkssud"> 내 구매 내역 보러 가기</a> </h1>
+    <!-- ################################################################################################ -->
+    <div class="sectiontitle">
+      <p class="nospace font-xs"></p>
+      <p class="heading underline font-x2">판매 내역</p>
+      <p>판매 내역 확인하기</p>
+    </div>
+    <!-- 판매 내역 --> 
+    <table style="margin-bottom: 0px;">
+        <th>주문번호</th>
+        <th>주문일자</th>
+        <th>카테고리</th>
+        <th>제품명</th>
+        <th>구매자</th>
+        <th>수량</th>
+        <th>상품 구매 금액</th>
+        <th>주문 처리 상태</th>
+        
+        <%
+         function addComma(num) {
+            var regexp = /\B(?=(\d{3})+(?!\d))/g;
+            return num.toString().replace(regexp, ',');
+        }
+
+        for (var i = 0; i < rows.length; i++) { 
+            var row = rows[i];
+            var dateString = String(row.create_date);
+            var dateArr = dateString.split(' ');
+           
+        %>
+        <tr>
+            <td><%=row.id%></td>
+            <td><%=dateArr[2]%> <%=dateArr[1]%>, <%=dateArr[3]%> <%=dateArr[4]%></td>
+            <td><%=row.category1_name%> / <%=row.category2_name%></td>
+            <td><%=row.name%></td>
+            <td><%=row.user_id%></td>
+            <td><%=row.product_cnt%></td>
+            <td><%=addComma(row.total_money)%>원</td>
+            <td>
+                <p>배송완료</p>
+            </td>
+        </tr>
+        <%
+        }
+        %>
+        
+    </table>
+          
+    
     <!-- ################################################################################################ -->
   </div>
+
+  
 </div>
+
+<script>
+  function changeInput(checked) {
+        if (checked.checked) {
+        //setUser1and2_same();
+        document.getElementById("name2").value = document.getElementById("name1").value;
+        document.getElementById("address2").value = document.getElementById("address1").value;
+        document.getElementById("phone_number2").value = document.getElementById("phone_number1").value;
+        } else {
+          document.getElementById("name2").value = "";
+          document.getElementById("address2").value = "";
+          document.getElementById("phone_number2").value ="";
+        }
+      }
+      
+      /* // 날짜 넘겨주기
+      var now_date = new Date();
+      var dateToString = now_date.format("yyyy-MM-dd HH:mm:ss");
+      document.getElementsByName("create_date").value = dateToString; */
+</script>
+      
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
