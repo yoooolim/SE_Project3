@@ -14,6 +14,7 @@ Licence URI: https://www.os-templates.com/template-terms
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+
 </head>
 <body id="top">
 <!-- ################################################################################################ -->
@@ -125,213 +126,129 @@ Licence URI: https://www.os-templates.com/template-terms
   <!-- ################################################################################################ -->
 
 <div class="wrapper row2">
-
-  <div class="hoc container clear"> 
     
-   
+  <div class="hoc container clear"> 
     <!-- ################################################################################################ -->
     <div class="sectiontitle">
       <p class="nospace font-xs"></p>
-      <p class="heading underline font-x2">상품 주문 현황</p>
-      <p>카테고리 별 상품 주문 현황 조회하기</p>
+      <p class="heading underline font-x2">매출 통계 시각화</p>
+      <p></p>
     </div>
+    <!-- 최근 2주간의 매출 -->
+    <h2><strong>최근 2주간의 매출</strong></h2>
     
-    <h3 style="font-weight: bold;">클릭하여 해당 카테고리로 스크롤</h3>
-    <div style="margin-bottom:30px">
-        <button id="c1" type="button" style="display:inline-block; margin:20px; border: none;background-color:transparent; cursor: pointer; text-decoration: underline;"><h2><strong>Long board</strong></h2></button>
-        <button id="c2" type="button"style="display:inline-block; margin:20px;border: none;background-color:transparent; cursor: pointer;text-decoration: underline;"><h2><strong>Skate board</strong></h2></button>
-        <button id="c3" type="button"style="display:inline-block; margin:20px;border: none;background-color:transparent; cursor: pointer;text-decoration: underline;"><h2><strong>Cruiser board</strong></h2></button>
-        <button id="c4" type="button"style="display:inline-block; margin:20px;border: none;background-color:transparent; cursor: pointer;text-decoration: underline;"><h2><strong>SNOW&ETC.</strong></h2></button>
-        <button id="c5" type="button"style="display:inline-block; margin:20px;border: none;background-color:transparent; cursor: pointer;text-decoration: underline;"><h2><strong>보호장구</strong></h2></button> 
+    <div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <div id="chart_div"></div>
     </div>
-    <script>
-        const buttonArr = document.getElementsByTagName('button');
+    <%
+    var arr1 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    var index1 = 0;
+    var sum = 0;
+    var prev_same = 0;
+    for (i = 1; i < rows.length; i++) {
+        var dateString1 = String(rows[i-1].create_date);
+        var dateArr1 = dateString1.split(' ');
         
-        for(let i = 0; i < buttonArr.length; i++){
-          buttonArr[i].addEventListener('click',function(e){
-            e.preventDefault();
-            document.querySelector('.c' + (i)).scrollIntoView(true);
-          });
-        }
-        </script>
-    
-    <!-- 롱보드 카테고리 상품 주문 현황 --> 
-    <div class="c1"></div>
-    <h2 style="font-weight: bold;"><strong>Long board</strong> 상품 주문 현황</h2>
-    <table style="margin-bottom: 50px; padding:20px">
-        <th>제품번호</th>
-        <th>제품명</th>
-        <th>하위 카테고리</th>
-        <th>가격</th>
-        <th>판매량</th>
+        var dateString2 = String(rows[i].create_date);
+        var dateArr2 = dateString2.split(' ');
         
-        <%
-        function addComma(num) {
-            var regexp = /\B(?=(\d{3})+(?!\d))/g;
-            return num.toString().replace(regexp, ',');
-        }
-
-        for (var i = 0; i < rows1.length; i++) { 
-            var row = rows1[i];
-        %>
-        <tr>
-            <td><%=row.id%></td>
-            <td><%=row.name%></td>
-            <td><%=row.category2_name%></td>
-            <td><%=addComma(row.price)%>원</td>
-            <td><strong><%=row.sales_amount%></strong></td>
-        </tr>
-        <%
-        }
-        %>
-        
-    </table>
-
-    <!-- 스케이트보드 카테고리 상품 주문 현황 --> 
-    <div class="c2"></div>
-    <h2 style="font-weight: bold;"><strong>Skate board</strong> 상품 주문 현황</h2>
-    <table style="margin-bottom: 50px; padding:20px">
-        <th>제품번호</th>
-        <th>제품명</th>
-        <th>하위 카테고리</th>
-        <th>가격</th>
-        <th>판매량</th>
-        
-        <%
-        for (var i = 0; i < rows2.length; i++) { 
-            var row = rows2[i];
-        %>
-        <tr>
-            <td><%=row.id%></td>
-            <td><%=row.name%></td>
-            <td><%=row.category2_name%></td>
-            <td><%=addComma(row.price)%>원</td>
-            <td><strong><%=row.sales_amount%></strong></td>
-        </tr>
-        <%
-        }
-        %>
-        
-    </table>
-
-    <!-- 크루저보드 카테고리 상품 주문 현황 --> 
-    <div class="c3"></div>
-    <h2 style="font-weight: bold;"><strong>Cruiser board</strong> 상품 주문 현황</h2>
-    <table style= "margin-bottom: 50px; padding:20px">
-        <th>제품번호</th>
-        <th>제품명</th>
-        <th>하위 카테고리</th>
-        <th>가격</th>
-        <th>판매량</th>
-        
-        <%
-         function addComma(num) {
-            var regexp = /\B(?=(\d{3})+(?!\d))/g;
-            return num.toString().replace(regexp, ',');
-        }
-
-        for (var i = 0; i < rows3.length; i++) { 
-            var row = rows3[i];
-        %>
-        <tr>
-            <td><%=row.id%></td>
-            <td><%=row.name%></td>
-            <td><%=row.category2_name%></td>
-            <td><%=addComma(row.price)%>원</td>
-            <td><strong><%=row.sales_amount%></strong></td>
-        </tr>
-        <%
-        }
-        %>
-        
-    </table>
-
-    <!-- SNOW&ETC. 카테고리 상품 주문 현황 --> 
-    <div class="c4"></div>
-    <h2 style="font-weight: bold;"><strong>SNOW&ETC.</strong> 상품 주문 현황</h2>
-    <table style="margin-bottom: 50px; padding:20px">
-        <th>제품번호</th>
-        <th>제품명</th>
-        <th>하위 카테고리</th>
-        <th>가격</th>
-        <th>판매량</th>
-        
-        <%
-         function addComma(num) {
-            var regexp = /\B(?=(\d{3})+(?!\d))/g;
-            return num.toString().replace(regexp, ',');
-        }
-
-        for (var i = 0; i < rows4.length; i++) { 
-            var row = rows4[i];
-        %>
-        <tr>
-            <td><%=row.id%></td>
-            <td><%=row.name%></td>
-            <td><%=row.category2_name%></td>
-            <td><%=addComma(row.price)%>원</td>
-            <td><strong><%=row.sales_amount%></strong></td>
-        </tr>
-        <%
-        }
-        %>
-        
-    </table>
-
-    <!-- 보호장구 카테고리 상품 주문 현황 --> 
-    <div class="c5"></div>
-    <h2 style="font-weight: bold;"><strong>보호장구</strong> 상품 주문 현황</h2>
-    <table style="margin-bottom: 50px; padding:20px">
-        <th>제품번호</th>
-        <th>제품명</th>
-        <th>하위 카테고리</th>
-        <th>가격</th>
-        <th>판매량</th>
-        
-        <%
-         function addComma(num) {
-            var regexp = /\B(?=(\d{3})+(?!\d))/g;
-            return num.toString().replace(regexp, ',');
-        }
-
-        for (var i = 0; i < rows5.length; i++) { 
-            var row = rows5[i];
-        %>
-        <tr>
-            <td><%=row.id%></td>
-            <td><%=row.name%></td>
-            <td><%=row.category2_name%></td>
-            <td><%=addComma(row.price)%>원</td>
-            <td><strong><%=row.sales_amount%></strong></td>
-        </tr>
-        <%
-        }
-        %>
-        
-    </table>
-    <!-- ################################################################################################ -->
-  </div>
-</div>
-
-<script>
-  function changeInput(checked) {
-        if (checked.checked) {
-        //setUser1and2_same();
-        document.getElementById("name2").value = document.getElementById("name1").value;
-        document.getElementById("address2").value = document.getElementById("address1").value;
-        document.getElementById("phone_number2").value = document.getElementById("phone_number1").value;
+        if ((dateArr1[2] == dateArr2[2]) && (dateArr1[1] == dateArr2[1]) && (dateArr1[0] == dateArr2[0])) {            
+            arr1[index1] = arr1[index1] + rows[i-1].total_money;
+            prev_same = 1;
         } else {
-          document.getElementById("name2").value = "";
-          document.getElementById("address2").value = "";
-          document.getElementById("phone_number2").value ="";
+            if (prev_same) {
+                arr1[index1] = arr1[index1] + rows[i-1].total_money;
+            }
+            index1= index1 + 1;
+            prev_same = 0;
         }
-      }
-      
-      /* // 날짜 넘겨주기
-      var now_date = new Date();
-      var dateToString = now_date.format("yyyy-MM-dd HH:mm:ss");
-      document.getElementsByName("create_date").value = dateToString; */
-</script>
+
+        if (index1 > 14) break;
+        sum = sum + rows[i].total_money;
+    }
+
+    function addComma(num) {
+        var regexp = /\B(?=(\d{3})+(?!\d))/g;
+        return num.toString().replace(regexp, ',');
+    }    
+    %>
+    <script>
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+
+    function drawBasic() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Time of Day');
+        data.addColumn('number', '매출');
+
+        // 날짜 문자열 만들기
+        var date = new Date();
+        date.setDate(date.getDate()-13);
+        var month = [];
+        var day = [];
+        var mmdd = [];
+        for (var i = 0; i < 14; i++) {
+            month[i] = date.getMonth()+1;
+            day[i] = date.getDate();
+            mmdd[i] = month[i] + '/' + day[i];
+            date.setDate(date.getDate() + 1);     
+        }
+
+        // 날짜가 같은 것 끼리 total_money 모두 더해서 arr1에 저장하기
+        var arr1 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        var index1 = 0;
+        var sum = 0;
+        /* */
+        
+        data.addRows([
+            [{f: mmdd[0]}, <%=arr1[13]%>],
+            [{f: mmdd[1]}, <%=arr1[12]%>],
+            [{f: mmdd[2]}, <%=arr1[11]%>],
+            [{f: mmdd[3]},<%=arr1[10]%>],
+            [{f: mmdd[4]}, <%=arr1[9]%>],
+            [{f: mmdd[5]}, <%=arr1[8]%>],
+            [{f: mmdd[6]}, <%=arr1[7]%>],
+            [{f: mmdd[7]},<%=arr1[6]%>],
+            [{f: mmdd[8]},<%=arr1[5]%>],
+            [{f: mmdd[9]}, <%=arr1[4]%>],
+            [{f: mmdd[10]}, <%=arr1[3]%>],
+            [{f: mmdd[11]},<%=arr1[2]%>],
+            [{f: mmdd[12]}, <%=arr1[1]%>],
+            [{f: mmdd[13]}, <%=arr1[0]%>],
+        ]);
+
+        var options = {
+            title: '',
+            hAxis: {
+            title: '',
+            format: 'MM.dd',
+            viewWindow: {/* 
+                min: [7, 30, 0],
+                max: [21, 30, 0] */
+            }
+            },
+            vAxis: {
+            title: ''
+            }
+        };
+
+        var chart = new google.visualization.ColumnChart(
+            document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+    }
+    </script>
+
+    <table style="font-size:large; margin-bottom: 50px; margin-top: 50px;">
+        <tr>
+            <td style="height: 100px; background-color: white; font-weight: bold;">최근 2주간 누적 매출 총액</td>
+            <td style="background-color: white;  text-align :right; border-left: hidden; color: #FBAB45; font-weight: bold;"><%=addComma(sum)%>원</td>
+        </tr>
+    </table>
+    <!-- 카테고리 별 누적 매출 비율 -->
+    
+</div>
       
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->

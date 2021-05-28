@@ -198,6 +198,21 @@ router.get('/sales-status-seller', function(req, res, next) {
   });
 });
 
+/*매출 통계 시각화 페이지*/
+router.get('/sales-statistics-seller',function(req,res,next){
+  pool.getConnection(function(err, connection) {
+    var sql = 'select order_tbl.id as id, create_date, product_id, total_money, category1_id from order_tbl, product_tbl  where order_tbl.product_id = product_tbl.id ORDER BY create_date DESC;';
+    
+      connection.query(sql, function(err, rows){
+        if(err) console.error("err: "+err);
+        console.log("rows: "+JSON.stringify(rows));
+        
+        res.render('sales-statistics-seller', {rows : rows});
+        connection.release();
+    });
+  });
+});
+
 router.get('/full-width',function(req,res,next){
   res.render('full-width',{title: "full width 실험"});
 });
