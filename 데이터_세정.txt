@@ -1,5 +1,10 @@
 
 alter (테이블 수정 사항)=================================
+user_tbl
+email, phone_number, birthday // NOT NULL -> NULL
+birthday -> varchar(45)
+모두 삭제 후 관리자 추가
+
 
 insert (더미데이터)======================================
 product_tbl
@@ -739,3 +744,47 @@ VALUES
 'images/products/detail_img/3/13/65.jpg',
 3,
 13);
+-------------------------------------------------------
+user_tbl
+
+INSERT INTO `on_the_board`.`user_tbl`
+(
+`id`,
+`email`,
+`password`,
+`name`,
+`address`,
+`phone_number`,
+`birthday`,
+`who`)
+VALUES
+(
+'관리자',
+'rhksflwk@kw.ac.kr',
+'0000',
+'관리자',
+'서울',
+'010-0000-0000',
+'1998.01.01',
+0);
+
+INSERT INTO `on_the_board`.`user_tbl`
+(
+`id`,
+`email`,
+`password`,
+`name`,
+`address`,
+`phone_number`,
+`birthday`,
+`who`)
+VALUES
+(
+'판매자1',
+'vksaowk@kw.ac.kr',
+'1111',
+'판매자1',
+'서울 노원구',
+'010-1111-1111',
+'1998.01.13',
+1);

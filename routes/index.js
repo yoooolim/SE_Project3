@@ -6,20 +6,26 @@ var pool = mysql.createPool({
 
   host:'localhost',
   user:'root',
-  password: 'anffl!!8623',
+  password: '',
   database:'on_the_board'
 });
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   pool.getConnection(function(err, connection) {
-    connection.query('SELECT * FROM product_tbl ORDER BY sales_amount DESC;', function(err, rows) {
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, row_user){
       if(err) console.error("err: "+err);
-      console.log("rows : "+JSON.stringify(rows));
-      res.render('index', {title: 'test', rows : rows});
-      connection.release();
+
+      connection.query('SELECT * FROM product_tbl ORDER BY sales_amount DESC;', function(err, rows) {
+        if(err) console.error("err: "+err);
+        console.log("rows : "+JSON.stringify(rows));
+        res.render('index', {title: 'test', rows : rows, user: row_user});
+        connection.release();
+
+      });
     });
-  })
+  });
 });
 
 router.get('/list',function(req,res,next){
@@ -68,7 +74,9 @@ router.get('/gallery/:category1_id/:category2_id/:id',function(req,res,next){
       });
     });
   });
-});      
+});
+
+
 /* 주문 화면 표시 */
 router.get('/order', function(req, res, next) {
   pool.getConnection(function(err, connection) {
@@ -78,7 +86,6 @@ router.get('/order', function(req, res, next) {
       res.render('order', {title: '주문하기', rows : rows});
       connection.release();
     });
-    
   });
 });
 
@@ -124,6 +131,8 @@ router.get('/basic-grid',function(req,res,next){
 router.get('/font-icons',function(req,res,next){
   res.render('font-icons',{title: "font-icons 실험"});
 });
+
+//order-complete 화면 표시 GET
 router.get('/order-complete', function(req, res, next) {
   pool.getConnection(function(err, connection) {
     connection.query('select * from order_tbl;', function(err, rows) {
@@ -137,61 +146,114 @@ router.get('/order-complete', function(req, res, next) {
 
 //login 화면 표시 GET
 router.get('/login', function(req, res, next){
-  res.render('login', {title: "로그인"});
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, rows){
+      if(err) console.error("err: "+err);
+      res.render('login', {title: '로그인', user:rows });
+      connection.release();
+      //don't use the connection here
+    });
+  });
 });
 
 //login 로직 처리 POST
 router.post('/login', async function(req, res, next){
   var id = req.body.id;
-  var passwd = req.body.pw;
-  var sql = 'SELECT * FROM user_tbl WHERE id=?'
-  var datas = [id];
+  var password = req.body.password;
+  var datas = [id, password];
 
-  connection.query(sql ,[id], function(err, results){
-    if(err){
-      console.log('err : ' + err);
-    }else{
-      if(results.length === 0){
-        res.json({success: false, msg: '존재하지 않는 아이디입니다.'})
+  pool.getConnection(function(err, connection){
+    var sqlForInsertUser_tbl = "SELECT * FROM on_the_board.user_tbl WHERE id=? AND password=?";
+    connection.query(sqlForInsertUser_tbl, datas, function(err, rows){
+      if(err) console.error("err1 : "+err);
+      console.log(rows);
+      if(rows == ""){//아이디 없을때
+        res.write("<script language=\"javascript\">alert('The ID does not exist or the password is incorrect!')</script>");
+        res.write("<script language=\"javascript\">window.location=\"login\"</script>");
+      }
+      else if(rows[0].customer_kind==2){
+        res.write("<script language=\"javascript\">alert('Your ID is currently suspended, please contact the administrator.')</script>");
+        res.write("<script language=\"javascript\">window.location=\"login\"</script>");
       }
       else{
-        if(!bcrypt.compareSync(password, results[0].passwd)){
-          res.json({success:false, msg: '비밀번호가 일치하지 않습니다.'})
-        }
-        else{
-          res.json({success: true})
-        }
+        res.cookie("user", id,{ //uer 쿠키이름
+          expires: new Date(Date.now() + 900000), //쿠키의 만료 시간을 표준 시간 으로 설정
+          httpOnly: true //HTTP 프로토콜만 쿠키 사용 가능
+        });
+        //console.log(req.cookies.user); //로그인한 아이디 출력
+        res.redirect('/login_success');
+        connection.release();
       }
-    }
+      //don't use the connection here. 
+    });
+
   });
+});
+
+//login_success 화면 표시 GET
+router.get('/login_success', function(req, res, next){
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, rows){
+      if(err) console.error("err: "+err);
+      res.render('login_success', {title: '로그인성공', user:rows });
+      res.render('login', {title: '로그인', user:rows });
+      connection.release();
+      //don't use the connection here
+    });
+  });
+});
+
+//logout 화면 표시 GET
+router.get('/logout', function(req, res, next){
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, rows){
+      if(err) console.error("err: "+err);
+      res.render('logout', {title: "로그아웃", user:rows });
+      connection.release();
+      //don't use the connection here
+    });
+  });
+});
+
+//logout 화면 표시 POST
+router.post('/logout', function(req, res, next){
+  res.clearCookie("user");
+  res.redirect('/logout');
 });
 
 //join 화면 표시 GET
 router.get('/join', function(req, res, next){
-  res.render('join', {title: "회원가입"});
-});
-
-//join_success 화면 표시 GET
-router.get('/join_success', function(req, res, next){
-  res.render('join_success', {title: "회원가입"});
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, rows){
+      if(err) console.error("err: "+err);
+      res.render('join', {title: '회원가입', user:rows});
+      connection.release();
+      //don't use the connection here
+    });
+  });
 });
 
 //join 회원가입 로직 처리 POST
 router.post('/join', function(req, res, next){
+
   var id = req.body.id;
   var email = req.body.email;
-  var password = req.body.passwd;
+  var password = req.body.password;
   var name = req.body.name;
   var address = req.body.address;
-  var phone_number = req.body.phoneNo;
-  var birthday = req.body.birth;
+  var phone_number = req.body.phone_number;
+  var birthday = req.body.birthday;
   var who = req.body.who;
-  var datas = [id, email, password, name, phone_number, birthday, who];
+  var datas = [id, email, password, name, address, phone_number, birthday, who];
   
   pool.getConnection(function(err, connection){
     //Use the connection
-    var sqlForInsertUser_tbl = "INSERT INTO user_tbl(id, email, password, name, phone_number, birthday, who) values(?,?,?,?,?,?,?)";
-    connection.query(sqlForInsertUser_tbl,datas, function(err, rows){
+    var sqlForInsertUser_tbl = "INSERT INTO user_tbl(id, email, password, name, address, phone_number, birthday, who) values(?,?,?,?,?,?,?,?)";
+    connection.query(sqlForInsertUser_tbl, datas, function(err, rows){
       if(err) console.error("err1 : "+err);
       console.log("rows : " +JSON.stringify(rows));
 
@@ -203,16 +265,63 @@ router.post('/join', function(req, res, next){
   });
 });
 
+//join_success 화면 표시 GET
+router.get('/join_success', function(req, res, next){
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, rows){
+      if(err) console.error("err: "+err);
+      res.render('join_success', {title: '회원가입성공', user:rows})
+      res.render('join', {title: '회원가입', user:rows});
+      connection.release();
+      //don't use the connection here
+    });
+  });
+});
+
 //mypage 화면 표시 GET
 router.get('/mypage', function(req, res, next){
   pool.getConnection(function(err, connection){
-    connection.query('SELECT * FROM user_tbl', function(err, rows){
-      if(err) console.error("err 1 : "+err);
-      console.log("rows : " +JSON.stringify(rows));
-
-      res.render('mypage', {title: '마이페이지', rows: rows});
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, rows){
+      if(err) console.error("err: "+err);
+      res.render('mypage', {title: '마이페이지', user:rows});
       connection.release();
       //don't use the connection here
+    });
+  });
+});
+
+//회원정보 화면 표시 GET
+router.get('/member', function(req, res, next){
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, row_user){
+
+      connection.query('SELECT * FROM user_tbl', function(err, rows){
+        if(err) console.error("err : "+err);
+  
+        res.render('member', {title: '회원관리', rows:rows, user:row_user})
+        connection.release();
+        //don't use the connection here
+      });
+    });
+  });
+});
+
+//장바구니 화면 표시 GET
+router.get('/cart', function(req, res, next){
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, row_user){
+      if(err) console.error("err: "+err);
+
+      connection.query('select product_tbl.name as product_name, product_tbl.img_url, product_tbl.price, user_tbl.name, user_tbl.address, user_tbl.phone_number, user_tbl.email, product_tbl.id as product_id, user_tbl.id as user_id from product_tbl, user_tbl;', function(err, rows) {
+        if(err) console.error("err: "+err);
+        console.log("rows : "+JSON.stringify(rows));
+        res.render('cart', {title: '장바구니', rows:rows, user:row_user});
+        connection.release();
+      });
     });
   });
 });

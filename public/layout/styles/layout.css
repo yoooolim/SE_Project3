@@ -619,7 +619,7 @@ table a, #comments a{background-color:inherit;}
   
   .idForm{
     margin: auto;
-    margin-top: 30px;
+    margin-top: 0px;
     width: 30%;
     border-bottom: 2px solid #adadad;
     padding: 10px 10px;
@@ -627,7 +627,8 @@ table a, #comments a{background-color:inherit;}
   
   .passForm{
     margin: auto;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     width: 30%;
     border-bottom: 2px solid #adadad;
     padding: 10px 10px;
@@ -678,6 +679,7 @@ table a, #comments a{background-color:inherit;}
     width:200px;
     height:25px;
     font-size: 13px;
+    margin-top: 10px;
   }
 
   .bottomNaver{
