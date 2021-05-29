@@ -13,7 +13,7 @@ Licence URI: https://www.os-templates.com/template-terms
 <title>On The Board</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<link href="../../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body id="top">
 <!-- ################################################################################################ -->
@@ -36,21 +36,21 @@ Licence URI: https://www.os-templates.com/template-terms
         <div class="fl_right"> 
           <!-- ################################################################################################ -->
           <ul class="nospace">
-            <li><a style="font-size: 15px" href="/">home으로</a></li>
-            <% if (user == null) { %>
-              <li><a style="font-size: 15px" href="/login" title="Login">login</a></li>
-              <li><a style="font-size: 15px" href="/join" title="Sign Up">join</a></li>
-            <% } else {%>
-              <li><a style="font-size: 15px"><%=user[0].id %> 님 로그인</a></li>
-              <li><a style="font-size: 15px" href="/mypage" title="Mypage">mypage</a></li>
-              <li><a style="font-size: 15px" href="/cart" title="Cart">장바구니</a></li>
-              <li>
-                <form action="/logout" method="post" onsubmit="return onWriteSubmit()"> 
-                  <button  type = "submit">로그아웃</button>        
-                </form>  
-              </li> 
-            <% } %>
-            
+            <li><a href="/"><i class="fas fa-home"></i></a></li>
+            <li><a href="#" title="Help Center"><i class="far fa-life-ring"></i></a></li>
+            <li><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
+            <li><a href="#" title="Sign Up"><i class="fas fa-edit"></i></a></li>
+            <li id="searchform">
+              <div>
+                <form action="#" method="post">
+                  <fieldset>
+                    <legend>Quick Search:</legend>
+                    <input type="text" placeholder="Enter search term&hellip;">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                  </fieldset>
+                </form>
+              </div>
+            </li>
           </ul>
           <!-- ################################################################################################ -->
         </div>
@@ -125,11 +125,214 @@ Licence URI: https://www.os-templates.com/template-terms
   <!-- ################################################################################################ -->
 
 <div class="wrapper row2">
+
   <div class="hoc container clear"> 
-    <h1> 회원가입이 완료되었습니다. </h1>
+    
+   
+    <!-- ################################################################################################ -->
+    <div class="sectiontitle">
+      <p class="nospace font-xs"></p>
+      <p class="heading underline font-x2">상품 주문 현황</p>
+      <p>카테고리 별 상품 주문 현황 조회하기</p>
+    </div>
+    
+    <h3 style="font-weight: bold;">클릭하여 해당 카테고리로 스크롤</h3>
+    <div style="margin-bottom:30px">
+        <button id="c1" type="button" style="display:inline-block; margin:20px; border: none;background-color:transparent; cursor: pointer; text-decoration: underline;"><h2><strong>Long board</strong></h2></button>
+        <button id="c2" type="button"style="display:inline-block; margin:20px;border: none;background-color:transparent; cursor: pointer;text-decoration: underline;"><h2><strong>Skate board</strong></h2></button>
+        <button id="c3" type="button"style="display:inline-block; margin:20px;border: none;background-color:transparent; cursor: pointer;text-decoration: underline;"><h2><strong>Cruiser board</strong></h2></button>
+        <button id="c4" type="button"style="display:inline-block; margin:20px;border: none;background-color:transparent; cursor: pointer;text-decoration: underline;"><h2><strong>SNOW&ETC.</strong></h2></button>
+        <button id="c5" type="button"style="display:inline-block; margin:20px;border: none;background-color:transparent; cursor: pointer;text-decoration: underline;"><h2><strong>보호장구</strong></h2></button> 
+    </div>
+    <script>
+        const buttonArr = document.getElementsByTagName('button');
+        
+        for(let i = 0; i < buttonArr.length; i++){
+          buttonArr[i].addEventListener('click',function(e){
+            e.preventDefault();
+            document.querySelector('.c' + (i)).scrollIntoView(true);
+          });
+        }
+        </script>
+    
+    <!-- 롱보드 카테고리 상품 주문 현황 --> 
+    <div class="c1"></div>
+    <h2 style="font-weight: bold;"><strong>Long board</strong> 상품 주문 현황</h2>
+    <table style="margin-bottom: 50px; padding:20px">
+        <th>제품번호</th>
+        <th>제품명</th>
+        <th>하위 카테고리</th>
+        <th>가격</th>
+        <th>판매량</th>
+        
+        <%
+        function addComma(num) {
+            var regexp = /\B(?=(\d{3})+(?!\d))/g;
+            return num.toString().replace(regexp, ',');
+        }
+
+        for (var i = 0; i < rows1.length; i++) { 
+            var row = rows1[i];
+        %>
+        <tr>
+            <td><%=row.id%></td>
+            <td><%=row.name%></td>
+            <td><%=row.category2_name%></td>
+            <td><%=addComma(row.price)%>원</td>
+            <td><strong><%=row.sales_amount%></strong></td>
+        </tr>
+        <%
+        }
+        %>
+        
+    </table>
+
+    <!-- 스케이트보드 카테고리 상품 주문 현황 --> 
+    <div class="c2"></div>
+    <h2 style="font-weight: bold;"><strong>Skate board</strong> 상품 주문 현황</h2>
+    <table style="margin-bottom: 50px; padding:20px">
+        <th>제품번호</th>
+        <th>제품명</th>
+        <th>하위 카테고리</th>
+        <th>가격</th>
+        <th>판매량</th>
+        
+        <%
+        for (var i = 0; i < rows2.length; i++) { 
+            var row = rows2[i];
+        %>
+        <tr>
+            <td><%=row.id%></td>
+            <td><%=row.name%></td>
+            <td><%=row.category2_name%></td>
+            <td><%=addComma(row.price)%>원</td>
+            <td><strong><%=row.sales_amount%></strong></td>
+        </tr>
+        <%
+        }
+        %>
+        
+    </table>
+
+    <!-- 크루저보드 카테고리 상품 주문 현황 --> 
+    <div class="c3"></div>
+    <h2 style="font-weight: bold;"><strong>Cruiser board</strong> 상품 주문 현황</h2>
+    <table style= "margin-bottom: 50px; padding:20px">
+        <th>제품번호</th>
+        <th>제품명</th>
+        <th>하위 카테고리</th>
+        <th>가격</th>
+        <th>판매량</th>
+        
+        <%
+         function addComma(num) {
+            var regexp = /\B(?=(\d{3})+(?!\d))/g;
+            return num.toString().replace(regexp, ',');
+        }
+
+        for (var i = 0; i < rows3.length; i++) { 
+            var row = rows3[i];
+        %>
+        <tr>
+            <td><%=row.id%></td>
+            <td><%=row.name%></td>
+            <td><%=row.category2_name%></td>
+            <td><%=addComma(row.price)%>원</td>
+            <td><strong><%=row.sales_amount%></strong></td>
+        </tr>
+        <%
+        }
+        %>
+        
+    </table>
+
+    <!-- SNOW&ETC. 카테고리 상품 주문 현황 --> 
+    <div class="c4"></div>
+    <h2 style="font-weight: bold;"><strong>SNOW&ETC.</strong> 상품 주문 현황</h2>
+    <table style="margin-bottom: 50px; padding:20px">
+        <th>제품번호</th>
+        <th>제품명</th>
+        <th>하위 카테고리</th>
+        <th>가격</th>
+        <th>판매량</th>
+        
+        <%
+         function addComma(num) {
+            var regexp = /\B(?=(\d{3})+(?!\d))/g;
+            return num.toString().replace(regexp, ',');
+        }
+
+        for (var i = 0; i < rows4.length; i++) { 
+            var row = rows4[i];
+        %>
+        <tr>
+            <td><%=row.id%></td>
+            <td><%=row.name%></td>
+            <td><%=row.category2_name%></td>
+            <td><%=addComma(row.price)%>원</td>
+            <td><strong><%=row.sales_amount%></strong></td>
+        </tr>
+        <%
+        }
+        %>
+        
+    </table>
+
+    <!-- 보호장구 카테고리 상품 주문 현황 --> 
+    <div class="c5"></div>
+    <h2 style="font-weight: bold;"><strong>보호장구</strong> 상품 주문 현황</h2>
+    <table style="margin-bottom: 50px; padding:20px">
+        <th>제품번호</th>
+        <th>제품명</th>
+        <th>하위 카테고리</th>
+        <th>가격</th>
+        <th>판매량</th>
+        
+        <%
+         function addComma(num) {
+            var regexp = /\B(?=(\d{3})+(?!\d))/g;
+            return num.toString().replace(regexp, ',');
+        }
+
+        for (var i = 0; i < rows5.length; i++) { 
+            var row = rows5[i];
+        %>
+        <tr>
+            <td><%=row.id%></td>
+            <td><%=row.name%></td>
+            <td><%=row.category2_name%></td>
+            <td><%=addComma(row.price)%>원</td>
+            <td><strong><%=row.sales_amount%></strong></td>
+        </tr>
+        <%
+        }
+        %>
+        
+    </table>
     <!-- ################################################################################################ -->
   </div>
 </div>
+
+<script>
+  function changeInput(checked) {
+        if (checked.checked) {
+        //setUser1and2_same();
+        document.getElementById("name2").value = document.getElementById("name1").value;
+        document.getElementById("address2").value = document.getElementById("address1").value;
+        document.getElementById("phone_number2").value = document.getElementById("phone_number1").value;
+        } else {
+          document.getElementById("name2").value = "";
+          document.getElementById("address2").value = "";
+          document.getElementById("phone_number2").value ="";
+        }
+      }
+      
+      /* // 날짜 넘겨주기
+      var now_date = new Date();
+      var dateToString = now_date.format("yyyy-MM-dd HH:mm:ss");
+      document.getElementsByName("create_date").value = dateToString; */
+</script>
+      
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->

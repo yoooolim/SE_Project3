@@ -352,9 +352,9 @@ hr, .borderedbox{border-color:#D7D7D7;}
 label span{color:#FF0000; background-color:inherit;}
 input:focus, textarea:focus, *:required:focus{border-color:#FBAB45 !important;}
 
-button{color:#FFFFFF; background-color:#FBAB45; border-color:#FBAB45;}
+/* button{color:#FFFFFF; background-color:#FBAB45; border-color:#FBAB45;}
 button:hover{color:inherit; background-color:transparent; border-color:inherit;}
-
+ */
 .overlay{color:#FFFFFF; background-color:inherit;}
 /*.overlay::after{color:inherit; background-color:rgba(0,0,0,.55);}// 배경 어둡게 하는 효과 제거*/
 .overlay.light{color:#474747;}
@@ -619,7 +619,7 @@ table a, #comments a{background-color:inherit;}
   
   .idForm{
     margin: auto;
-    margin-top: 30px;
+    margin-top: 0px;
     width: 30%;
     border-bottom: 2px solid #adadad;
     padding: 10px 10px;
@@ -627,7 +627,8 @@ table a, #comments a{background-color:inherit;}
   
   .passForm{
     margin: auto;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     width: 30%;
     border-bottom: 2px solid #adadad;
     padding: 10px 10px;
@@ -678,6 +679,7 @@ table a, #comments a{background-color:inherit;}
     width:200px;
     height:25px;
     font-size: 13px;
+    margin-top: 10px;
   }
 
   .bottomNaver{
@@ -946,7 +948,7 @@ select {
   text-align:center;
   width:200px;
   height:50px;
-  letter-spacing: -5px;
+  letter-spacing: 0px;
 }
 
 /*for slide bar*/

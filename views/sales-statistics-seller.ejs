@@ -13,7 +13,8 @@ Licence URI: https://www.os-templates.com/template-terms
 <title>On The Board</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<link href="../../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+
 </head>
 <body id="top">
 <!-- ################################################################################################ -->
@@ -36,21 +37,21 @@ Licence URI: https://www.os-templates.com/template-terms
         <div class="fl_right"> 
           <!-- ################################################################################################ -->
           <ul class="nospace">
-            <li><a style="font-size: 15px" href="/">home으로</a></li>
-            <% if (user == null) { %>
-              <li><a style="font-size: 15px" href="/login" title="Login">login</a></li>
-              <li><a style="font-size: 15px" href="/join" title="Sign Up">join</a></li>
-            <% } else {%>
-              <li><a style="font-size: 15px"><%=user[0].id %> 님 로그인</a></li>
-              <li><a style="font-size: 15px" href="/mypage" title="Mypage">mypage</a></li>
-              <li><a style="font-size: 15px" href="/cart" title="Cart">장바구니</a></li>
-              <li>
-                <form action="/logout" method="post" onsubmit="return onWriteSubmit()"> 
-                  <button  type = "submit">로그아웃</button>        
-                </form>  
-              </li> 
-            <% } %>
-            
+            <li><a href="/"><i class="fas fa-home"></i></a></li>
+            <li><a href="#" title="Help Center"><i class="far fa-life-ring"></i></a></li>
+            <li><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
+            <li><a href="#" title="Sign Up"><i class="fas fa-edit"></i></a></li>
+            <li id="searchform">
+              <div>
+                <form action="#" method="post">
+                  <fieldset>
+                    <legend>Quick Search:</legend>
+                    <input type="text" placeholder="Enter search term&hellip;">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                  </fieldset>
+                </form>
+              </div>
+            </li>
           </ul>
           <!-- ################################################################################################ -->
         </div>
@@ -125,11 +126,130 @@ Licence URI: https://www.os-templates.com/template-terms
   <!-- ################################################################################################ -->
 
 <div class="wrapper row2">
+    
   <div class="hoc container clear"> 
-    <h1> 회원가입이 완료되었습니다. </h1>
     <!-- ################################################################################################ -->
-  </div>
+    <div class="sectiontitle">
+      <p class="nospace font-xs"></p>
+      <p class="heading underline font-x2">매출 통계 시각화</p>
+      <p></p>
+    </div>
+    <!-- 최근 2주간의 매출 -->
+    <h2><strong>최근 2주간의 매출</strong></h2>
+    
+    <div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <div id="chart_div"></div>
+    </div>
+    <%
+    var arr1 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    var index1 = 0;
+    var sum = 0;
+    var prev_same = 0;
+    for (i = 1; i < rows.length; i++) {
+        var dateString1 = String(rows[i-1].create_date);
+        var dateArr1 = dateString1.split(' ');
+        
+        var dateString2 = String(rows[i].create_date);
+        var dateArr2 = dateString2.split(' ');
+        
+        if ((dateArr1[2] == dateArr2[2]) && (dateArr1[1] == dateArr2[1]) && (dateArr1[0] == dateArr2[0])) {            
+            arr1[index1] = arr1[index1] + rows[i-1].total_money;
+            prev_same = 1;
+        } else {
+            if (prev_same) {
+                arr1[index1] = arr1[index1] + rows[i-1].total_money;
+            }
+            index1= index1 + 1;
+            prev_same = 0;
+        }
+
+        if (index1 > 14) break;
+        sum = sum + rows[i].total_money;
+    }
+
+    function addComma(num) {
+        var regexp = /\B(?=(\d{3})+(?!\d))/g;
+        return num.toString().replace(regexp, ',');
+    }    
+    %>
+    <script>
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+
+    function drawBasic() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Time of Day');
+        data.addColumn('number', '매출');
+
+        // 날짜 문자열 만들기
+        var date = new Date();
+        date.setDate(date.getDate()-13);
+        var month = [];
+        var day = [];
+        var mmdd = [];
+        for (var i = 0; i < 14; i++) {
+            month[i] = date.getMonth()+1;
+            day[i] = date.getDate();
+            mmdd[i] = month[i] + '/' + day[i];
+            date.setDate(date.getDate() + 1);     
+        }
+
+        // 날짜가 같은 것 끼리 total_money 모두 더해서 arr1에 저장하기
+        var arr1 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        var index1 = 0;
+        var sum = 0;
+        /* */
+        
+        data.addRows([
+            [{f: mmdd[0]}, <%=arr1[13]%>],
+            [{f: mmdd[1]}, <%=arr1[12]%>],
+            [{f: mmdd[2]}, <%=arr1[11]%>],
+            [{f: mmdd[3]},<%=arr1[10]%>],
+            [{f: mmdd[4]}, <%=arr1[9]%>],
+            [{f: mmdd[5]}, <%=arr1[8]%>],
+            [{f: mmdd[6]}, <%=arr1[7]%>],
+            [{f: mmdd[7]},<%=arr1[6]%>],
+            [{f: mmdd[8]},<%=arr1[5]%>],
+            [{f: mmdd[9]}, <%=arr1[4]%>],
+            [{f: mmdd[10]}, <%=arr1[3]%>],
+            [{f: mmdd[11]},<%=arr1[2]%>],
+            [{f: mmdd[12]}, <%=arr1[1]%>],
+            [{f: mmdd[13]}, <%=arr1[0]%>],
+        ]);
+
+        var options = {
+            title: '',
+            hAxis: {
+            title: '',
+            format: 'MM.dd',
+            viewWindow: {/* 
+                min: [7, 30, 0],
+                max: [21, 30, 0] */
+            }
+            },
+            vAxis: {
+            title: ''
+            }
+        };
+
+        var chart = new google.visualization.ColumnChart(
+            document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+    }
+    </script>
+
+    <table style="font-size:large; margin-bottom: 50px; margin-top: 50px;">
+        <tr>
+            <td style="height: 100px; background-color: white; font-weight: bold;">최근 2주간 누적 매출 총액</td>
+            <td style="background-color: white;  text-align :right; border-left: hidden; color: #FBAB45; font-weight: bold;"><%=addComma(sum)%>원</td>
+        </tr>
+    </table>
+    <!-- 카테고리 별 누적 매출 비율 -->
+    
 </div>
+      
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
