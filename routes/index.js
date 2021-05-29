@@ -7,7 +7,7 @@ var pool = mysql.createPool({
   connectionLimit: 5,
   host:'localhost',
   user:'root',
-  password: '',
+  password: '9376174a',
   database:'on_the_board'
 });
 
@@ -33,18 +33,20 @@ router.get('/list',function(req,res,next){
   res.render('productList',{title: "제품 목록"});
 });
 
-/*제품 목록 카테고리1*/
-router.get('/gallery/read/:idx',function(req,res,next){
-  res.render('read',{title: "제품 목록"});
-});
-
 /* 유림 리뷰 */
 router.get('/reviewwrite/:category1_id/:category2_id/:id',function(req,res,next){
   var category1_id = req.params.category1_id;
   var category2_id = req.params.category2_id;
   var id = req.params.id;
-
-  res.render('review_write',{title: "구매자 후기 작성",category1_id:category1_id, category2_id:category2_id,id:id});
+  pool.getConnection(function(err, connection) {
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, row_user){
+      if(err) console.error("err: "+err);
+      console.log("row_user : "+JSON.stringify(row_user));
+      res.render('review_write',{title: "구매자 후기 작성",category1_id:category1_id, category2_id:category2_id,id:id, user: row_user});
+      connection.release();
+    });
+  });
 });
 
 router.post('/reviewwrite/:category1_id/:category2_id/:id',upload.single('img'),function(req,res,next){
@@ -52,6 +54,7 @@ router.post('/reviewwrite/:category1_id/:category2_id/:id',upload.single('img'),
   var title = req.body.title;
   var context = req.body.context;
   var img = "/"+req.file.filename;
+  var user = req.body.user;
   var moment = require('moment');
 
   require('moment-timezone');
@@ -60,40 +63,135 @@ router.post('/reviewwrite/:category1_id/:category2_id/:id',upload.single('img'),
   var time= moment().format('YYYY-MM-DD HH:mm:ss');
 
   pool.getConnection(function(err,connection){
-    var sqlForSearchReviewNum = "Select * from review_tbl";
-    connection.query(sqlForSearchReviewNum,function(err,rows){
-      if(err) console.error("err: "+err);
-      var dbid = rows.length+1;
-      var datas = [dbid,"yryr",id,title,context,img,time];
-      console.log(datas);
-
-      var sqlForInsertReview = "INSERT INTO review_tbl(id, user_id, product_id, title, context, img_url, create_date) VALUES(?,?,?,?,?,?,?)";
-      connection.query(sqlForInsertReview,datas,function(err,rowss){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, row_user){
+      var sqlForSearchReviewNum = "SELECT MAX(id) FROM review_tbl;";
+      connection.query(sqlForSearchReviewNum,function(err,rows){
         if(err) console.error("err: "+err);
-        console.log("rows : "+ JSON.stringify(rowss));
-        res.redirect('/');
-        connection.release();
+        var dbid = rows[0].column;
+        var datas = [dbid,user,id,title,context,img,time];
+        console.log(datas);
+
+        var sqlForInsertReview = "INSERT INTO review_tbl(id, user_id, product_id, title, context, img_url, create_date) VALUES(?,?,?,?,?,?,?)";
+        connection.query(sqlForInsertReview,datas,function(err,rowss){
+          if(err) console.error("err: "+err);
+          console.log("rows : "+ JSON.stringify(rowss));
+          res.redirect('/');
+          connection.release();
+        });
       });
     });
   });  
 });
 
-router.get('/gallery/:category1_id/:category2_id',function(req,res,next){
+/* 메뉴별 상품 리스트 */
+router.get('/gallery/:category1_id/:category2_id&name',function(req,res,next){
   var category1_id = req.params.category1_id;
   var category2_id = req.params.category2_id;
-  var sql = 'SELECT * FROM product_tbl WHERE category1_id=? and category2_id=?';
+  var sortCategory = req.body.sort;
+  var defaultC = 1;
+  var sort="name";
+  var sql = 'SELECT * FROM product_tbl WHERE category1_id=? and category2_id=? ORDER BY '+sort;
   pool.getConnection(function(err,connection){
-    //console.log(category1_id+" "+category2_id)
-    //Use the connection
-    connection.query(sql,[category1_id, category2_id], function(err,rows){
-      if(err) console.error("err : "+err);
-      console.log("rows : "+JSON.stringify(rows));
-      //console.log("rows : "+JSON.stringify(rows));
+    var sqluser = 'SELECT * FROM user_tbl WHERE id=?';
+    connection.query(sqluser, req.cookies.user, function(err, row_user){
+      if(err) console.error("err: "+err);
+      //console.log("row_user : "+JSON.stringify(row_user));
+      //console.log(category1_id+" "+category2_id)
+      //Use the connection
+      connection.query(sql,[category1_id, category2_id], function(err,rows){
+        if(err) console.error("err : "+err);
+        //console.log("@@rows : "+JSON.stringify(rows));
 
-      res.render('gallery', {title: '게시판 전체 글 조회', rows: rows});
-      connection.release();
+        res.render('gallery', {title: '게시판 전체 글 조회', rows: rows, user : row_user, defaultC : defaultC});
+        connection.release();
+      });
     });
   });
+});
+
+router.get('/gallery/:category1_id/:category2_id&sales_amount',function(req,res,next){
+  var category1_id = req.params.category1_id;
+  var category2_id = req.params.category2_id;
+  var sortCategory = req.body.sort;
+  var defaultC = 2;
+  var sort="sales_amount";
+  var sql = 'SELECT * FROM product_tbl WHERE category1_id=? and category2_id=? ORDER BY '+sort;
+  console.log(sortCategory+sql+"ㅎㅎ");
+  pool.getConnection(function(err,connection){
+    var sqluser = 'SELECT * FROM user_tbl WHERE id=?';
+    connection.query(sqluser, req.cookies.user, function(err, row_user){
+      if(err) console.error("err: "+err);
+      //console.log("row_user : "+JSON.stringify(row_user));
+      //console.log(category1_id+" "+category2_id)
+      //Use the connection
+      connection.query(sql,[category1_id, category2_id], function(err,rows){
+        if(err) console.error("err : "+err);
+        console.log("@@rows : "+JSON.stringify(rows));
+
+        res.render('gallery', {title: '게시판 전체 글 조회', rows: rows, user : row_user, defaultC : defaultC});
+        connection.release();
+      });
+    });
+  });
+});
+
+router.get('/gallery/:category1_id/:category2_id&price',function(req,res,next){
+  var category1_id = req.params.category1_id;
+  var category2_id = req.params.category2_id;
+  var sortCategory = req.body.sort;
+  var sort="price";
+  var defaultC = 3;
+  var sql = 'SELECT * FROM product_tbl WHERE category1_id=? and category2_id=? ORDER BY '+sort;
+  console.log(sortCategory+sql+"ㅎㅎ");
+  pool.getConnection(function(err,connection){
+    var sqluser = 'SELECT * FROM user_tbl WHERE id=?';
+    connection.query(sqluser, req.cookies.user, function(err, row_user){
+      if(err) console.error("err: "+err);
+      //console.log("row_user : "+JSON.stringify(row_user));
+      //console.log(category1_id+" "+category2_id)
+      //Use the connection
+      connection.query(sql,[category1_id, category2_id], function(err,rows){
+        if(err) console.error("err : "+err);
+        console.log("@@rows : "+JSON.stringify(rows));
+
+        res.render('gallery', {title: '게시판 전체 글 조회', rows: rows, user : row_user, defaultC : defaultC});
+        connection.release();
+      });
+    });
+  });
+});
+
+router.get('/gallery/:category1_id/:category2_id&priceDESC',function(req,res,next){
+  var category1_id = req.params.category1_id;
+  var category2_id = req.params.category2_id;
+  var sortCategory = req.body.sort;
+  var sort="price DESC";
+  var defaultC = 4;
+  var sql = 'SELECT * FROM product_tbl WHERE category1_id=? and category2_id=? ORDER BY '+sort;
+  console.log(sortCategory+sql+"ㅎㅎ");
+  pool.getConnection(function(err,connection){
+    var sqluser = 'SELECT * FROM user_tbl WHERE id=?';
+    connection.query(sqluser, req.cookies.user, function(err, row_user){
+      if(err) console.error("err: "+err);
+      //console.log("row_user : "+JSON.stringify(row_user));
+      //console.log(category1_id+" "+category2_id)
+      //Use the connection
+      connection.query(sql,[category1_id, category2_id], function(err,rows){
+        if(err) console.error("err : "+err);
+        //console.log("@@rows : "+JSON.stringify(rows));
+
+        res.render('gallery', {title: '게시판 전체 글 조회', rows: rows, user : row_user, defaultC : defaultC});
+        connection.release();
+      });
+    });
+  });
+});
+
+router.post('/gallery/:category1_id/:category2_id&priceDESC',function(req,res,next){
+  var sortCategory = req.body.sort;
+  console.log("in");
+  res.redirect('/gallery/:category1_id/:category2_id&'+sortCategory);
 });
 
 /*제품 상세 페이지*/
@@ -104,17 +202,20 @@ router.get('/gallery/:category1_id/:category2_id/:id',function(req,res,next){
   var sql = 'SELECT * FROM on_the_board.product_tbl WHERE category1_id=? and category2_id=? and id=?';
   var sql2 = 'SELECT * FROM on_the_board.review_tbl WHERE product_id=?';
   pool.getConnection(function(err,connection){
-    //Use the connection
-    connection.query(sql,[category1_id, category2_id,id], function(err,rows){
-      if(err) console.error("err : "+err);
-      //console.log("rows : "+JSON.stringify(rows));
-
-      connection.query(sql2,[id], function(err,reviewrows){
+    var sqluser = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sqluser, req.cookies.user, function(err, row_user){
+      //Use the connection
+      connection.query(sql,[category1_id, category2_id,id], function(err,rows){
         if(err) console.error("err : "+err);
-        //console.log("rows : "+JSON.stringify(reviewrows));
-        //console.log(reviewrows[0].img_url);
-        res.render('read', {reviewrows: reviewrows, rows: rows});
-        connection.release();
+        //console.log("rows : "+JSON.stringify(rows));
+
+        connection.query(sql2,[id], function(err,reviewrows){
+          if(err) console.error("err : "+err);
+          //console.log("rows : "+JSON.stringify(reviewrows));
+          //console.log(reviewrows[0].img_url);
+          res.render('read', {reviewrows: reviewrows, rows: rows, user : row_user});
+          connection.release();
+        });
       });
     });
   });
@@ -388,7 +489,13 @@ router.get('/join', function(req, res, next){
 
 /*유림*/
 router.get('/upload',function(req,res,next){
-  res.render('upload',{title: "판매자 물건 업로드"});
+  pool.getConnection(function(err,connection){
+    var sqluser = 'SELECT * FROM user_tbl WHERE id=?';
+    connection.query(sqluser, req.cookies.user, function(err, row_user){
+      res.render('upload',{title: "판매자 물건 업로드", user : row_user});
+      connection.release();
+    });
+  });
 });
 
 router.post('/upload',upload.array('img'),function(req,res,next){
@@ -407,11 +514,11 @@ router.post('/upload',upload.array('img'),function(req,res,next){
   console.log(category+"\n"+category1_id+"\n"+category2_id);
 
   pool.getConnection(function(err,connection){
-    var sqlForSearchCategoryNum = "Select * from product_tbl";
+    var sqlForSearchCategoryNum = "SELECT MAX(id) FROM product_tbl;";
     connection.query(sqlForSearchCategoryNum,function(err,rows){
       if(err) console.error("err: "+err);
       console.log("rows : "+ JSON.stringify(rows));
-      var dbid = rows.length+1;
+      var dbid = rows[0].column;
       var datas = [dbid ,product_name ,img_url ,price ,0 ,detail_url ,category1_id ,category2_id];
       console.log(datas);
       var sqlForInsertProduct = "INSERT INTO product_tbl(id, name, img_url, price, sales_amount, detail_img_url, category1_id, category2_id) VALUES(?,?,?,?,?,?,?,?)";
@@ -423,7 +530,83 @@ router.post('/upload',upload.array('img'),function(req,res,next){
       });
     });
   });
-})
+});
+
+router.get('/updateproduct', function(req, res, next){
+  var id = req.query.id;
+  pool.getConnection(function(err, connection){
+    //console.log("@@updateproduct"+id)
+    var sqluser = 'SELECT * FROM user_tbl WHERE id=?';
+    connection.query(sqluser, req.cookies.user, function(err, row_user){
+      if(err) console.error("err: "+err);
+      var sql = "SELECT * FROM product_tbl WHERE id=?";
+      connection.query(sql,[id],function(err,row){
+          if(err) console.error(err);
+          console.log("update에서 1개 글 조회 결과 확인 : ",row);
+          res.render('update', {title: "글 수정", row:row, user : row_user});
+          connection.release();
+      });
+    });
+  });
+});
+
+
+router.post('/updateproduct',upload.array('img'),function(req,res,next){
+  var product_name = req.body.product_name;
+  var price = Number(req.body.product_price);
+  var img_url;
+  var detail_img_url;
+  if(req.files[0]!=null){
+    img_url = req.files[0].filename;
+  }
+  else{
+    img_url = req.body.img_url;
+  }
+  if(req.files[1]!=null){
+    detail_img_url=req.files[1].filename;
+  }
+  else{
+    detail_img_url = req.body.detail_img_url;
+  }
+  var category = req.body.categoryNum;
+  var category1_id;
+  var category2_id = Number(category);
+  if(category<=5) category1_id=1;
+  else if(category<=10) category1_id=2;
+  else if(category<=15) category1_id=3;
+  else if(category<=19) category1_id=4;
+  else category1_id=5;
+  console.log(price);
+
+  pool.getConnection(function(err,connection){
+    var dbid =  req.body.id;
+    var dbhit = req.body.hit;
+    var datas = [dbid ,product_name ,img_url ,price ,dbhit ,detail_img_url ,category1_id ,category2_id,dbid];
+    console.log("@@"+datas);
+    var sqlForUpdateProduct = "UPDATE product_tbl SET id=?, name=?, img_url=?, price=?, sales_amount=?, detail_img_url=?, category1_id=?, category2_id=? WHERE id=?";
+    connection.query(sqlForUpdateProduct,datas,function(err,rowss){
+      if(err) console.error("err: "+err);
+      console.log("rows : "+ JSON.stringify(rowss));
+      res.redirect('/');
+      connection.release();
+    });
+  });
+});
+
+
+router.post('/deleteproduct', function(req, res, next){
+  var id = req.body.id;
+
+  pool.getConnection(function(err,connection){
+      var sql = 'DELETE FROM product_tbl WHERE id=?';
+      connection.query(sql,[id],function(err,result){
+        console.log("~~~"+result+" "+id);
+        if(err) console.error("글 삭제 중 에러 발생 err :",err);
+        res.redirect('/');
+        connection.release();
+      });
+  });
+});
 
 //join 회원가입 로직 처리 POST
 router.post('/join', function(req, res, next){
