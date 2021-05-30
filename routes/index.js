@@ -7,7 +7,7 @@ var pool = mysql.createPool({
   connectionLimit: 5,
   host:'localhost',
   user:'root',
-  password: '',
+  password: 'anffl!!8623',
   database:'on_the_board'
 });
 
@@ -257,6 +257,24 @@ router.get('/sales-statistics-seller',function(req,res,next){
         
         res.render('sales-statistics-seller', {rows : rows});
         connection.release();
+    });
+  });
+});
+
+/*찜한 상품 보기*/
+router.get('/jjim', function(req, res, next){
+  pool.getConnection(function(err, connection) {
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, row_user){
+      if(err) console.error("err: "+err);
+      var sql2 = 'SELECT * FROM like_tbl, product_tbl where like_tbl.product_id = product_tbl.id and like_tbl.user_id = ?;'
+      connection.query(sql2, req.cookies.user, function(err, rows) {
+        if(err) console.error("err: "+err);
+        console.log("rows : "+JSON.stringify(rows));
+        res.render('jjim', {title: 'test', rows : rows, user: row_user});
+        connection.release();
+
+      });
     });
   });
 });
