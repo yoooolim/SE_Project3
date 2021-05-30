@@ -769,6 +769,13 @@ body {
   width: 460px;
 }
 
+/*공지사항 폼*/
+.noticeForm{
+  margin: auto;
+  margin-top: 0px;
+  width: 100%;
+}
+
 
 
 
