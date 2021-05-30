@@ -7,7 +7,7 @@ var pool = mysql.createPool({
   connectionLimit: 5,
   host:'localhost',
   user:'root',
-  password: '',
+  password: 'se441129!',
   database:'on_the_board'
 });
 
@@ -460,7 +460,6 @@ router.get('/join_success', function(req, res, next){
     connection.query(sql, req.cookies.user, function(err, rows){
       if(err) console.error("err: "+err);
       res.render('join_success', {title: '회원가입성공', user:rows})
-      res.render('join', {title: '회원가입', user:rows});
       connection.release();
       //don't use the connection here
     });
@@ -510,6 +509,105 @@ router.get('/cart', function(req, res, next){
         res.render('cart', {title: '장바구니', rows:rows, user:row_user});
         connection.release();
       });
+    });
+  });
+});
+
+//id_delete 로직 처리 POST
+router.post('/id_delete/:id', function(req, res, next) {
+  var id = req.params.id;
+  pool.getConnection(function(err, connection){
+    var sql = "DELETE FROM on_the_board.user_tbl WHERE id=?";
+    connection.query(sql, id, function(err, rows){
+      if(err) console.log(err);
+      res.redirect('/member');
+      console.log("Delete Complete!");
+    });
+  });
+});
+
+//notice 화면 표시 GET
+router.get('/notice', function(req, res, next){
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, rows){
+      if(err) console.error("err: "+err);
+      res.render('notice', {title: '공지사항', user:rows})
+      connection.release();
+      //don't use the connection here
+    });
+  });
+});
+
+//notice1 화면 표시 GET
+router.get('/notice1', function(req, res, next){
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, rows){
+      if(err) console.error("err: "+err);
+      res.render('notice1', {title: '공지사항1', user:rows})
+      connection.release();
+      //don't use the connection here
+    });
+  });
+});
+//notice2 화면 표시 GET
+router.get('/notice2', function(req, res, next){
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, rows){
+      if(err) console.error("err: "+err);
+      res.render('notice2', {title: '공지사항2', user:rows})
+      connection.release();
+      //don't use the connection here
+    });
+  });
+});
+//notice3 화면 표시 GET
+router.get('/notice3', function(req, res, next){
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, rows){
+      if(err) console.error("err: "+err);
+      res.render('notice3', {title: '공지사항3', user:rows})
+      connection.release();
+      //don't use the connection here
+    });
+  });
+});
+//notice4 화면 표시 GET
+router.get('/notice4', function(req, res, next){
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, rows){
+      if(err) console.error("err: "+err);
+      res.render('notice4', {title: '공지사항4', user:rows})
+      connection.release();
+      //don't use the connection here
+    });
+  });
+});
+//notice5 화면 표시 GET
+router.get('/notice5', function(req, res, next){
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, rows){
+      if(err) console.error("err: "+err);
+      res.render('notice5', {title: '공지사항5', user:rows})
+      connection.release();
+      //don't use the connection here
+    });
+  });
+});
+//notice6 화면 표시 GET
+router.get('/notice6', function(req, res, next){
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, rows){
+      if(err) console.error("err: "+err);
+      res.render('notice6', {title: '공지사항6', user:rows})
+      connection.release();
+      //don't use the connection here
     });
   });
 });
