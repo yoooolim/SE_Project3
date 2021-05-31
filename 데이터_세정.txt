@@ -5,6 +5,10 @@ email, phone_number, birthday // NOT NULL -> NULL
 birthday -> varchar(45)
 모두 삭제 후 관리자 추가
 
+notice_tbl
+alter table notice_tbl add column image varchar(45);
+context // NOT NULL -> NULL
+
 
 insert (더미데이터)======================================
 product_tbl
@@ -788,3 +792,109 @@ VALUES
 '010-1111-1111',
 '1998.01.13',
 1);
+
+
+notice_tbl
+
+INSERT INTO `on_the_board`.`notice_tbl`
+(
+`user_id`,
+`title`,
+`context`,
+`create_date`,
+`image`)
+VALUES
+(
+'관리자',
+'[행사] 2021 무료배송 ',
+'안녕하세요 온더보드입니다.
+코로나로 인하여 올해는 무료배송을 할 예정입니다!
+많은 관심과 주문 부탁드립니다!
+',
+'2021-01-01',
+'images/demo/notice/free2.png'
+);
+
+INSERT INTO `on_the_board`.`notice_tbl`
+(
+`user_id`,
+`title`,
+`context`,
+`create_date`,
+`image`)
+VALUES
+(
+'관리자',
+'[행사] 2021 ON THE BOARD FESTIVAL',
+'안녕하세요 온더보드입니다. 올해에도 어김없이 온더보드 페스티벌이 찾아왔습니다!  회원님들의 많은 참가 부탁드립니다. :)',
+'2021-05-10',
+'images/demo/notice/congress1.png'
+);
+
+
+INSERT INTO `on_the_board`.`notice_tbl`
+(
+`user_id`,
+`title`,
+`context`,
+`create_date`,
+`image`)
+VALUES
+(
+'관리자',
+'[행사] 2021 춘천 스케이트보드 대회',
+' ',
+'2021-06-20',
+'images/demo/notice/congress2.png'
+);
+
+INSERT INTO `on_the_board`.`notice_tbl`
+(
+`user_id`,
+`title`,
+`context`,
+`create_date`,
+`image`)
+VALUES
+(
+'관리자',
+'[행사] 2021 SKATE BOARD TOUR',
+' ',
+'2021-07-02',
+'images/demo/notice/congress3.png'
+);
+
+INSERT INTO `on_the_board`.`notice_tbl`
+(
+`user_id`,
+`title`,
+`context`,
+`create_date`,
+`image`)
+VALUES
+(
+'관리자',
+'[행사]2021 SKATEBOARD CONTEST',
+' ',
+'2021-09-10',
+'images/demo/notice/congress4.png'
+);
+
+
+INSERT INTO `on_the_board`.`notice_tbl`
+(
+`user_id`,
+`title`,
+`context`,
+`create_date`,
+`image`)
+VALUES
+(
+'관리자',
+'[행사] 2021 BOARD CAMPIONSHIP',
+' ',
+'2021-11-15',
+'images/demo/notice/congress5.png'
+);
+
+
