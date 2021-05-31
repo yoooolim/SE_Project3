@@ -133,6 +133,7 @@ Licence URI: https://www.os-templates.com/template-terms
               <br>
               <form action="/reviewwrite/<%=category1_id%>/<%=category2_id%>/<%=id%>" method="post" enctype="multipart/form-data" onsubmit="return onWriteSubmit()">
                 <input type="hidden" name='user' id='user' value=<%=user[0].id %>>
+                <input type="hidden" name='star' id='star' value=''/>
                 <br><br>
                 <div id='result'></div>
                 <p style="font-size: medium; font-weight: bold;">[제목]</p><br>
@@ -144,6 +145,12 @@ Licence URI: https://www.os-templates.com/template-terms
                 <p style="font-size: medium; font-weight: bold;">[물품 이미지]</p><br>
                 <input type = "file" name="img"/>
                 <br>
+                <input type="radio" name="star" value=1 > 최악
+                <input type="radio" name="star" value=2 > 별로
+                <input type="radio" name="star" value=3 > 그저그래요
+                <input type="radio" name="star" value=4 > 굳
+                <input type="radio" name="star" value=5 > 대박오짐
+                <br><br><br>
                 <button name="submit" type="submit">리뷰 등록하기</button>
                 <br><br>
               </form>
@@ -243,13 +250,24 @@ Licence URI: https://www.os-templates.com/template-terms
         <script>
             function onWriteSubmit(){
                 getDate();
+                getStarNum();
             }
             function getDate(){
                 var time = new Date().format('YYYY-MM-DD HH:MM:SS');
                 alert(time);
                 $("#date").val(time);
             }
+            
+            function getStarNum(){
+                const radioNodeList = document.getElementsByName('star');
+                radioNodeList.forEach((node)=>{
+                    if(node.checked){
+                        $("#star").val(node.value);
+                    }
+                })
+            }
         </script>
+                  
   <script src="layout/scripts/jquery.min.js"></script>
   <script src="layout/scripts/jquery.backtotop.js"></script>
   <script src="layout/scripts/jquery.mobilemenu.js"></script>

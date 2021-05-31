@@ -349,11 +349,14 @@ function onSubmitCancel() {
             <th>제목</th>
             <th>내용</th>
             <th>날짜</th>
+            <th>별점</th>
           </tr>
         </thead>
 <%
+        var sum=0;
         for(var i =0;i<reviewrows.length;i++){
           var oneItem=reviewrows[i];
+          sum+=oneItem.star;
 %>
         <tbody>
           <tr>
@@ -361,13 +364,16 @@ function onSubmitCancel() {
             <th><%=oneItem.title%></th>
             <th><%=oneItem.context%></th>
             <th><%=oneItem.create_date%></th>
+            <th><%=oneItem.star%>/5</th>
           </tr>
-          <tr><th></th><th></th><th><img style="width: 200px; height: 200px;" src="<%=oneItem.img_url%>"/></th><th></th></tr>
+          <tr><th></th><th></th><th><img style="width: 200px; height: 200px;" src="<%=oneItem.img_url%>"/></th><th></th><th></th></tr>
         </tbody>
 <%
       }
+      if(sum!=0) sum/=reviewrows.length;
 %>
       </table>
+      <p class="thirdtitleform">총별점 : <%=sum%>/5</p>
       <% if (user != null) { %>
       <li><a class="btn inverse" href="/reviewwrite/<%=rows[0].category1_id%>/<%=rows[0].category2_id%>/<%=rows[0].id%>">리뷰 등록하기</a></li>
       <% } %>

@@ -21,6 +21,20 @@ File: Layout CSS
 .row4, .row4 a{}
 .row5, .row5 a{}
 
+#starRev{
+  position: relative;
+  height: 100%;
+}
+.starR{
+  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+  background-size: auto 100%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+.starR.on{background-position:0 0;}
 
 /* Top Bar
 --------------------------------------------------------------------------------------------------------------- */
