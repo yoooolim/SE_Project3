@@ -450,11 +450,15 @@ router.get('/font-icons',function(req,res,next){
 //order-complete 화면 표시 GET
 router.get('/order-complete', function(req, res, next) {
   pool.getConnection(function(err, connection) {
-    connection.query('select * from order_tbl;', function(err, rows) {
-      if(err) console.error("err: "+err);
-      console.log("rows : "+JSON.stringify(rows));
-      res.render('order-complete', {title: '주문하기', rows : rows});
-      connection.release();
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, row_user){
+      if(err) console.error("err: "+err); 
+      connection.query('select * from order_tbl;', function(err, rows) {
+        if(err) console.error("err: "+err);
+        console.log("rows : "+JSON.stringify(rows));
+        res.render('order-complete', {title: '주문하기', rows : rows, user:row_user});
+        connection.release();
+      });
     });
   });
 });

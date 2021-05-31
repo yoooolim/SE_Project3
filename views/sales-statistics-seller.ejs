@@ -24,102 +24,106 @@ Licence URI: https://www.os-templates.com/template-terms
 
   <!-- ################################################################################################ -->
   <div style="background-image:url('images/demo/backgrounds/title_background.png');">
+
     <div class="wrapper row0">
       <div id="topbar" class="hoc clear">
         <div class="fl_left"> 
           <!-- ################################################################################################ -->
           <ul class="nospace">
-            <li><i class="fas fa-phone rgtspace-5"></i> (02) 987-6543</li>
-            <li><i class="far fa-envelope rgtspace-5"></i> 123yunhye@kw.ac.kr</li>
+            <li><i class="fas fa-phone rgtspace-5"></i> +00 (123) 456 7890</li>
+            <li><i class="far fa-envelope rgtspace-5"></i> info@domain.com</li>
           </ul>
           <!-- ################################################################################################ -->
         </div>
         <div class="fl_right"> 
           <!-- ################################################################################################ -->
           <ul class="nospace">
-            <li><a href="/"><i class="fas fa-home"></i></a></li>
-            <li><a href="#" title="Help Center"><i class="far fa-life-ring"></i></a></li>
-            <li><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
-            <li><a href="#" title="Sign Up"><i class="fas fa-edit"></i></a></li>
-            <li id="searchform">
-              <div>
-                <form action="#" method="post">
-                  <fieldset>
-                    <legend>Quick Search:</legend>
-                    <input type="text" placeholder="Enter search term&hellip;">
-                    <button type="submit"><i class="fas fa-search"></i></button>
-                  </fieldset>
-                </form>
-              </div>
-            </li>
+            <% if(user!=null){ if(user[0].who==1){ %>
+              <li><a style="font-size: 15px" href="/upload">판매자 업로드 페이지</a></li>
+            <% } } %>
+            <li><a style="font-size: 15px" href="/">home으로</a></li>
+            <% if (user == null) { %>
+              <li><a style="font-size: 15px" href="/login" title="Login">login</a></li>
+              <li><a style="font-size: 15px" href="/join" title="Sign Up">join</a></li>
+            <% } else {%>
+              <li><a style="font-size: 15px"><%=user[0].id %> 님 로그인</a></li>
+              <li><a style="font-size: 15px" href="/mypage" title="Mypage">mypage</a></li>
+              
+              <li>
+                <form action="/logout" method="post" onsubmit="return onWriteSubmit()"> 
+                  <input type="submit" class="inverse btn" style="cursor:pointer; height:30px"value="로그아웃"></a>       
+                </form>  
+              </li> 
+            <% } %>
+            
           </ul>
           <!-- ################################################################################################ -->
         </div>
       </div>
     </div>
-    <!-- ################################################################################################ -->
-    <!-- ################################################################################################ -->
-    <!-- ################################################################################################ -->
-    <div class="wrapper row1">
-      <header id="header" class="hoc clear">
-        <div id="logo" class="fl_left"> 
-          <!-- ################################################################################################ -->
-          <h1><a href="/">On The Board</a></h1>
-          <!-- ################################################################################################ -->
-        </div>
-        <nav id="mainav" class="fl_right"> 
-          <!-- ################################################################################################ -->
-          <ul class="clear">
-            <!--<li class="active"><a href="index.html">Home</a></li>-->
-            <li><a class="drop" href="#">Long Board</a>
-              <ul>
-                <li><a href="pages/gallery.html">COMPLETE</a></li>
-                <li><a href="pages/sidebar-left.html">DECK</a></li>
-                <li><a href="pages/full-width.html">TRUCK</a></li>
-                <li><a href="pages/sidebar-right.html">WHEEL</a></li>
-                <li><a href="pages/font-icons.html">ETC.</a></li>
-              </ul>
-            </li>
-            <li><a class="drop" href="#">Skate Board</a>
-              <ul>
-                <li><a href="pages/gallery.html">COMPLETE</a></li>
-                <li><a href="pages/sidebar-left.html">DECK</a></li>
-                <li><a href="pages/full-width.html">TRUCK</a></li>
-                <li><a href="pages/sidebar-right.html">WHEEL</a></li>
-                <li><a href="pages/font-icons.html">ETC.</a></li>
-              </ul>
-            </li>
-            <li><a class="drop" href="#">Cruiser Board</a>
-              <ul>
-                <li><a href="pages/gallery.html">COMPLETE</a></li>
-                <li><a href="pages/sidebar-left.html">DECK</a></li>
-                <li><a href="pages/full-width.html">TRUCK</a></li>
-                <li><a href="pages/sidebar-right.html">WHEEL</a></li>
-                <li><a href="pages/font-icons.html">ETC.</a></li>
-              </ul>
-            </li>
-            <li><a class="drop" href="#">SNOW&ETC.</a>
-              <ul>
-                <li><a href="pages/gallery.html">전동보드</a></li>
-                <li><a href="pages/full-width.html">스노우스케이트</a></li>
-                <li><a href="pages/sidebar-left.html">스노우보드</a></li>
-                <li><a href="pages/sidebar-right.html">ETC.</a></li>
-              </ul>
-            </li>
-            <li><a class="drop" href="#">보호장구</a>
-              <ul>
-                <li><a href="pages/gallery.html">헬멧</a></li>
-                <li><a href="pages/full-width.html">보호장구</a></li>
-                <li><a href="pages/sidebar-right.html">슬라이드퍽&글러브</a></li>
-                <li><a href="pages/sidebar-left.html">ETC.</a></li>
-              </ul>
-            </li>
-            <!--<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>-->
-          </ul>
-          <!-- ################################################################################################ -->
-        </nav>
-      </header>
-    </div>
+      <!-- ################################################################################################ -->
+      <!-- ################################################################################################ -->
+      <!-- ################################################################################################ -->
+      <div class="wrapper row1">
+        <header id="header" class="hoc clear">
+          <div id="logo" class="fl_left"> 
+            <!-- ################################################################################################ -->
+            <h1><a href="/">On The Board</a></h1>
+            <!-- ################################################################################################ -->
+          </div>
+          <nav id="mainav" class="fl_right"> 
+            <!-- ################################################################################################ -->
+            <ul class="clear">
+              <!--<li class="active"><a href="index.html">Home</a></li>-->
+              <li><a class="drop" href="#">Long Board</a>
+                <ul>
+                  <li><a href="/gallery/1/1&name">COMPLETE</a></li>
+                  <li><a href="/gallery/1/2&name">DECK</a></li>
+                  <li><a href="/gallery/1/3&name">TRUCK</a></li>
+                  <li><a href="/gallery/1/4&name">WHEEL</a></li>
+                  <li><a href="/gallery/1/5&name">ETC.</a></li>
+                </ul>
+              </li>
+              <li><a class="drop" href="#">Skate Board</a>
+                <ul>
+                  <li><a href="/gallery/2/6&name">COMPLETE</a></li>
+                  <li><a href="/gallery/2/7&name">DECK</a></li>
+                  <li><a href="/gallery/2/8&name">TRUCK</a></li>
+                  <li><a href="/gallery/2/9&name">WHEEL</a></li>
+                  <li><a href="/gallery/2/10&name">ETC.</a></li>
+                </ul>
+              </li>
+              <li><a class="drop" href="#">Cruiser Board</a>
+                <ul>
+                  <li><a href="/gallery/3/11&name">COMPLETE</a></li>
+                  <li><a href="/gallery/3/12&name">DECK</a></li>
+                  <li><a href="/gallery/3/13&name">TRUCK</a></li>
+                  <li><a href="/gallery/3/14&name">WHEEL</a></li>
+                  <li><a href="/gallery/3/15&name">ETC.</a></li>
+                </ul>
+              </li>
+              <li><a class="drop" href="#">SNOW&ETC.</a>
+                <ul>
+                  <li><a href="/gallery/4/16&name">전동보드</a></li>
+                  <li><a href="/gallery/4/17&name">스노우스케이트</a></li>
+                  <li><a href="/gallery/4/18&name">스노우보드</a></li>
+                  <li><a href="/gallery/4/19&name">>ETC.</a></li>
+                </ul>
+              </li>
+              <li><a class="drop" href="#">보호장구</a>
+                <ul>
+                  <li><a href="/gallery/5/20&name">헬멧</a></li>
+                  <li><a href="/gallery/5/21&name">보호장구</a></li>
+                  <li><a href="/gallery/5/22&name">슬라이드퍽&글러브</a></li>
+                  <li><a href="/gallery/5/23&name">ETC.</a></li>
+                </ul>
+              </li>
+              <!--<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>-->
+            </ul>
+            <!-- ################################################################################################ -->
+          </nav>
+        </header>
+      </div>
   </div>
   <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
@@ -140,17 +144,15 @@ Licence URI: https://www.os-templates.com/template-terms
           <% if (user[0].who == 0) { %>
             <li><a href="/member">회원관리</a></li>
           <% } %>
-          <% if (user[0].who == 2) { %>
-            <li><a href="/order-list-buyer">구매내역</a></li>
-          <% } %>
           <% if (user[0].who == 1) { %>
             <li><a href="/sales-history-seller">판매내역</a></li>
             <li><a href="/sales-status-seller">상품주문현황</a></li>
             <li><a href="/sales-statistics-seller">매출통계</a></li>
-          <% } if (user[0].who != 1) {%>
-          <li><a href="/jjim">찜한 상품 보기</a></li>
           <% } %>
-          <li><a href="#">내 게시물보기</a></li>
+          <% if (user[0].who == 2) { %>
+            <li><a href="/order-list-buyer">구매내역</a></li>
+            <li><a href="/jjim">찜한 상품 보기</a></li>
+          <% } %>
           </ul>
         </nav>
       </div>

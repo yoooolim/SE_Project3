@@ -20,8 +20,8 @@ Licence URI: https://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- Top Background Image Wrapper -->
- <div style="background-image:url('/images/demo/backgrounds/title_background.png');">
-  <!-- ################################################################################################ -->
+<div style="background-image:url('../../../images/demo/backgrounds/title_background.png');">
+
   <div class="wrapper row0">
     <div id="topbar" class="hoc clear">
       <div class="fl_left"> 
@@ -39,16 +39,16 @@ Licence URI: https://www.os-templates.com/template-terms
             <li><a style="font-size: 15px" href="/upload">판매자 업로드 페이지</a></li>
           <% } } %>
           <li><a style="font-size: 15px" href="/">home으로</a></li>
-          <%if (user == null) { %>
+          <% if (user == null) { %>
             <li><a style="font-size: 15px" href="/login" title="Login">login</a></li>
             <li><a style="font-size: 15px" href="/join" title="Sign Up">join</a></li>
           <% } else {%>
             <li><a style="font-size: 15px"><%=user[0].id %> 님 로그인</a></li>
             <li><a style="font-size: 15px" href="/mypage" title="Mypage">mypage</a></li>
-            <li><a style="font-size: 15px" href="/cart" title="Cart">장바구니</a></li>
+            
             <li>
               <form action="/logout" method="post" onsubmit="return onWriteSubmit()"> 
-                <button  type = "submit">로그아웃</button>        
+                <input type="submit" class="inverse btn" style="cursor:pointer; height:30px"value="로그아웃"></a>       
               </form>  
             </li> 
           <% } %>
@@ -72,100 +72,82 @@ Licence URI: https://www.os-templates.com/template-terms
           <!-- ################################################################################################ -->
           <ul class="clear">
             <!--<li class="active"><a href="index.html">Home</a></li>-->
-            <li><a class="drop" href="#">Lim 확인</a>
-              <ul>
-                <li><a href="/full-width">Full Width</a></li>
-                <li><a href="/sidebar-left">Sidebar Left</a></li>
-                <li><a href="/sidebar-right">Sidebar Right</a></li>
-                <li><a href="/basic-grid">Basic Grid</a></li>
-                <li><a href="/font-icons">Font Icons</a></li>
-                <li><a href="/upload">판매자 업로드 페이지</a></li>
-              </ul>
-            </li>
             <li><a class="drop" href="#">Long Board</a>
               <ul>
-                <li><a href="/gallery/1/1">COMPLETE</a></li>
-                <li><a href="/gallery/1/2">DECK</a></li>
-                <li><a href="/gallery/1/3">TRUCK</a></li>
-                <li><a href="/gallery/1/4">WHEEL</a></li>
-                <li><a href="/gallery/1/5">ETC.</a></li>
+                <li><a href="/gallery/1/1&name">COMPLETE</a></li>
+                <li><a href="/gallery/1/2&name">DECK</a></li>
+                <li><a href="/gallery/1/3&name">TRUCK</a></li>
+                <li><a href="/gallery/1/4&name">WHEEL</a></li>
+                <li><a href="/gallery/1/5&name">ETC.</a></li>
               </ul>
             </li>
             <li><a class="drop" href="#">Skate Board</a>
               <ul>
-                <li><a href="/gallery/2/6">COMPLETE</a></li>
-                <li><a href="/gallery/2/7">DECK</a></li>
-                <li><a href="/gallery/2/8">TRUCK</a></li>
-                <li><a href="/gallery/2/9">WHEEL</a></li>
-                <li><a href="/gallery/2/10">ETC.</a></li>
+                <li><a href="/gallery/2/6&name">COMPLETE</a></li>
+                <li><a href="/gallery/2/7&name">DECK</a></li>
+                <li><a href="/gallery/2/8&name">TRUCK</a></li>
+                <li><a href="/gallery/2/9&name">WHEEL</a></li>
+                <li><a href="/gallery/2/10&name">ETC.</a></li>
               </ul>
             </li>
             <li><a class="drop" href="#">Cruiser Board</a>
               <ul>
-                <li><a href="/gallery/3/11">COMPLETE</a></li>
-                <li><a href="/gallery/3/12">DECK</a></li>
-                <li><a href="/gallery/3/13">TRUCK</a></li>
-                <li><a href="/gallery/3/14">WHEEL</a></li>
-                <li><a href="/gallery/3/15">ETC.</a></li>
+                <li><a href="/gallery/3/11&name">COMPLETE</a></li>
+                <li><a href="/gallery/3/12&name">DECK</a></li>
+                <li><a href="/gallery/3/13&name">TRUCK</a></li>
+                <li><a href="/gallery/3/14&name">WHEEL</a></li>
+                <li><a href="/gallery/3/15&name">ETC.</a></li>
               </ul>
             </li>
             <li><a class="drop" href="#">SNOW&ETC.</a>
               <ul>
-                <li><a href="/gallery/4/16">전동보드</a></li>
-                <li><a href="/gallery/4/17">스노우스케이트</a></li>
-                <li><a href="/gallery/4/18">스노우보드</a></li>
-                <li><a href="/gallery/4/19">>ETC.</a></li>
+                <li><a href="/gallery/4/16&name">전동보드</a></li>
+                <li><a href="/gallery/4/17&name">스노우스케이트</a></li>
+                <li><a href="/gallery/4/18&name">스노우보드</a></li>
+                <li><a href="/gallery/4/19&name">>ETC.</a></li>
               </ul>
             </li>
             <li><a class="drop" href="#">보호장구</a>
               <ul>
-                <li><a href="/gallery/5/20">헬멧</a></li>
-                <li><a href="/gallery/5/21">보호장구</a></li>
-                <li><a href="/gallery/5/22">슬라이드퍽&글러브</a></li>
-                <li><a href="/gallery/5/23">ETC.</a></li>
+                <li><a href="/gallery/5/20&name">헬멧</a></li>
+                <li><a href="/gallery/5/21&name">보호장구</a></li>
+                <li><a href="/gallery/5/22&name">슬라이드퍽&글러브</a></li>
+                <li><a href="/gallery/5/23&name">ETC.</a></li>
               </ul>
             </li>
             <!--<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>-->
           </ul>
-      </nav>
-    </header>
-  </div>
-  <!-- ################################################################################################ -->
-  <!-- ################################################################################################ -->
-  <!-- ################################################################################################ -->
-  <div id="breadcrumb" class="hoc clear"> 
-    <!-- ################################################################################################ -->
-    <h6 class="heading">Gallery</h6>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Lorem</a></li>
-      <li><a href="#">Ipsum</a></li>
-      <li><a href="#">Dolor</a></li>
-    </ul>
-    <!-- ################################################################################################ -->
-  </div>
-  <!-- ################################################################################################ -->
+          <!-- ################################################################################################ -->
+        </nav>
+      </header>
+    </div>
 </div>
 <!-- End Top Background Image Wrapper -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <div class="wrapper row3">
+  <%
+  function addComma(num) {
+     var regexp = /\B(?=(\d{3})+(?!\d))/g;
+     return num.toString().replace(regexp, ',');
+  }
+  %>
   <main class="hoc container clear"> 
     <!-- main body -->
     <!-- ################################################################################################ -->
     <div class="sidebar one_quarter first"> 
       <!-- ################################################################################################ -->
-      <h6>제품 목록</h6>
+      <h6><strong>카테고리</strong></h6>
       <nav class="sdb_holder">
         <ul>
           <li><a class="drop" href="#">Long Board</a>
             <ul>
-              <li><a href="/gallery/1/1">COMPLETE</a></li>
-              <li><a href="/gallery/1/2">DECK</a></li>
-              <li><a href="/gallery/1/3">TRUCK</a></li>
-              <li><a href="/gallery/1/4">WHEEL</a></li>
-              <li><a href="/gallery/1/5">ETC.</a></li>
+              <li><a href="/gallery/1/1&name">COMPLETE</a></li>
+              <li><a href="/gallery/1/2&name">DECK</a></li>
+              <li><a href="/gallery/1/3&name">TRUCK</a></li>
+              <li><a href="/gallery/1/4&name">WHEEL</a></li>
+              <li><a href="/gallery/1/5&name">ETC.</a></li>
             </ul>
           </li>
           <li><a class="drop" href="#">Long Board</a>
@@ -200,7 +182,7 @@ Licence URI: https://www.os-templates.com/template-terms
               <li><a href="/gallery/4/16&name">전동보드</a></li>
               <li><a href="/gallery/4/17&name">스노우스케이트</a></li>
               <li><a href="/gallery/4/18&name">스노우보드</a></li>
-              <li><a href="/gallery/4/19&name">>ETC.</a></li>
+              <li><a href="/gallery/4/19&name">ETC.</a></li>
             </ul>
           </li>
           <li><a class="drop" href="#">보호장구</a>
@@ -213,18 +195,6 @@ Licence URI: https://www.os-templates.com/template-terms
           </li>
         </ul>
       </nav>
-      <div class="sdb_holder">
-        <address>
-        Full Name<br>
-        Address Line 1<br>
-        Address Line 2<br>
-        Town/City<br>
-        Postcode/Zip<br>
-        <br>
-        Tel: xxxx xxxx xxxxxx<br>
-        Email: <a href="#">contact@domain.com</a>
-        </address>
-      </div>
       <!-- ################################################################################################ -->
     </div>
     <!-- ################################################################################################ -->
@@ -235,7 +205,8 @@ Licence URI: https://www.os-templates.com/template-terms
       <br>
       <img class="" src="/<%=rows[0].img_url%>" alt=""/>
       <p class = "secondtitleform"><%=rows[0].name%></p>
-      <p><%=rows[0].price%>원</p>
+      <br>
+      <p class = "thirdtitleform"><strong><%=addComma(rows[0].price)%>원</strong></p>
 <script language = "javascript">
 var sell_price;
 var amount;
@@ -291,64 +262,77 @@ function onSubmitCancel() {
 }
 
 </script>
-      <form name="form" method="get">
+      <!-- <form name="form" method="get">
         수량 : <input type=hidden name="sell_price" value="5500">
         <input type="text" name="amount" value="1" size="3" onchange="change();">
         <input type="button" value=" + " onclick="add();"><input type="button" value=" - " onclick="del();"><br>
         금액 : <input type="text" name="sum" size="11" readonly>원
-      </form>
+      </form> -->
+      <br>
+      <center>
       <% 
+       
       if (user == null) {
       %>
-            <div><strong>찜 및 구매는 로그인 후에만 이용 가능</strong></div>
+            <div><strong>찜 및 구매는 로그인 후에만 이용 가능합니다.</strong></div>
       <%
           } else {
+            if(user[0].who==1){
       %>
+      <br><br>
+      <form style="display: inline-block;" action ="/updateproduct" method="get">
+        <input style="display: inline-block;" type="hidden" name ="id" value ="<%=rows[0].id%>"/>
+        <input type="submit" class="btn" style="cursor:pointer; height:43px"value="글 수정"></a>
+      </form>
+
+      <form style="display: inline-block;" action ="/deleteproduct" method="post">
+          <input style="display: inline-block;" type="hidden" name ="id" value ="<%=rows[0].id%>"/>
+          <input type="submit" class="btn" style="cursor:pointer; height:43px"value="글 (상품) 삭제"></a>
+      </form>
+      <br><br><br>
+      <%
+        } if (user[0].who == 1 || user[0].who == 1)  {
+      %>
+            <div><strong>관리자 및 판매자는 상품 구매 및 찜을 할 수 없습니다.</strong></div>
+      <%      
+          } else {
+      %>
+      
       <a class="btn" href="/order/<%=rows[0].id%>/1">구매</a>
       
-<%
+<%      
+      
       var duplicateCheck = [];
       for (var i = 0; i < rows_like.length; i++) {
         duplicateCheck[i] = rows_like[i].product_id;
       }
       if (duplicateCheck.includes(rows[0].id)) {
 %>
-    <form action="/gallery/<%=rows[0].category1_id%>/<%=rows[0].category2_id%>/<%=rows[0].id%>" method="post" onsubmit="return onSubmitCancel()"> 
+
+    <form style="display: inline-block;" action="/gallery/<%=rows[0].category1_id%>/<%=rows[0].category2_id%>/<%=rows[0].id%>" method="post" onsubmit="return onSubmitCancel()"> 
       <div style="display: none;">
       <input type="text" value= "cancel" name="jjim_or_cancel" readonly>
       <input type="text" value= "<%=user[0].id%>" name="user_id" readonly>
       <input type="text" value= "<%=rows[0].id%>" name="product_id" readonly>
       </div>
-      <input type="submit" class="btn"style="cursor:pointer"value="찜해제"></a>
+      <input type="submit" class="btn"style="cursor:pointer; height:43px"value="찜해제"></a>
     </form>
 <%
       } else {
 %>
-    <form action="/gallery/<%=rows[0].category1_id%>/<%=rows[0].category2_id%>/<%=rows[0].id%>" method="post" onsubmit="return onSubmitJjim()">    
+    <form style="display: inline-block;" action="/gallery/<%=rows[0].category1_id%>/<%=rows[0].category2_id%>/<%=rows[0].id%>" method="post" onsubmit="return onSubmitJjim()">    
       <div style="display: none;">
       <input type="text" value= "jjim" name="jjim_or_cancel" readonly>
       <input type="text" value= "<%=user[0].id%>" name="user_id" readonly>
       <input type="text" value= "<%=rows[0].id%>" name="product_id" readonly>
       </div>
-      <input type="submit" class="inverse btn" style="cursor:pointer" value="찜하기"></a>
+      <input type="submit" class="inverse btn" style="cursor:pointer; height:43px" value="찜하기"></a>
     </form>
+    </center>
 <%
         } 
-      if(user[0].who==1){
-%>
-      <br><br>
-      <form action ="/updateproduct" method="get">
-        <input type="hidden" name ="id" value ="<%=rows[0].id%>"/>
-        <button type="submit">글 수정</button><br>
-      </form>
-
-      <form action ="/deleteproduct" method="post">
-          <input type="hidden" name ="id" value ="<%=rows[0].id%>"/>
-          <button type="submit">글(상품) 삭제</button>
-      </form>
-<%
-        }
       }
+    }
 %>
       <br><br><br><br><br><br><br><br>
       <img class="" src = "/<%=rows[0].detail_img_url%>" alt=""/>
@@ -391,7 +375,7 @@ function onSubmitCancel() {
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="bgded overlay row4" style="background-image:url('images/demo/backgrounds/starry-night-1149644_1920.jpg');">
+<div class="bgded overlay row4" style="background-image:url('../../../images/demo/backgrounds/starry-night-1149644_1920.jpg');">
   <footer id="footer" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <div class="center btmspace-50">
