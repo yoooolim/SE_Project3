@@ -7,7 +7,7 @@ var pool = mysql.createPool({
   connectionLimit: 5,
   host:'localhost',
   user:'root',
-  password: '9376174a',
+  password: 'anffl!!8623',
   database:'on_the_board'
 });
 
@@ -215,7 +215,7 @@ router.get('/gallery/:category1_id/:category2_id/:id',function(req,res,next){
     
           connection.query(sql2,[id], function(err,reviewrows){
             if(err) console.error("err : "+err);
-            res.render('read', {reviewrows: reviewrows, rows: rows, rows_like:rows_like, row_user:row_user});
+            res.render('read', {reviewrows: reviewrows, rows: rows, rows_like:rows_like, user:row_user});
             connection.release();
             console.log("row_user : "+JSON.stringify(row_user));
           });
