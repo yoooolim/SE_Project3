@@ -111,7 +111,7 @@ File: Layout CSS
 .team figure{display:block; text-align:center;}
 .team figure *{margin:0; padding:0;}
 .team figure a{}
-.team figure img{}
+.team figure img{width:300px}
 .team figure figcaption{padding:20px 10px; line-height:1;}
 .team figure strong{display:block; margin-bottom:8px; font-size:1.4rem; font-weight:400;}
 .team figure em{display:block; font-style:normal; font-size:.8rem;}
@@ -955,7 +955,7 @@ select {
   text-align:center;
   width:200px;
   height:50px;
-  letter-spacing: 0px;
+  letter-spacing: -5px;
 }
 
 /*for slide bar*/
