@@ -273,6 +273,23 @@ function change () {
 		}
 	sum.value = parseInt(hm.value) * sell_price;
 }  
+
+// 찜 로직 추가
+function jjim_btn(content){ 
+  alert(content);
+  window.location.reload();
+}
+
+function onSubmitJjim() {
+  alert('마이페이지>찜한 상품 보기 에서 확인하세요.');
+  location.reload(true);
+}
+
+function onSubmitCancel() {
+  alert('찜이 해제되었습니다.');
+  location.reload(true);
+}
+
 </script>
       <form name="form" method="get">
         수량 : <input type=hidden name="sell_price" value="5500">
@@ -280,13 +297,45 @@ function change () {
         <input type="button" value=" + " onclick="add();"><input type="button" value=" - " onclick="del();"><br>
         금액 : <input type="text" name="sum" size="11" readonly>원
       </form>
-      <a class="btn" style="width: 200px; height: 50px; text-align: center; font-size: large;margin-left: 50px;" href="/order/<%=rows[0].id%>/1">구매</a>
-      <a class="btn" style="width: 200px; height: 50px; text-align: center; font-size: large; margin-left: 100px;">장바구니</a>
+      <% 
+      if (user == null) {
+      %>
+            <div><strong>찜 및 구매는 로그인 후에만 이용 가능</strong></div>
+      <%
+          } else {
+      %>
+      <a class="btn" href="/order/<%=rows[0].id%>/1">구매</a>
+      
 <%
-      if(user!=null){
-        if(user[0].who==1){
+      var duplicateCheck = [];
+      for (var i = 0; i < rows_like.length; i++) {
+        duplicateCheck[i] = rows_like[i].product_id;
+      }
+      if (duplicateCheck.includes(rows[0].id)) {
 %>
-
+    <form action="/gallery/<%=rows[0].category1_id%>/<%=rows[0].category2_id%>/<%=rows[0].id%>" method="post" onsubmit="return onSubmitCancel()"> 
+      <div style="display: none;">
+      <input type="text" value= "cancel" name="jjim_or_cancel" readonly>
+      <input type="text" value= "<%=user[0].id%>" name="user_id" readonly>
+      <input type="text" value= "<%=rows[0].id%>" name="product_id" readonly>
+      </div>
+      <input type="submit" class="btn"style="cursor:pointer"value="찜해제"></a>
+    </form>
+<%
+      } else {
+%>
+    <form action="/gallery/<%=rows[0].category1_id%>/<%=rows[0].category2_id%>/<%=rows[0].id%>" method="post" onsubmit="return onSubmitJjim()">    
+      <div style="display: none;">
+      <input type="text" value= "jjim" name="jjim_or_cancel" readonly>
+      <input type="text" value= "<%=user[0].id%>" name="user_id" readonly>
+      <input type="text" value= "<%=rows[0].id%>" name="product_id" readonly>
+      </div>
+      <input type="submit" class="inverse btn" style="cursor:pointer" value="찜하기"></a>
+    </form>
+<%
+        } 
+      if(user[0].who==1){
+%>
       <br><br>
       <form action ="/updateproduct" method="get">
         <input type="hidden" name ="id" value ="<%=rows[0].id%>"/>

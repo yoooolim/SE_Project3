@@ -124,62 +124,87 @@ Licence URI: https://www.os-templates.com/template-terms
   <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
 
-<div class="wrapper row2">
-    
-  <div class="hoc container clear"> 
-    <!-- ################################################################################################ -->
-    <div class="sectiontitle">
-      <p class="nospace font-xs"></p>
-      <p class="heading underline font-x2">판매 내역</p>
-      <p>판매 내역 확인하기</p>
-    </div>
-    <!-- 판매 내역 --> 
-    <table style="margin-bottom: 0px;">
-        <th>주문번호</th>
-        <th>주문일자</th>
-        <th>카테고리</th>
-        <th>제품명</th>
-        <th>구매자</th>
-        <th>수량</th>
-        <th>상품 구매 금액</th>
-        <th>주문 처리 상태</th>
-        
-        <%
-         function addComma(num) {
-            var regexp = /\B(?=(\d{3})+(?!\d))/g;
-            return num.toString().replace(regexp, ',');
-        }
+  <div class="wrapper row3">
+    <main class="hoc container clear"> 
+      <div class="sectiontitle">
+        <p class="nospace font-xs"></p>
+        <p class="heading underline font-x2">my page</p>
+        <p>마이페이지</p>
+      </div>
+  
+      <div class="sidebar one_quarter first" style="width: 200px;"> 
+        <nav class="sdb_holder">
+          <ul>
+            <li><a href="/mypage">내정보</a></li>
+          <% if (user[0].who == 0) { %>
+            <li><a href="/member">회원관리</a></li>
+          <% } %>
+          <% if (user[0].who == 2) { %>
+            <li><a href="/order-list-buyer">구매내역</a></li>
+          <% } %>
+          <% if (user[0].who == 1) { %>
+            <li><a href="/sales-history-seller">판매내역</a></li>
+            <li><a href="/sales-status-seller">상품주문현황</a></li>
+            <li><a href="/sales-statistics-seller">매출통계</a></li>
+          <% } if (user[0].who != 1) {%>
+          <li><a href="/jjim">찜한 상품 보기</a></li>
+          <% } %>
+          <li><a href="#">내 게시물보기</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="content three_quarter">
+        <div class="sectiontitle">
+        <p class="nospace font-xs"></p>
+        <p class="heading underline font-x2">판매 내역</p>
+        <p>판매 내역 확인하기</p>
+        </div>
+        <!-- 판매 내역 --> 
+        <table style="margin-bottom: 0px;">
+            <th>주문번호</th>
+            <th>주문일자</th>
+            <th>카테고리</th>
+            <th>제품명</th>
+            <th>구매자</th>
+            <th>수량</th>
+            <th>상품 구매 금액</th>
+            <th>주문 처리 상태</th>
+            
+            <%
+            function addComma(num) {
+                var regexp = /\B(?=(\d{3})+(?!\d))/g;
+                return num.toString().replace(regexp, ',');
+            }
 
-        for (var i = 0; i < rows.length; i++) { 
-            var row = rows[i];
-            var dateString = String(row.create_date);
-            var dateArr = dateString.split(' ');
-           
-        %>
-        <tr>
-            <td><%=row.id%></td>
-            <td><%=dateArr[2]%> <%=dateArr[1]%>, <%=dateArr[3]%> <%=dateArr[4]%></td>
-            <td><%=row.category1_name%> / <%=row.category2_name%></td>
-            <td><%=row.name%></td>
-            <td><%=row.user_id%></td>
-            <td><%=row.product_cnt%></td>
-            <td><%=addComma(row.total_money)%>원</td>
-            <td>
-                <p>배송완료</p>
-            </td>
-        </tr>
-        <%
-        }
-        %>
-        
-    </table>
-          
-    
+            for (var i = 0; i < rows.length; i++) { 
+                var row = rows[i];
+                var dateString = String(row.create_date);
+                var dateArr = dateString.split(' ');
+              
+            %>
+            <tr>
+                <td><%=row.id%></td>
+                <td><%=dateArr[2]%> <%=dateArr[1]%>, <%=dateArr[3]%> <%=dateArr[4]%></td>
+                <td><%=row.category1_name%> / <%=row.category2_name%></td>
+                <td><%=row.name%></td>
+                <td><%=row.user_id%></td>
+                <td><%=row.product_cnt%></td>
+                <td><%=addComma(row.total_money)%>원</td>
+                <td>
+                    <p>배송완료</p>
+                </td>
+            </tr>
+            <%
+            }
+            %>
+            
+        </table>
+      </div>
+    </main>
     <!-- ################################################################################################ -->
   </div>
 
   
-</div>
 
 <script>
   function changeInput(checked) {

@@ -125,26 +125,41 @@
           <% if (user[0].who == 0) { %>
             <li><a href="/member">회원관리</a></li>
           <% } %>
-          <li><a href="/cart">장바구니</a></li>
-          <li><a href="#">주문내역</a></li>
-          <li><a href="#">쿠폰내역</a>
+          <% if (user[0].who == 2) { %>
+            <li><a href="/order-list-buyer">구매내역</a></li>
+          <% } %>
+          <% if (user[0].who == 1) { %>
+            <li><a href="/sales-history-seller">판매내역</a></li>
+            <li><a href="/sales-status-seller">상품주문현황</a></li>
+            <li><a href="/sales-statistics-seller">매출통계</a></li>
+          <% } if (user[0].who != 1) {%>
+          <li><a href="/jjim">찜한 상품 보기</a></li>
+          <% } %>
           <li><a href="#">내 게시물보기</a></li>
         </ul>
       </nav>
     </div>
-    <div class="wrapper row3">
-      <main class="hoc container clear"> 
-        <!-- main body -->
-        <!-- ################################################################################################ -->
+    <div class="content three_quarter">
+      <div class="scrollable">
         <div class="content"> 
           <!-- ################################################################################################ -->
           <div id="gallery">
             <figure>
-              <header class="heading">Product List Title Goes Here</header>
+              <header class="heading"><strong>찜한 상품 보기</strong></header>
               <ul class="nospace clear">
+    <%          
+                var duplicateCheck = [];
+                if (rows.length == 0) {
+    %>
+              찜한 상품이 없습니다.
     <%
+                }
                 for(var i=0;i<rows.length;i++){
                   var oneItem = rows[i];
+                  if (duplicateCheck.includes(rows[i].id)) {
+                    continue;
+                  }
+                  duplicateCheck[i] = rows[i].id;
                   if(i%4==0){
     %>
                 <li class="one_quarter first">
@@ -170,13 +185,13 @@
                 }
     %>
               </ul>
-              <figcaption>Gallery Description Goes Here</figcaption>
+              <figcaption></figcaption>
             </figure>
           </div>
-
+      </div>
+    </div>
   </main>
 </div>
-<!-- main body end-->
 
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->

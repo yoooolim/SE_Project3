@@ -135,20 +135,28 @@ Licence URI: https://www.os-templates.com/template-terms
         <nav class="sdb_holder">
           <ul>
             <li><a href="/mypage">내정보</a></li>
-            <% if (user[0].who == 0) { %>
-                <li><a href="/member">회원관리</a></li>
-            <% } %>
-            <li><a href="/cart">장바구니</a></li>
-            <li><a href="#">주문내역</a></li>
-            <li><a href="#">쿠폰내역</a>
-            <li><a href="#">내 게시물보기</a></li>
+          <% if (user[0].who == 0) { %>
+            <li><a href="/member">회원관리</a></li>
+          <% } %>
+          <% if (user[0].who == 2) { %>
+            <li><a href="/order-list-buyer">구매내역</a></li>
+          <% } %>
+          <% if (user[0].who == 1) { %>
+            <li><a href="/sales-history-seller">판매내역</a></li>
+            <li><a href="/sales-status-seller">상품주문현황</a></li>
+            <li><a href="/sales-statistics-seller">매출통계</a></li>
+          <% } if (user[0].who != 1) {%>
+          <li><a href="/jjim">찜한 상품 보기</a></li>
+          <% } %>
+          <li><a href="#">내 게시물보기</a></li>
+        </ul>
           </ul>
         </nav>
     </div>
     
     <div class="content three_quarter">
         <div class="scrollable">
-            <h1> 회원관리 </h1>
+            <h1><strong> 회원관리 </strong></h1>
             <table border="1">
                 <tr>
                   <td>아이디</td>
