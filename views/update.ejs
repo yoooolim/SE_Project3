@@ -68,17 +68,6 @@ Licence URI: https://www.os-templates.com/template-terms
         <nav id="mainav" class="fl_right"> 
           <!-- ################################################################################################ -->
           <ul class="clear">
-            <!--<li class="active"><a href="index.html">Home</a></li>-->
-            <li><a class="drop" href="#">Lim 확인</a>
-              <ul>
-                <li><a href="/full-width">Full Width</a></li>
-                <li><a href="/sidebar-left">Sidebar Left</a></li>
-                <li><a href="/sidebar-right">Sidebar Right</a></li>
-                <li><a href="/basic-grid">Basic Grid</a></li>
-                <li><a href="/font-icons">Font Icons</a></li>
-                <li><a href="/upload">판매자 업로드 페이지</a></li>
-              </ul>
-            </li>
             <li><a class="drop" href="#">Long Board</a>
               <ul>
                 <li><a href="/gallery/1/1">COMPLETE</a></li>
@@ -135,12 +124,16 @@ Licence URI: https://www.os-templates.com/template-terms
         <div class="content">
           <div id="comments">
               <br>
-              <p style="font-size: xx-large; margin-left: 30px; font-weight: bold;">물품 업로드</p>
+              <p style="font-size: xx-large; margin-left: 30px; font-weight: bold;">물품 업데이트</p>
               <br>
               <br>
               <br>
-              <form action="/upload" method="post" enctype="multipart/form-data" onsubmit="return onWriteSubmit()">
+              <form action="/updateproduct" method="post" enctype="multipart/form-data" onsubmit="return onWriteSubmit()">
                 <input type="hidden" name='categoryNum' id='categoryNum' value=''/>
+                <input type="hidden" name='id' id='id' value='<%=row[0].id%>'/>
+                <input type="hidden" name='hit' id='hit' value='<%=row[0].sales_amount%>'/>
+                <input type="hidden" name='img_url' id='img_url' value='<%=row[0].img_url%>'/>
+                <input type="hidden" name='detail_img_url' id='detail_img_url' value='<%=row[0].detail_img_url%>'/>
                 <p style="font-size: medium; font-weight: bold;">[category]</p>
                 <input type="radio" name="category1" id="category" value=1 onclick="category1Radio(event)"/>LONG BOARD (롱보드) > COMPLETE
                 <input type="radio" name="category1" id="category" value=2 onclick="category1Radio(event)"/>LONG BOARD (롱보드) > DECK
@@ -172,18 +165,24 @@ Licence URI: https://www.os-templates.com/template-terms
                 <br><br>
                 <div id='result'></div>
                 <p style="font-size: medium; font-weight: bold;">[물품 이름]</p><br>
-                <input class="uploadinputform" type="text" name="product_name" id="name">
+                <input class="uploadinputform" type="text" name="product_name" id="name" value="<%=row[0].name%>">
                 <br>
                 <p style="font-size: medium; font-weight: bold;">[가격]</p><br>
-                <input class="uploadinputform" type="number" name="product_price" id="price">
+                <input class="uploadinputform" type="number" name="product_price" id="price" value="<%=row[0].price%>">
                 <br>
                 <p style="font-size: medium; font-weight: bold;">[이미지]</p><br>
-                <input type = "file" name="img"/>
+                <img style="width: 200px; height: 200px;" src="/<%=row[0].img_url%>">
+                <br><br><br>
+                <p style="font-size: medium; font-weight: bold;">[이미지 수정]</p><br>
+                <input type = "file" name="img">
                 <br>
                 <p style="font-size: medium; font-weight: bold;">[상세이미지]</p><br>
-                <input type = "file" name="img"/>
+                <img style="width: 200px; height: 500px;" src="/<%=row[0].detail_img_url%>">
+                <br><br><br>
+                <p style="font-size: medium; font-weight: bold;">[상세이미지 수정]</p><br>
+                <input type = "file" name="img">
                 <br>
-                <button name="submit" type="submit">물품 등록하기</button>
+                <button name="submit" type="submit">물품 수정하기</button>
                 <br><br>
               </form>
           </div>
