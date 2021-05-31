@@ -127,27 +127,52 @@
           <% } %>
           <li><a href="/cart">장바구니</a></li>
           <li><a href="#">주문내역</a></li>
-          <li><a href="/jjim">찜한 상품 보기</a></li>
           <li><a href="#">쿠폰내역</a>
           <li><a href="#">내 게시물보기</a></li>
         </ul>
       </nav>
     </div>
-    <div class="content three_quarter">
-      <div class="scrollable">
-        <h2 style="font-weight: bold;">내 정보</h2>
-        <table style=" margin-bottom: 50px; padding:100px;">
-          <tbody>
-            <tr><td style="text-align: left;">이름 : <%= user[0].name%></td></tr>
-            <tr><td style="text-align: left;">아이디 : <%= user[0].id%></td></tr>
-            <tr><td style="text-align: left;">비밀번호 : <%= user[0].password%></td></tr> 
-            <tr><td style="text-align: left;">이메일 : <%= user[0].email%></td></tr>
-            <tr><td style="text-align: left;">생년월일 : <%= user[0].birthday%></td></tr>
-            <tr><td style="text-align: left;">휴대폰 번호 : <%= user[0].phone_number%></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <div class="wrapper row3">
+      <main class="hoc container clear"> 
+        <!-- main body -->
+        <!-- ################################################################################################ -->
+        <div class="content"> 
+          <!-- ################################################################################################ -->
+          <div id="gallery">
+            <figure>
+              <header class="heading">Product List Title Goes Here</header>
+              <ul class="nospace clear">
+    <%
+                for(var i=0;i<rows.length;i++){
+                  var oneItem = rows[i];
+                  if(i%4==0){
+    %>
+                <li class="one_quarter first">
+                  <a href="/gallery/<%=oneItem.category1_id%>/<%=oneItem.category2_id%>/<%=oneItem.id%>">
+                    <img src="/<%=oneItem.img_url%>" alt="">
+                    <p><%=oneItem.name%></p>
+                    <p><%=oneItem.price%></p>
+                  </a>  
+                </li>
+    <%
+                  } 
+                  else{
+    %>
+                <li class="one_quarter">
+                  <a href="/gallery/<%=oneItem.category1_id%>/<%=oneItem.category2_id%>/<%=oneItem.id%>">
+                    <img src="/<%=oneItem.img_url%>" alt="">
+                    <p><%=oneItem.name%></p>
+                    <p><%=oneItem.price%></p>
+                  </a>
+                </li>
+    <%
+                  }
+                }
+    %>
+              </ul>
+              <figcaption>Gallery Description Goes Here</figcaption>
+            </figure>
+          </div>
 
   </main>
 </div>
