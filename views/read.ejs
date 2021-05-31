@@ -203,7 +203,10 @@ Licence URI: https://www.os-templates.com/template-terms
       <input type="hidden" name="id" value="<%=rows[0].id%>"/>
       <p class = "titleform">상품 상세 설명</p>
       <br>
-      <img class="" src="/<%=rows[0].img_url%>" alt=""/>
+      <center>
+        <img class="" src="/<%=rows[0].img_url%>" alt=""/>
+      </center>
+      
       <p class = "secondtitleform"><%=rows[0].name%></p>
       <br>
       <p class = "thirdtitleform"><strong><%=addComma(rows[0].price)%>원</strong></p>
