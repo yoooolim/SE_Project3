@@ -298,7 +298,7 @@ function onSubmitCancel() {
         금액 : <input type="text" name="sum" size="11" readonly>원
       </form>
       <% 
-      if (row_user == null) {
+      if (user == null) {
       %>
             <div><strong>찜 및 구매는 로그인 후에만 이용 가능</strong></div>
       <%
@@ -316,7 +316,7 @@ function onSubmitCancel() {
     <form action="/gallery/<%=rows[0].category1_id%>/<%=rows[0].category2_id%>/<%=rows[0].id%>" method="post" onsubmit="return onSubmitCancel()"> 
       <div style="display: none;">
       <input type="text" value= "cancel" name="jjim_or_cancel" readonly>
-      <input type="text" value= "<%=row_user[0].id%>" name="user_id" readonly>
+      <input type="text" value= "<%=user[0].id%>" name="user_id" readonly>
       <input type="text" value= "<%=rows[0].id%>" name="product_id" readonly>
       </div>
       <input type="submit" class="btn"style="cursor:pointer"value="찜해제"></a>
@@ -327,7 +327,7 @@ function onSubmitCancel() {
     <form action="/gallery/<%=rows[0].category1_id%>/<%=rows[0].category2_id%>/<%=rows[0].id%>" method="post" onsubmit="return onSubmitJjim()">    
       <div style="display: none;">
       <input type="text" value= "jjim" name="jjim_or_cancel" readonly>
-      <input type="text" value= "<%=row_user[0].id%>" name="user_id" readonly>
+      <input type="text" value= "<%=user[0].id%>" name="user_id" readonly>
       <input type="text" value= "<%=rows[0].id%>" name="product_id" readonly>
       </div>
       <input type="submit" class="inverse btn" style="cursor:pointer" value="찜하기"></a>
