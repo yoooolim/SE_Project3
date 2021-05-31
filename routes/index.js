@@ -557,11 +557,11 @@ router.post('/notice_delete/:id', function(req, res, next) {
 //notice 화면 표시 GET
 router.get('/notice_page/:id', function(req, res, next){
   var id = req.params.id;
-  var sqlnotice = 'SELECT * FROM on_the_board.notice_tbl WHERE id=?';
 
   pool.getConnection(function(err, connection){
     var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
     connection.query(sql, req.cookies.user, function(err, row_user){
+      var sqlnotice = 'SELECT * FROM on_the_board.notice_tbl WHERE id=?';
       connection.query(sqlnotice, id, function(err, rows){
         if(err) console.error("err: "+err);
         res.render('notice_page', {title: '공지사항', user:row_user, rows:rows})
@@ -591,17 +591,17 @@ router.post('/notice_update', upload.single('image'), function(req, res, next){
   var title = req.body.title;
   var context = req.body.context;
   var create_date = req.body.create_date;
-  var image = req.file.filename;
+  var image = "/" + req.file.filename;
   var datas = [user_id, title, context, create_date, image];
 
-  console.log(+datas);
+  console.log("datas : "+datas);
   
   pool.getConnection(function(err, connection){
     //Use the connection
     var sqlForInsertNotice_tbl = "INSERT INTO notice_tbl(user_id, title, context, create_date, image) values(?,?,?,?,?)";
     connection.query(sqlForInsertNotice_tbl, datas, function(err, rows){
       if(err) console.error("err1 : "+err);
-      console.log("rows : " +JSON.stringify(rows));
+      console.log("rows notice : " +JSON.stringify(rows));
       res.redirect('/notice');
       connection.release();
 
