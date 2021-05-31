@@ -7,7 +7,7 @@ var pool = mysql.createPool({
   connectionLimit: 5,
   host:'localhost',
   user:'root',
-  password: '',
+  password: '9376174a',
   database:'on_the_board'
 });
 
@@ -53,6 +53,7 @@ router.post('/reviewwrite/:category1_id/:category2_id/:id',upload.single('img'),
   var id = req.params.id;
   var title = req.body.title;
   var context = req.body.context;
+  var star = req.body.star[1];
   var img = "/"+req.file.filename;
   var user = req.body.user;
   var moment = require('moment');
@@ -69,10 +70,10 @@ router.post('/reviewwrite/:category1_id/:category2_id/:id',upload.single('img'),
       connection.query(sqlForSearchReviewNum,function(err,rows){
         if(err) console.error("err: "+err);
         var dbid = rows[0].column;
-        var datas = [dbid,user,id,title,context,img,time];
+        var datas = [dbid,user,id,title,context,img,time,star];
         console.log(datas);
 
-        var sqlForInsertReview = "INSERT INTO review_tbl(id, user_id, product_id, title, context, img_url, create_date) VALUES(?,?,?,?,?,?,?)";
+        var sqlForInsertReview = "INSERT INTO review_tbl(id, user_id, product_id, title, context, img_url, create_date, star) VALUES(?,?,?,?,?,?,?,?)";
         connection.query(sqlForInsertReview,datas,function(err,rowss){
           if(err) console.error("err: "+err);
           console.log("rows : "+ JSON.stringify(rowss));
