@@ -7,7 +7,7 @@ var pool = mysql.createPool({
   connectionLimit: 5,
   host:'localhost',
   user:'root',
-  password: '9376174a',
+  password: '',
   database:'on_the_board'
 });
 
@@ -362,6 +362,24 @@ router.get('/sales-statistics-seller',function(req,res,next){
   });
 });
 
+/*찜한 상품 보기*/
+router.get('/jjim', function(req, res, next){
+  pool.getConnection(function(err, connection) {
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, row_user){
+      if(err) console.error("err: "+err);
+      var sql2 = 'SELECT * FROM like_tbl, product_tbl where like_tbl.product_id = product_tbl.id and like_tbl.user_id = ?;'
+      connection.query(sql2, req.cookies.user, function(err, rows) {
+        if(err) console.error("err: "+err);
+        console.log("rows : "+JSON.stringify(rows));
+        res.render('jjim', {title: 'test', rows : rows, user: row_user});
+        connection.release();
+
+      });
+    });
+  });
+});
+
 router.get('/full-width',function(req,res,next){
   res.render('full-width',{title: "full width 실험"});
 });
@@ -643,7 +661,6 @@ router.get('/join_success', function(req, res, next){
     connection.query(sql, req.cookies.user, function(err, rows){
       if(err) console.error("err: "+err);
       res.render('join_success', {title: '회원가입성공', user:rows})
-      res.render('join', {title: '회원가입', user:rows});
       connection.release();
       //don't use the connection here
     });
@@ -693,6 +710,103 @@ router.get('/cart', function(req, res, next){
         res.render('cart', {title: '장바구니', rows:rows, user:row_user});
         connection.release();
       });
+    });
+  });
+});
+
+//id_delete 로직 처리 POST
+router.post('/id_delete/:id', function(req, res, next) {
+  var id = req.params.id;
+  pool.getConnection(function(err, connection){
+    var sql = "DELETE FROM on_the_board.user_tbl WHERE id=?";
+    connection.query(sql, id, function(err, rows){
+      if(err) console.log(err);
+      res.redirect('/member');
+      console.log("Delete Complete!");
+    });
+  });
+});
+
+//notice 화면 표시 GET
+router.get('/notice', function(req, res, next){
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, row_user){
+      connection.query('SELECT * FROM notice_tbl', function(err, rows){
+        if(err) console.error("err: "+err);
+        res.render('notice', {title: '공지사항', user:row_user, rows:rows})
+        connection.release();
+        //don't use the connection here
+      });
+    });
+  });
+});
+
+//notice_delete 로직 처리 POST
+router.post('/notice_delete/:id', function(req, res, next) {
+  var id = req.params.id;
+  pool.getConnection(function(err, connection){
+    var sql = "DELETE FROM on_the_board.notice_tbl WHERE id=?";
+    connection.query(sql, id, function(err, rows){
+      if(err) console.log(err);
+      res.redirect('/notice');
+      console.log("Delete Complete!");
+    });
+  });
+});
+
+//notice 화면 표시 GET
+router.get('/notice_page/:id', function(req, res, next){
+  var id = req.params.id;
+  var sqlnotice = 'SELECT * FROM on_the_board.notice_tbl WHERE id=?';
+
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, row_user){
+      connection.query(sqlnotice, id, function(err, rows){
+        if(err) console.error("err: "+err);
+        res.render('notice_page', {title: '공지사항', user:row_user, rows:rows})
+        connection.release();
+        //don't use the connection here
+      });
+    });
+  });
+});
+
+//notice_update 화면 표시 GET
+router.get('/notice_update', function(req, res, next){
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, rows){
+      if(err) console.error("err: "+err);
+      res.render('notice_update', {title: '공지작성', user:rows});
+      connection.release();
+      //don't use the connection here
+    });
+  });
+});
+
+//notice_update 로직 처리 POST
+router.post('/notice_update', upload.single('image'), function(req, res, next){
+  var user_id = req.body.user_id;
+  var title = req.body.title;
+  var context = req.body.context;
+  var create_date = req.body.create_date;
+  var image = req.file.filename;
+  var datas = [user_id, title, context, create_date, image];
+
+  console.log(+datas);
+  
+  pool.getConnection(function(err, connection){
+    //Use the connection
+    var sqlForInsertNotice_tbl = "INSERT INTO notice_tbl(user_id, title, context, create_date, image) values(?,?,?,?,?)";
+    connection.query(sqlForInsertNotice_tbl, datas, function(err, rows){
+      if(err) console.error("err1 : "+err);
+      console.log("rows : " +JSON.stringify(rows));
+      res.redirect('/notice');
+      connection.release();
+
+      //don't use the connection here. 
     });
   });
 });
