@@ -68,17 +68,6 @@ Licence URI: https://www.os-templates.com/template-terms
         <nav id="mainav" class="fl_right"> 
           <!-- ################################################################################################ -->
           <ul class="clear">
-            <!--<li class="active"><a href="index.html">Home</a></li>-->
-            <li><a class="drop" href="#">Lim 확인</a>
-              <ul>
-                <li><a href="/full-width">Full Width</a></li>
-                <li><a href="/sidebar-left">Sidebar Left</a></li>
-                <li><a href="/sidebar-right">Sidebar Right</a></li>
-                <li><a href="/basic-grid">Basic Grid</a></li>
-                <li><a href="/font-icons">Font Icons</a></li>
-                <li><a href="/upload">판매자 업로드 페이지</a></li>
-              </ul>
-            </li>
             <li><a class="drop" href="#">Long Board</a>
               <ul>
                 <li><a href="/gallery/1/1">COMPLETE</a></li>
@@ -129,30 +118,71 @@ Licence URI: https://www.os-templates.com/template-terms
   </div>
   <!-- ################################################################################################ -->
 </div>
- 
+
 <div class = "wrapper row3">
     <main class = hoc container clear>
         <div class="content">
           <div id="comments">
               <br>
-              <p style="font-size: xx-large; margin-left: 30px; font-weight: bold;">리뷰 업로드</p>
+              <p style="font-size: xx-large; margin-left: 30px; font-weight: bold;">물품 업데이트</p>
               <br>
               <br>
               <br>
-              <form action="/reviewwrite/<%=category1_id%>/<%=category2_id%>/<%=id%>" method="post" enctype="multipart/form-data" onsubmit="return onWriteSubmit()">
-                <input type="hidden" name='user' id='user' value=<%=user[0].id %>>
+              <form action="/updateproduct" method="post" enctype="multipart/form-data" onsubmit="return onWriteSubmit()">
+                <input type="hidden" name='categoryNum' id='categoryNum' value=''/>
+                <input type="hidden" name='id' id='id' value='<%=row[0].id%>'/>
+                <input type="hidden" name='hit' id='hit' value='<%=row[0].sales_amount%>'/>
+                <input type="hidden" name='img_url' id='img_url' value='<%=row[0].img_url%>'/>
+                <input type="hidden" name='detail_img_url' id='detail_img_url' value='<%=row[0].detail_img_url%>'/>
+                <p style="font-size: medium; font-weight: bold;">[category]</p>
+                <input type="radio" name="category1" id="category" value=1 onclick="category1Radio(event)"/>LONG BOARD (롱보드) > COMPLETE
+                <input type="radio" name="category1" id="category" value=2 onclick="category1Radio(event)"/>LONG BOARD (롱보드) > DECK
+                <input type="radio" name="category1" id="category" value=3 onclick="category1Radio(event)"/>LONG BOARD (롱보드) > TRUCK
+                <input type="radio" name="category1" id="category" value=4 onclick="category1Radio(event)"/>LONG BOARD (롱보드) > WHEEL
+                <input type="radio" name="category1" id="category" value=5 onclick="category1Radio(event)"/>LONG BOARD (롱보드) > ETC
+                <br><br>
+                <input type="radio" name="category1" id="category" value=6 onclick="category1Radio(event)"/>SKATE BOARD (스케이트보드) > COMPLETE
+                <input type="radio" name="category1" id="category" value=7 onclick="category1Radio(event)"/>SKATE BOARD (스케이트보드) > DECK
+                <input type="radio" name="category1" id="category" value=8 onclick="category1Radio(event)"/>SKATE BOARD (스케이트보드) > TRUCK
+                <input type="radio" name="category1" id="category" value="9" onclick="category1Radio(event)"/>SKATE BOARD (스케이트보드) > WHEEL
+                <input type="radio" name="category1" id="category" value="10" onclick="category1Radio(event)"/>SKATE BOARD (스케이트보드) > ETC
+                <br><br>
+                <input type="radio" name="category1" id="category" value="11" onclick="category1Radio(event)"/>CRUISER BOARD (크루져보드) > COMPLETE
+                <input type="radio" name="category1" id="category" value="12" onclick="category1Radio(event)"/>CRUISER BOARD (크루져보드) > DECK
+                <input type="radio" name="category1" id="category" value="13" onclick="category1Radio(event)"/>CRUISER BOARD (크루져보드) > TRUCK
+                <input type="radio" name="category1" id="category" value="14" onclick="category1Radio(event)"/>CRUISER BOARD (크루져보드) > WHEEL
+                <input type="radio" name="category1" id="category" value="15" onclick="category1Radio(event)"/>CRUISER BOARD (크루져보드) > ETC
+                <br><br>
+                <input type="radio" name="category1" id="category" value="16" onclick="category1Radio(event)"/>SNOW & ETC (스노우 등등) > 전동보드
+                <input type="radio" name="category1" id="category" value="17" onclick="category1Radio(event)"/>SNOW & ETC (스노우 등등) > 스노우스케이트
+                <input type="radio" name="category1" id="category" value="18" onclick="category1Radio(event)"/>SNOW & ETC (스노우 등등) > 스노우보드
+                <input type="radio" name="category1" id="category" value="19" onclick="category1Radio(event)"/>SNOW & ETC (스노우 등등) > ETC
+                <br><br>
+                <input type="radio" name="category1" id="category" value="20" onclick="category1Radio(event)"/>보호장구 > 헬멧
+                <input type="radio" name="category1" id="category" value="21" onclick="category1Radio(event)"/>보호장구 > 보호장구
+                <input type="radio" name="category1" id="category" value="22" onclick="category1Radio(event)"/>보호장구 > 슬라이드퍽&글러브
+                <input type="radio" name="category1" id="category" value="23" onclick="category1Radio(event)"/>보호장구 > ETC
                 <br><br>
                 <div id='result'></div>
-                <p style="font-size: medium; font-weight: bold;">[제목]</p><br>
-                <input class="uploadinputform" type="text" name="title" id="title">
+                <p style="font-size: medium; font-weight: bold;">[물품 이름]</p><br>
+                <input class="uploadinputform" type="text" name="product_name" id="name" value="<%=row[0].name%>">
                 <br>
-                <p style="font-size: medium; font-weight: bold;">[내용]</p><br>
-                <input class="uploadinputform" type="text" name="context" id="context">
+                <p style="font-size: medium; font-weight: bold;">[가격]</p><br>
+                <input class="uploadinputform" type="number" name="product_price" id="price" value="<%=row[0].price%>">
                 <br>
-                <p style="font-size: medium; font-weight: bold;">[물품 이미지]</p><br>
-                <input type = "file" name="img"/>
+                <p style="font-size: medium; font-weight: bold;">[이미지]</p><br>
+                <img style="width: 200px; height: 200px;" src="/<%=row[0].img_url%>">
+                <br><br><br>
+                <p style="font-size: medium; font-weight: bold;">[이미지 수정]</p><br>
+                <input type = "file" name="img">
                 <br>
-                <button name="submit" type="submit">리뷰 등록하기</button>
+                <p style="font-size: medium; font-weight: bold;">[상세이미지]</p><br>
+                <img style="width: 200px; height: 500px;" src="/<%=row[0].detail_img_url%>">
+                <br><br><br>
+                <p style="font-size: medium; font-weight: bold;">[상세이미지 수정]</p><br>
+                <input type = "file" name="img">
+                <br>
+                <button name="submit" type="submit">물품 수정하기</button>
                 <br><br>
               </form>
           </div>
@@ -250,12 +280,29 @@ Licence URI: https://www.os-templates.com/template-terms
   <!-- JAVASCRIPTS -->
         <script>
             function onWriteSubmit(){
-                getDate();
+                if( $("#name").val().trim()==""){
+                    var message = "물품 이름을 입력해 주세요.";
+                    $("#name").val("");
+                    $("#name").focus();
+                    alert(message);
+                    return false;
+                }
+                if( $("#price").val().trim()==""){
+                    var message = "물품 가격을 입력해 주세요.";
+                    $("#price").val("");
+                    $("#price").focus();
+                    alert(message);
+                    return false;
+                }
+                getCategoryNum();
             }
-            function getDate(){
-                var time = new Date().format('YYYY-MM-DD HH:MM:SS');
-                alert(time);
-                $("#date").val(time);
+            function getCategoryNum(){
+                const radioNodeList = document.getElementsByName('category1');
+                radioNodeList.forEach((node)=>{
+                    if(node.checked){
+                        $("#categoryNum").val(node.value);
+                    }
+                })
             }
         </script>
   <script src="layout/scripts/jquery.min.js"></script>
