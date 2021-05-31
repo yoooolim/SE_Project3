@@ -15,34 +15,13 @@ Licence URI: https://www.os-templates.com/template-terms
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
-<!-- JAVASCRIPTS -->
-<script language = "javascript">
-    var category1="";
-    var category2="";
-
-    var category1_in;
-    var category2_in;
-
-    function category1Radio(event){
-        category1 = event.target.value;
-        if(category1=="longboard"||"category1"=="skateboard"||"category1"=="cruiserboard"){
-
-        }
-        else if(category1=="protect"){
-
-        }
-        else{
-
-        }
-        //document.getElementById('result').innerText = event.target.value;
-    }
-</script>
 <body id="top">
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- Top Background Image Wrapper -->
-<div class="bgded overlay" style="background-image:url('/images/demo/backgrounds/01.png');"> 
+
+ <div style="background-image:url('/images/demo/backgrounds/title_background.png');">
   <!-- ################################################################################################ -->
   <div class="wrapper row0">
     <div id="topbar" class="hoc clear">
@@ -57,93 +36,95 @@ Licence URI: https://www.os-templates.com/template-terms
       <div class="fl_right"> 
         <!-- ################################################################################################ -->
         <ul class="nospace">
-          <li><a href="/"><i class="fas fa-home"></i></a></li>
-          <li><a href="#" title="Help Centre"><i class="far fa-life-ring"></i></a></li>
-          <li><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
-          <li><a href="#" title="Sign Up"><i class="fas fa-edit"></i></a></li>
-          <li id="searchform">
-            <div>
-              <form action="#" method="post">
-                <fieldset>
-                  <legend>Quick Search:</legend>
-                  <input type="text" placeholder="Enter search term&hellip;">
-                  <button type="submit"><i class="fas fa-search"></i></button>
-                </fieldset>
-              </form>
-            </div>
-          </li>
+          <li><a style="font-size: 15px" href="/">home으로</a></li>
+          <% if (user == null) { %>
+            <li><a style="font-size: 15px" href="/login" title="Login">login</a></li>
+            <li><a style="font-size: 15px" href="/join" title="Sign Up">join</a></li>
+          <% } else {%>
+            <li><a style="font-size: 15px"><%=user[0].id %> 님 로그인</a></li>
+            <li><a style="font-size: 15px" href="/mypage" title="Mypage">mypage</a></li>
+            <li><a style="font-size: 15px" href="/cart" title="Cart">장바구니</a></li>
+            <li>
+              <form action="/logout" method="post" onsubmit="return onWriteSubmit()"> 
+                <button  type = "submit">로그아웃</button>        
+              </form>  
+            </li> 
+          <% } %>
+          
         </ul>
         <!-- ################################################################################################ -->
       </div>
     </div>
   </div>
-  <!-- ################################################################################################ -->
-  <!-- ################################################################################################ -->
-  <!-- ################################################################################################ -->
-  <div class="wrapper row1">
-    <header id="header" class="hoc clear">
-      <div id="logo" class="fl_left"> 
-        <!-- ################################################################################################ -->
-        <h1><a href="/">On the board</a></h1>
-        <!-- ################################################################################################ -->
-      </div>
-      <nav id="mainav" class="fl_right"> 
-        <!-- ################################################################################################ -->
-        <ul class="clear">
-          <!--<li class="active"><a href="index.html">Home</a></li>-->
-          <li><a class="drop" href="#">Long Board</a>
-            <ul>
-              <li><a href="/gallery/1/1">COMPLETE</a></li>
-              <li><a href="/gallery/1/2">DECK</a></li>
-              <li><a href="/gallery/1/3">TRUCK</a></li>
-              <li><a href="/gallery/1/4">WHEEL</a></li>
-              <li><a href="/gallery/1/5">ETC.</a></li>
-            </ul>
-          </li>
-          <li><a class="drop" href="#">Skate Board</a>
-            <ul>
-              <li><a href="/gallery/2/6">COMPLETE</a></li>
-              <li><a href="/gallery/2/7">DECK</a></li>
-              <li><a href="/gallery/2/8">TRUCK</a></li>
-              <li><a href="/gallery/2/9">WHEEL</a></li>
-              <li><a href="/gallery/2/10">ETC.</a></li>
-            </ul>
-          </li>
-          <li><a class="drop" href="#">Cruiser Board</a>
-            <ul>
-              <li><a href="/gallery/3/11">COMPLETE</a></li>
-              <li><a href="/gallery/3/12">DECK</a></li>
-              <li><a href="/gallery/3/13">TRUCK</a></li>
-              <li><a href="/gallery/3/14">WHEEL</a></li>
-              <li><a href="/gallery/3/15">ETC.</a></li>
-            </ul>
-          </li>
-          <li><a class="drop" href="#">SNOW&ETC.</a>
-            <ul>
-              <li><a href="/gallery/4/16">전동보드</a></li>
-              <li><a href="/gallery/4/17">스노우스케이트</a></li>
-              <li><a href="/gallery/4/18">스노우보드</a></li>
-              <li><a href="/gallery/4/19">>ETC.</a></li>
-            </ul>
-          </li>
-          <li><a class="drop" href="#">보호장구</a>
-            <ul>
-              <li><a href="/gallery/5/20">헬멧</a></li>
-              <li><a href="/gallery/5/21">보호장구</a></li>
-              <li><a href="/gallery/5/22">슬라이드퍽&글러브</a></li>
-              <li><a href="/gallery/5/23">ETC.</a></li>
-            </ul>
-          </li>
-          <li><a class="drop" href="#">보호장구</a>
-            <ul>
-              <li><a href="/gallery/5/1">헬멧</a></li>
-              <li><a href="/gallery/5/2">보호장구</a></li>
-              <li><a href="/gallery/5/3">슬라이드퍽&글러브</a></li>
-              <li><a href="/gallery/5/4">ETC.</a></li>
-            </ul>
-          </li>
-        </ul>
-        <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="wrapper row1">
+      <header id="header" class="hoc clear">
+        <div id="logo" class="fl_left"> 
+          <!-- ################################################################################################ -->
+          <h1><a href="/">On The Board</a></h1>
+          <!-- ################################################################################################ -->
+        </div>
+        <nav id="mainav" class="fl_right"> 
+          <!-- ################################################################################################ -->
+          <ul class="clear">
+            <!--<li class="active"><a href="index.html">Home</a></li>-->
+            <li><a class="drop" href="#">Lim 확인</a>
+              <ul>
+                <li><a href="/full-width">Full Width</a></li>
+                <li><a href="/sidebar-left">Sidebar Left</a></li>
+                <li><a href="/sidebar-right">Sidebar Right</a></li>
+                <li><a href="/basic-grid">Basic Grid</a></li>
+                <li><a href="/font-icons">Font Icons</a></li>
+                <li><a href="/upload">판매자 업로드 페이지</a></li>
+              </ul>
+            </li>
+            <li><a class="drop" href="#">Long Board</a>
+              <ul>
+                <li><a href="/gallery/1/1">COMPLETE</a></li>
+                <li><a href="/gallery/1/2">DECK</a></li>
+                <li><a href="/gallery/1/3">TRUCK</a></li>
+                <li><a href="/gallery/1/4">WHEEL</a></li>
+                <li><a href="/gallery/1/5">ETC.</a></li>
+              </ul>
+            </li>
+            <li><a class="drop" href="#">Skate Board</a>
+              <ul>
+                <li><a href="/gallery/2/6">COMPLETE</a></li>
+                <li><a href="/gallery/2/7">DECK</a></li>
+                <li><a href="/gallery/2/8">TRUCK</a></li>
+                <li><a href="/gallery/2/9">WHEEL</a></li>
+                <li><a href="/gallery/2/10">ETC.</a></li>
+              </ul>
+            </li>
+            <li><a class="drop" href="#">Cruiser Board</a>
+              <ul>
+                <li><a href="/gallery/3/11">COMPLETE</a></li>
+                <li><a href="/gallery/3/12">DECK</a></li>
+                <li><a href="/gallery/3/13">TRUCK</a></li>
+                <li><a href="/gallery/3/14">WHEEL</a></li>
+                <li><a href="/gallery/3/15">ETC.</a></li>
+              </ul>
+            </li>
+            <li><a class="drop" href="#">SNOW&ETC.</a>
+              <ul>
+                <li><a href="/gallery/4/16">전동보드</a></li>
+                <li><a href="/gallery/4/17">스노우스케이트</a></li>
+                <li><a href="/gallery/4/18">스노우보드</a></li>
+                <li><a href="/gallery/4/19">>ETC.</a></li>
+              </ul>
+            </li>
+            <li><a class="drop" href="#">보호장구</a>
+              <ul>
+                <li><a href="/gallery/5/20">헬멧</a></li>
+                <li><a href="/gallery/5/21">보호장구</a></li>
+                <li><a href="/gallery/5/22">슬라이드퍽&글러브</a></li>
+                <li><a href="/gallery/5/23">ETC.</a></li>
+              </ul>
+            </li>
+            <!--<li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>-->
+          </ul>
       </nav>
     </header>
   </div>

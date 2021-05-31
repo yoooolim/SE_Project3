@@ -11,6 +11,10 @@ alter table user_tbl add who int default 2 not null;
 ALTER TABLE `on_the_board`.`order_tbl` 
 CHANGE COLUMN `id` `id` INT NOT NULL AUTO_INCREMENT ;
 
+<like_tbl>
+ALTER TABLE `on_the_board`.`like_tbl` 
+CHANGE COLUMN `id` `id` INT NOT NULL AUTO_INCREMENT ;
+
 
 insert (더미데이터)======================================
 

@@ -164,6 +164,7 @@ Licence URI: https://www.os-templates.com/template-terms
                   <td>이메일</td>
                   <td>휴대폰 번호</td>
                   <td>구분</td>
+                  <td>탈퇴</td>
                 </tr>
                 <% for(var i=0; i<rows.length; i++){ var oneItem = rows[i];%>
                   <tr>
@@ -174,14 +175,19 @@ Licence URI: https://www.os-templates.com/template-terms
                     <td>
                     <% if (oneItem.who == 0) { %>
                         관리자
-
                     <% }else if (oneItem.who == 1) { %>
                         판매자
                     <% } else { %>
                         구매자
                     <% } %>
                     </td>
-
+                    <td>
+                    <% if (oneItem.who == 2) { %>
+                      <form action="/id_delete/<%= oneItem.id %>" method="post" onsubmit="return onWriteSubmit()">
+                        <p align="center"><input class="btn reverse" type="submit" value="탈퇴"></p>
+                      </form>
+                    <% } %>
+                    </td>
                   </tr>
                 <% } %>
               </table>
