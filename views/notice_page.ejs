@@ -9,7 +9,7 @@
 
 <body id="top">
 <!-- Top Background Image Wrapper -->
-<div style="background-image:url('images/demo/backgrounds/title_background.png');">
+<div style="background-image:url('images/demo/backgrounds/title_background2.png');">
   <div class="wrapper row0">
     <div id="topbar" class="hoc clear">
       <div class="fl_left"> 
@@ -114,15 +114,15 @@
   <main class="hoc container clear"> 
     <div class="sectiontitle">
       <p class="nospace font-xs"></p>
-      <p class="heading underline font-x2">*보드 축제 및 대회 정보*</p>
-      <p>2021 ON THE BOARD FESTIVAL</p>
-      
+      <p class="heading underline font-x2">NOTICE</p>
+      <p><%=rows[0].title%></p>
     </div>
+
+    <h2 style="font-style:inherit;"><%=rows[0].context%></h2>
+
     <div class="noticeForm">
-      <img src="../images/demo/notice/congress3.png" alt="">
+      <img src="/<%=rows.image%>">
     </div>
-
-
 
   </main>
 </div>

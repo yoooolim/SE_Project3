@@ -7,7 +7,8 @@ var pool = mysql.createPool({
   connectionLimit: 5,
   host:'localhost',
   user:'root',
-  password: 'anffl!!8623',
+  password: '',
+
   database:'on_the_board'
 });
 
@@ -548,84 +549,82 @@ router.post('/id_delete/:id', function(req, res, next) {
 router.get('/notice', function(req, res, next){
   pool.getConnection(function(err, connection){
     var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, row_user){
+      connection.query('SELECT * FROM notice_tbl', function(err, rows){
+        if(err) console.error("err: "+err);
+        res.render('notice', {title: '공지사항', user:row_user, rows:rows})
+        connection.release();
+        //don't use the connection here
+      });
+    });
+  });
+});
+
+//notice_delete 로직 처리 POST
+router.post('/notice_delete/:id', function(req, res, next) {
+  var id = req.params.id;
+  pool.getConnection(function(err, connection){
+    var sql = "DELETE FROM on_the_board.notice_tbl WHERE id=?";
+    connection.query(sql, id, function(err, rows){
+      if(err) console.log(err);
+      res.redirect('/notice');
+      console.log("Delete Complete!");
+    });
+  });
+});
+
+//notice 화면 표시 GET
+router.get('/notice_page/:id', function(req, res, next){
+  var id = req.params.id;
+  var sqlnotice = 'SELECT * FROM on_the_board.notice_tbl WHERE id=?';
+
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, row_user){
+      connection.query(sqlnotice, id, function(err, rows){
+        if(err) console.error("err: "+err);
+        res.render('notice_page', {title: '공지사항', user:row_user, rows:rows})
+        connection.release();
+        //don't use the connection here
+      });
+    });
+  });
+});
+
+//notice_update 화면 표시 GET
+router.get('/notice_update', function(req, res, next){
+  pool.getConnection(function(err, connection){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
     connection.query(sql, req.cookies.user, function(err, rows){
       if(err) console.error("err: "+err);
-      res.render('notice', {title: '공지사항', user:rows})
+      res.render('notice_update', {title: '공지작성', user:rows});
       connection.release();
       //don't use the connection here
     });
   });
 });
 
-//notice1 화면 표시 GET
-router.get('/notice1', function(req, res, next){
+//notice_update 로직 처리 POST
+router.post('/notice_update', upload.single('image'), function(req, res, next){
+  var user_id = req.body.user_id;
+  var title = req.body.title;
+  var context = req.body.context;
+  var create_date = req.body.create_date;
+  var image = req.file.filename;
+  var datas = [user_id, title, context, create_date, image];
+
+  console.log(+datas);
+  
   pool.getConnection(function(err, connection){
-    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
-    connection.query(sql, req.cookies.user, function(err, rows){
-      if(err) console.error("err: "+err);
-      res.render('notice1', {title: '공지사항1', user:rows})
+    //Use the connection
+    var sqlForInsertNotice_tbl = "INSERT INTO notice_tbl(user_id, title, context, create_date, image) values(?,?,?,?,?)";
+    connection.query(sqlForInsertNotice_tbl, datas, function(err, rows){
+      if(err) console.error("err1 : "+err);
+      console.log("rows : " +JSON.stringify(rows));
+      res.redirect('/notice');
       connection.release();
-      //don't use the connection here
-    });
-  });
-});
-//notice2 화면 표시 GET
-router.get('/notice2', function(req, res, next){
-  pool.getConnection(function(err, connection){
-    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
-    connection.query(sql, req.cookies.user, function(err, rows){
-      if(err) console.error("err: "+err);
-      res.render('notice2', {title: '공지사항2', user:rows})
-      connection.release();
-      //don't use the connection here
-    });
-  });
-});
-//notice3 화면 표시 GET
-router.get('/notice3', function(req, res, next){
-  pool.getConnection(function(err, connection){
-    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
-    connection.query(sql, req.cookies.user, function(err, rows){
-      if(err) console.error("err: "+err);
-      res.render('notice3', {title: '공지사항3', user:rows})
-      connection.release();
-      //don't use the connection here
-    });
-  });
-});
-//notice4 화면 표시 GET
-router.get('/notice4', function(req, res, next){
-  pool.getConnection(function(err, connection){
-    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
-    connection.query(sql, req.cookies.user, function(err, rows){
-      if(err) console.error("err: "+err);
-      res.render('notice4', {title: '공지사항4', user:rows})
-      connection.release();
-      //don't use the connection here
-    });
-  });
-});
-//notice5 화면 표시 GET
-router.get('/notice5', function(req, res, next){
-  pool.getConnection(function(err, connection){
-    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
-    connection.query(sql, req.cookies.user, function(err, rows){
-      if(err) console.error("err: "+err);
-      res.render('notice5', {title: '공지사항5', user:rows})
-      connection.release();
-      //don't use the connection here
-    });
-  });
-});
-//notice6 화면 표시 GET
-router.get('/notice6', function(req, res, next){
-  pool.getConnection(function(err, connection){
-    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
-    connection.query(sql, req.cookies.user, function(err, rows){
-      if(err) console.error("err: "+err);
-      res.render('notice6', {title: '공지사항6', user:rows})
-      connection.release();
-      //don't use the connection here
+
+      //don't use the connection here. 
     });
   });
 });

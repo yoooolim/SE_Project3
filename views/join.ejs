@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+
 </head>
 
 <body id="top">
@@ -119,26 +120,27 @@
         </tr>
         <tr>
           <td >비밀번호 <span>*</span> </td>
-          <td style="text-align: left; "><input type="password" style="width: 200px;" name ="password" id="password" required></td>
+          <td style="text-align: left; "><input type="password" style="width: 200px;" name ="password" id="password" onchange="check_pw()" required></td>
         </tr>
         <tr>
           <td >비밀번호 확인 <span>*</span> </td>
-          <td style="text-align: left; "><input type="password" style="width: 200px;" name ="passwdcheck" id="passwdcheck" required></td>
+          <td style="text-align: left; "><input type="password" style="width: 200px;" name ="passwdcheck" id="passwdcheck" onchange="check_pw()" required><span id="check"></span>
+          </td>
         </tr>
         <tr>
         <td >이름 <span>*</span> </td>
           <td style="text-align: left;"><input type="text" style="width: 200px;" name ="name" id="name" required></td>
         </tr>
         <tr>
-          <td >이메일</td>
+          <td >이메일 (email@address)</td>
           <td style="text-align: left; "><input type="text" style="width: 200px;" name ="email" id="email" required></td>
         </tr>
         <tr>
-          <td >휴대전화</td>
+          <td >휴대전화(000-0000-0000)</td>
           <td style="text-align: left;"><input type="text" style="width: 200px;" name ="phone_number" id="phone_number" required></td>
         </tr>
         <tr>
-          <td >생년월일</td>
+          <td >생년월일(yy.mm.dd)</td>
           <td style="text-align: left;"><input type="text" style="width: 200px;" name ="birthday" id="birthday" required></td>
         </tr>
         <tr>
@@ -248,5 +250,22 @@
 <script src="layout/scripts/jquery.min.js"></script>
 <script src="layout/scripts/jquery.backtotop.js"></script>
 <script src="layout/scripts/jquery.mobilemenu.js"></script>
+
+<script>
+  function check_pw(){
+    var pw = document.getElementById('password').value;
+    var pwcheck = document.getElementById('passwdcheck').value;
+
+    if(pw ==pwcheck){
+      document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+      document.getElementById('check').style.color='blue';
+    }
+    else{
+      document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+      document.getElementById('check').style.color='red';
+    }
+
+  }
+</script>
 </body>
 </html>
