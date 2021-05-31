@@ -199,24 +199,57 @@ router.get('/gallery/:category1_id/:category2_id/:id',function(req,res,next){
   var category1_id = req.params.category1_id;
   var category2_id = req.params.category2_id;
   var id = req.params.id;
-  var sql = 'SELECT * FROM on_the_board.product_tbl WHERE category1_id=? and category2_id=? and id=?';
+  var sql1 = 'SELECT * FROM on_the_board.product_tbl WHERE category1_id=? and category2_id=? and id=?';
   var sql2 = 'SELECT * FROM on_the_board.review_tbl WHERE product_id=?';
-  pool.getConnection(function(err,connection){
-    var sqluser = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
-    connection.query(sqluser, req.cookies.user, function(err, row_user){
-      //Use the connection
-      connection.query(sql,[category1_id, category2_id,id], function(err,rows){
-        if(err) console.error("err : "+err);
-        //console.log("rows : "+JSON.stringify(rows));
-
-        connection.query(sql2,[id], function(err,reviewrows){
+  pool.getConnection(function(err, connection) {
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, row_user){
+      if(err) console.error("err: "+err);
+      var sql3 = 'SELECT * FROM like_tbl, product_tbl where like_tbl.product_id = product_tbl.id and like_tbl.user_id = ?;'
+      
+      connection.query(sql3, req.cookies.user, function(err, rows_like) {
+        if(err) console.error("err: "+err);
+        
+        connection.query(sql1,[category1_id, category2_id,id], function(err,rows){
           if(err) console.error("err : "+err);
-          //console.log("rows : "+JSON.stringify(reviewrows));
-          //console.log(reviewrows[0].img_url);
-          res.render('read', {reviewrows: reviewrows, rows: rows, user : row_user});
-          connection.release();
+    
+          connection.query(sql2,[id], function(err,reviewrows){
+            if(err) console.error("err : "+err);
+            res.render('read', {reviewrows: reviewrows, rows: rows, rows_like:rows_like, row_user:row_user});
+            connection.release();
+            console.log("row_user : "+JSON.stringify(row_user));
+          });
+
         });
       });
+    });
+  });
+});
+
+/* 제품 상세 페이지 > 찜 post */
+router.post('/gallery/:category1_id/:category2_id/:id', function(req,res,next) {
+  var category1_id = req.params.category1_id;
+  var category2_id = req.params.category2_id;
+  var id = req.params.id;
+  var jjim_or_cancel = req.body.jjim_or_cancel;
+  var user_id = req.body.user_id;
+  var product_id = req.body.product_id;
+
+  var datas =[user_id, product_id];
+  //console.log("jjim_or_cancel: " + jjim_or_cancel);
+  
+  pool.getConnection(function(err, connection) {
+    var sql;
+    if (jjim_or_cancel == "jjim") {
+      sql = "INSERT INTO `like_tbl`(`user_id`,`product_id`) VALUES (?, ?);";
+    } else {
+      sql = "delete from like_tbl where user_id = ? and product_id = ?;";
+    }
+    connection.query(sql, datas, function(err, rows) {
+      if (err) console.error("err: " + err);
+      //console.log("jjim_or_cancel: "+ jjim_or_cancel+ " rows : " + JSON.stringify(rows));
+      connection.release();
+      res.redirect('/gallery/'+category1_id+'/'+category2_id+'/'+id);
     });
   });
 });
@@ -225,19 +258,21 @@ router.get('/gallery/:category1_id/:category2_id/:id',function(req,res,next){
 router.get('/order/:product_id/:product_cnt', function(req, res, next) {
   var product_id = req.params.product_id;
   var product_cnt = req.params.product_cnt;
+  
   pool.getConnection(function(err, connection) {
-    var sql = 'select * from product_tbl where product_tbl.id = ?';
-    var sql2 = 'select * from user_tbl';
-      connection.query(sql, [product_id], function(err, rows){
-        if(err) console.error("err: "+err);
-        console.log("rows: "+JSON.stringify(rows));
+   
+    var sql = 'SELECT * FROM user_tbl WHERE id=?';
+    var sql1 = 'select * from product_tbl where product_tbl.id = ?';
+    connection.query(sql, req.cookies.user, function(err, row_user){
+      if(err) console.error("err: "+err);
 
-        connection.query(sql2, function(err, rows2){
-          if(err) console.error("err : "+err);
-          console.log("rows2: "+JSON.stringify(rows2));
-          res.render('order', {rows : rows, rows2 : rows2});
-          connection.release();
-        });
+      connection.query(sql1, [product_id], function(err, rows){
+        if(err) console.error("err: "+err);
+
+        console.log("rows: "+JSON.stringify(rows));
+        res.render('order', {rows : rows, user : row_user});
+        connection.release();
+      });
     });
   });
 });
@@ -258,7 +293,7 @@ router.post('/order', function(req, res, next) {
                     now_date.getSeconds();
   
   var datas =[user_id, product_id, product_cnt, is_payed, total_money, create_date];
-  //console.log("datas: " + datas);
+  console.log("datas: " + datas);
   pool.getConnection(function(err, connection) {
     var sql1 = "insert into order_tbl(user_id, product_id, product_cnt, is_payed, total_money, create_date) values (?,?,?,?,?,?)"
     var sql2 = "update product_tbl set sales_amount = sales_amount + 1 where id = ?"
@@ -277,46 +312,55 @@ router.post('/order', function(req, res, next) {
 });
 
 /* 주문 내역 표시 */
-router.get('/order-list-buyer/:user_id', function(req, res, next) {
-  var user_id = req.params.user_id;
+router.get('/order-list-buyer', function(req, res, next) {
+  
   pool.getConnection(function(err, connection) {
-    var sql = 'select order_tbl.id as id, create_date, img_url, name, product_cnt, price, category1_id, category2_id, product_tbl.id as product_id from order_tbl inner join product_tbl on order_tbl.product_id = product_tbl.id where user_id = ?';
-    
-      connection.query(sql, [user_id], function(err, rows){
+    var sql1 = 'select order_tbl.id as id, create_date, img_url, name, product_cnt, price, category1_id, category2_id, product_tbl.id as product_id from order_tbl inner join product_tbl on order_tbl.product_id = product_tbl.id where user_id = ? order by order_tbl.create_date desc';
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, row_user){
+      if(err) console.error("err: "+err);
+
+      connection.query(sql1, req.cookies.user, function(err, rows){
         if(err) console.error("err: "+err);
         console.log("rows: "+JSON.stringify(rows));
         
-        res.render('order-list-buyer', {rows : rows});
+        res.render('order-list-buyer', {rows : rows, user : row_user});
         connection.release();
+      });
     });
   });
 });
 
 /* 판매 내역 표시 */
 router.get('/sales-history-seller', function(req, res, next) {
-  var user_id = req.params.user_id;
+  var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+  var sql2 = 'SELECT order_tbl.id as id, create_date, category1_tbl.name as category1_name, category2_tbl.name as category2_name, product_tbl.name as name, user_id, product_cnt, total_money FROM order_tbl, product_tbl, category1_tbl, category2_tbl WHERE order_tbl.product_id = product_tbl.id and product_tbl.category1_id = category1_tbl.id and product_tbl.category2_id = category2_tbl.id order by order_tbl.create_date desc;';
   pool.getConnection(function(err, connection) {
-    var sql = 'SELECT order_tbl.id as id, create_date, category1_tbl.name as category1_name, category2_tbl.name as category2_name, product_tbl.name as name, user_id, product_cnt, total_money FROM order_tbl, product_tbl, category1_tbl, category2_tbl WHERE order_tbl.product_id = product_tbl.id and product_tbl.category1_id = category1_tbl.id and product_tbl.category2_id = category2_tbl.id;';
-    
-      connection.query(sql, function(err, rows){
+    connection.query(sql, req.cookies.user, function(err, row_user){
+      if(err) console.error("err: "+err);
+      connection.query(sql2, function(err, rows){
         if(err) console.error("err: "+err);
-        console.log("rows: "+JSON.stringify(rows));
+        //console.log("rows: "+JSON.stringify(rows));
         
-        res.render('sales-history-seller', {rows : rows});
+        res.render('sales-history-seller', {rows : rows, user : row_user});
         connection.release();
+      });
     });
   });
 });
 
 /* 상품 주문 현황 */
 router.get('/sales-status-seller', function(req, res, next) {
-  var user_id = req.params.user_id;
   pool.getConnection(function(err, connection) {
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
     var sql1 = 'select product_tbl.id as id, product_tbl.name as name, product_tbl.price, product_tbl.sales_amount, category2_tbl.name as category2_name from product_tbl, category2_tbl where product_tbl.category2_id = category2_tbl.id and product_tbl.category1_id = 1';
     var sql2 = 'select product_tbl.id as id, product_tbl.name as name, product_tbl.price, product_tbl.sales_amount, category2_tbl.name as category2_name from product_tbl, category2_tbl where product_tbl.category2_id = category2_tbl.id and product_tbl.category1_id = 2';
     var sql3 = 'select product_tbl.id as id, product_tbl.name as name, product_tbl.price, product_tbl.sales_amount, category2_tbl.name as category2_name from product_tbl, category2_tbl where product_tbl.category2_id = category2_tbl.id and product_tbl.category1_id = 3';
     var sql4 = 'select product_tbl.id as id, product_tbl.name as name, product_tbl.price, product_tbl.sales_amount, category2_tbl.name as category2_name from product_tbl, category2_tbl where product_tbl.category2_id = category2_tbl.id and product_tbl.category1_id = 4';
     var sql5 = 'select product_tbl.id as id, product_tbl.name as name, product_tbl.price, product_tbl.sales_amount, category2_tbl.name as category2_name from product_tbl, category2_tbl where product_tbl.category2_id = category2_tbl.id and product_tbl.category1_id = 5';
+    connection.query(sql, req.cookies.user, function(err, row_user){
+      if(err) console.error("err: "+err);
+
       connection.query(sql1, function(err, rows1){
         if(err) console.error("err: "+err);
         console.log("rows1: "+JSON.stringify(rows1));
@@ -337,32 +381,35 @@ router.get('/sales-status-seller', function(req, res, next) {
                 if(err) console.error("err: "+err);
                 console.log("rows5: "+JSON.stringify(rows5));
       
-                res.render('sales-status-seller', {rows1 : rows1, rows2 : rows2, rows3 : rows3, rows4 : rows4, rows5 : rows5});
+                res.render('sales-status-seller', {rows1 : rows1, rows2 : rows2, rows3 : rows3, rows4 : rows4, rows5 : rows5, user:row_user});
                 connection.release();
               });
             });
           });
         });
+      });
     });
   });
 });
 
-/*매출 통계 시각화 페이지*/
+/* 매출 통계 시각화 페이지 */
 router.get('/sales-statistics-seller',function(req,res,next){
   pool.getConnection(function(err, connection) {
-    var sql = 'select order_tbl.id as id, create_date, product_id, total_money, category1_id from order_tbl, product_tbl  where order_tbl.product_id = product_tbl.id ORDER BY create_date DESC;';
-    
-      connection.query(sql, function(err, rows){
+    var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
+    connection.query(sql, req.cookies.user, function(err, row_user){
+      var sql1 = 'select order_tbl.id as id, create_date, product_id, total_money, category1_id from order_tbl, product_tbl  where order_tbl.product_id = product_tbl.id ORDER BY create_date DESC;';
+      connection.query(sql1, function(err, rows){
         if(err) console.error("err: "+err);
         console.log("rows: "+JSON.stringify(rows));
-        
-        res.render('sales-statistics-seller', {rows : rows});
+          
+        res.render('sales-statistics-seller', {rows : rows, user:row_user});
         connection.release();
+      });
     });
   });
 });
 
-/*찜한 상품 보기*/
+/* 찜한 상품 보기 */
 router.get('/jjim', function(req, res, next){
   pool.getConnection(function(err, connection) {
     var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
