@@ -7,7 +7,7 @@ var pool = mysql.createPool({
   connectionLimit: 5,
   host:'localhost',
   user:'root',
-  password: '',
+  password: '9376174a',
   database:'on_the_board'
 });
 
@@ -764,6 +764,7 @@ router.get('/notice_page/:id', function(req, res, next){
     var sql = 'SELECT * FROM on_the_board.user_tbl WHERE id=?';
     connection.query(sql, req.cookies.user, function(err, row_user){
       connection.query(sqlnotice, id, function(err, rows){
+        console.log("rows : " +JSON.stringify(rows));
         if(err) console.error("err: "+err);
         res.render('notice_page', {title: '공지사항', user:row_user, rows:rows})
         connection.release();
