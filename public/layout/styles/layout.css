@@ -1063,12 +1063,6 @@ select {
 		right: 20%; 
 	}
 
-  body {
-  padding: 0;
-  margin: 0;
-  color: #333;
-}
-
 #lbBtn {
   position: fixed;
   bottom: 10px;
