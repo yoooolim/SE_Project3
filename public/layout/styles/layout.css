@@ -1124,9 +1124,7 @@ select {
   height: 245px;
 }
 
-select {
-  display: none !important;
-}
+
 
 .lb-dropdown-select-city {
   background-color: #fff;
