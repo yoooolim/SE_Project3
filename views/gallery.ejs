@@ -125,7 +125,6 @@ Licence URI: https://www.os-templates.com/template-terms
   <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
-
 <div class="wrapper row3">
   <main class="hoc container clear"> 
     <div class="sidebar one_quarter first"> 
@@ -190,7 +189,7 @@ Licence URI: https://www.os-templates.com/template-terms
             <figure>
               <header class="heading"><strong>상품 목록</strong></header>
                 <ul class="nospace clear">
-                <td style="text-align: left;">
+                  <td style="text-align: left;">
                     <select name = "sort" id = "sort" style="width: 100px;" onchange="location.href=this.value">
     <%
                       if(defaultC==1){
@@ -224,8 +223,7 @@ Licence URI: https://www.os-templates.com/template-terms
                       }
     %>
                     </select>
-                </td>
-                <br>
+                </td><br><br><br>
     <%
                 function addComma(num) {
                   var regexp = /\B(?=(\d{3})+(?!\d))/g;
@@ -235,7 +233,7 @@ Licence URI: https://www.os-templates.com/template-terms
                 for(var i=0;i<rows.length;i++){
                   var oneItem = rows[i];
                   if(i%4==0){
-    %>
+    %>  
                 <li class="one_quarter first">
                   <a href="/gallery/<%=oneItem.category1_id%>/<%=oneItem.category2_id%>/<%=oneItem.id%>">
                     <img style="height: 170px; width: 170px;" src="/<%=oneItem.img_url%>" alt="">
