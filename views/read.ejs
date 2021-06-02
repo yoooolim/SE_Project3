@@ -150,15 +150,6 @@ Licence URI: https://www.os-templates.com/template-terms
               <li><a href="/gallery/1/5&name">ETC.</a></li>
             </ul>
           </li>
-          <li><a class="drop" href="#">Long Board</a>
-            <ul>
-              <li><a href="/gallery/1/1&name">COMPLETE</a></li>
-              <li><a href="/gallery/1/2&name">DECK</a></li>
-              <li><a href="/gallery/1/3&name">TRUCK</a></li>
-              <li><a href="/gallery/1/4&name">WHEEL</a></li>
-              <li><a href="/gallery/1/5&name">ETC.</a></li>
-            </ul>
-          </li>
           <li><a class="drop" href="#">Skate Board</a>
             <ul>
               <li><a href="/gallery/2/6&name">COMPLETE</a></li>
@@ -372,9 +363,20 @@ function onSubmitCancel() {
       }
       if(sum!=0) sum/=reviewrows.length;
 %>
+
       </table>
-      <p class="thirdtitleform">총별점 : <%=sum%>/5</p>
-      <% if (user != null) { %>
+      <p class="thirdtitleform">총별점 : <%=sum%>/5 </p><br>
+<%if(sum==1){%>
+      <p class="titleform" style="color: rgb(180, 152, 24);"><strong>★☆☆☆☆</strong></p>
+<%} else if(sum==2){%>
+      <p class="titleform" style="color: rgb(180, 152, 24);"><strong>★★☆☆☆</strong></p>
+<%} else if(sum==3){%>
+      <p class="titleform" style="color: rgb(180, 152, 24);"><strong>★★★☆☆</strong></p>
+<%} else if(sum==4){%>
+      <p class="titleform" style="color: rgb(180, 152, 24);"><strong>★★★★☆</strong></p>
+<%} else{%>
+       <p class="titleform" style="color: rgb(180, 152, 24);"><strong>★★★★★</strong></p>
+      <% }if (user != null) { %>
       <!--<li><a class="btn inverse" href="/reviewwrite/<%=rows[0].category1_id%>/<%=rows[0].category2_id%>/<%=rows[0].id%>">리뷰 등록하기</a></li>-->
       <% } %>
     </div>
