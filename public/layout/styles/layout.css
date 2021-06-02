@@ -969,7 +969,6 @@ select {
   text-align:center;
   width:200px;
   height:50px;
-  letter-spacing: -5px;
 }
 
 /*for slide bar*/
@@ -1062,8 +1061,7 @@ select {
     .slide_btn_box > .next {
 		right: 20%; 
 	}
-
-
+  
 #lbBtn {
   position: fixed;
   bottom: 10px;
