@@ -36,17 +36,15 @@
 <P align="center" ><img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/09e2ea5e-0874-4fdf-91ce-8ca852dcea0d/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220208%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220208T041942Z&X-Amz-Expires=86400&X-Amz-Signature=571d9f99993b26d3be4fc7460705ac483e59a7e6d6bf8b869613db52902647ff&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject" width="600" /></p>
 
 - 판매자/구매자/관리자 별 기능
-<P align="center" ><img src="" width="600" /></p>
+<P align="center" ><img src="https://user-images.githubusercontent.com/66414115/152918802-1ba775eb-2a20-4e68-bf06-d6c36f59d183.png" width="700" /></p>
 
 - 로그인 / 회원가입
 
-<P align="center" ><img src="" width="600" /></p>
-
+<P align="center" ><img src="https://user-images.githubusercontent.com/66414115/152918810-51c0b537-8370-49f9-9687-b1ec797b9617.png" width="600" /></p>
 
 
 ## 🔸 시연영상
-
-[https://www.youtube.com/watch?v=GGTNqQi9LFI](https://www.youtube.com/watch?v=GGTNqQi9LFI)
+- youtube : [https://www.youtube.com/watch?v=GGTNqQi9LFI](https://www.youtube.com/watch?v=GGTNqQi9LFI)
 
 <br/>
 <br/>
